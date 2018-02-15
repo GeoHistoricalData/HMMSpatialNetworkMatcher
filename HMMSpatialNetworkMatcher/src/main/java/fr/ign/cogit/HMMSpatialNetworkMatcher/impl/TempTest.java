@@ -28,6 +28,9 @@ public class TempTest {
   public static void main(String[] args) {
     // TODO Auto-generated method stub
     
+    
+    //test
+    
     String fileNetwork1 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
         + "/verniquet_l93_utf8_corr.shp";
     IPopulation<IFeature> inRef = ShapefileReader.read(fileNetwork1);
