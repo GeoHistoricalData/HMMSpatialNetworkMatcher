@@ -18,6 +18,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.tp.MatchingTransitionDescriptor;
 
 /**
  * One iteration of the algorithm (matching of one path).
@@ -51,6 +52,9 @@ public class HmmMatchingIteration {
    * Main matching process for this iteration
    */
   public void match() {    
+    if(this.path.isEmpty()) {
+      return;
+    }
     @SuppressWarnings("unchecked")
     Iterator<IObservation> itObservations = ((LinkedList<IObservation>)this.path.clone()).iterator();
 
@@ -86,6 +90,8 @@ public class HmmMatchingIteration {
     ViterbiAlgorithm<IHiddenState, IObservation, MatchingTransitionDescriptor> viterbi = new ViterbiAlgorithm<IHiddenState, IObservation, MatchingTransitionDescriptor>(true);
     viterbi.startWithInitialObservation(currentO, currentCandidates, startP);
     boolean viterbiIsBroken = false;
+    
+    
 
     while(itObservations.hasNext()){
       // next observation if it exists
@@ -104,7 +110,6 @@ public class HmmMatchingIteration {
       for(IHiddenState state  :nextCandidates){
         eP.put(state, nextO.computeEmissionProbability(state));
       }
-
       // transition probabilities
       final Map<Transition<IHiddenState>, Double> transitionLogProbabilities = new LinkedHashMap<Transition<IHiddenState>, Double>();
       //   final Map<Transition<MatchingState>, MatchingTransitionDescriptor> transitionDescriptors = new LinkedHashMap<>();
@@ -120,7 +125,6 @@ public class HmmMatchingIteration {
 
       viterbi.nextStep(nextO, nextCandidates, eP,
           transitionLogProbabilities);
-
 
       if(viterbi.isBroken()){
         // viterbi is broken because there is not possible transition

@@ -2,10 +2,13 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
-import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
-import fr.ign.cogit.geoxygene.feature.FT_Feature;
+import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
+import fr.ign.cogit.geoxygene.contrib.geometrie.Operateurs;
+import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPositionList;
+import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 
 /**
  * Composite pattern on HiddenState
@@ -13,13 +16,15 @@ import fr.ign.cogit.geoxygene.feature.FT_Feature;
  * @author bcostes
  *
  */
-public abstract class CompositeHiddenState extends FT_Feature implements IHiddenState{
+public class CompositeHiddenState extends HiddenState implements IHiddenState{
 
   private List<HiddenState> states;
 
-  public CompositeHiddenState(IGeometry geom) {
-    super(geom);
-    this.states = new ArrayList<HiddenState>();
+  public CompositeHiddenState(List<HiddenState> states) {
+    super(new GM_LineString(new DirectPositionList()));
+    this.states = new ArrayList<HiddenState>(states);
+    this.setTransitionProbaStrategy(states.get(0).getTransitionProbaStrategy());
+    this.computeGeometry();
   }
 
   public void add(HiddenState state) {
@@ -35,12 +40,10 @@ public abstract class CompositeHiddenState extends FT_Feature implements IHidden
     this.states = states;
     this.computeGeometry();
   }
-
+  
   private void computeGeometry() {
-    for(int i=1; i< this.states.size(); i++) {
-      geom = geom.union(this.states.get(i).getGeom());
-    }
-    this.setGeom(geom);
+    List<ILineString> list = this.states.stream().map(s->s.getGeom()).collect(Collectors.toList());
+    this.setGeom(Operateurs.union(list));
   }
 
 }

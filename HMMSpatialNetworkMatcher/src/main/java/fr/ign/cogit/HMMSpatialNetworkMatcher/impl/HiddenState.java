@@ -5,7 +5,7 @@ import java.util.Objects;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
-import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
+import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
 import fr.ign.cogit.geoxygene.feature.FT_Feature;
 
 public class HiddenState extends FT_Feature implements IHiddenState{
@@ -15,14 +15,23 @@ public class HiddenState extends FT_Feature implements IHiddenState{
    */
   private ITransitionProbabilityStrategy transitionProbaStrategy;
 
-  public HiddenState(IGeometry geometrie) {
+  
+  public HiddenState(ILineString geometrie) {
    super(geometrie);
   }
 
+  @Override
+  public ILineString getGeom() {
+    return (ILineString) super.getGeom();
+  }
 
   public void setTransitionProbaStrategy(
       ITransitionProbabilityStrategy transitionProbaStrategy) {
     this.transitionProbaStrategy = transitionProbaStrategy;
+  }
+  
+  public ITransitionProbabilityStrategy getTransitionProbaStrategy() {
+    return this.transitionProbaStrategy;
   }
 
 

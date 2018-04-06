@@ -7,7 +7,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IEmissionProbablityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
-import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
+import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
 import fr.ign.cogit.geoxygene.feature.FT_Feature;
 
 public class Observation extends FT_Feature implements IObservation{
@@ -17,11 +17,15 @@ public class Observation extends FT_Feature implements IObservation{
    */
   private IEmissionProbablityStrategy emissionProbaStrategy;
 
-  public Observation(IGeometry geometrie) {
+  public Observation(ILineString geometrie) {
     super(geometrie);
   }
 
 
+  @Override
+  public ILineString getGeom() {
+    return (ILineString) super.getGeom();
+  }
 
   public void setEmissionProbaStrategy(
       IEmissionProbablityStrategy emissionProbaStrategy) {

@@ -26,12 +26,9 @@ public class CompositeEmissionProbabilityStrategy implements IEmissionProbablity
   }
 
   public double compute(IObservation e1, IHiddenState e2) {
-    double proba = 0;
-    double W=0;
-    for(IEmissionProbablityStrategy e : this.strategies.keySet()) {
-      proba += this.strategies.get(e) * e.compute(e1, e2);
-      W += this.strategies.get(e);
-    }
+    double W=this.strategies.values().stream().reduce(0., (x,y)->x+y);
+    double proba = this.strategies.entrySet().stream().map(
+        entry -> entry.getValue() * entry.getKey().compute(e1,e2)).reduce(0., (x,y)->x+y);
     return (proba/W);
   }
 

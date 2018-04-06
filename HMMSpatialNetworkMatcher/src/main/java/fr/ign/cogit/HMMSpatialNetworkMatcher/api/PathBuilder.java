@@ -1,6 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface PathBuilder {
@@ -10,5 +9,5 @@ public interface PathBuilder {
    * @param observations
    * @return
    */
-  public abstract List<Path> buildPaths(Collection<IObservation> observations);
+  public abstract List<Path> buildPaths(IObservationCollection observations);
 }

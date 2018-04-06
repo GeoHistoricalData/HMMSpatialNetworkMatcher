@@ -1,7 +1,10 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.matching;
 
 import java.util.Map;
 import java.util.Set;
+
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 
 public interface PostProcessStrategy {
   
