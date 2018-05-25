@@ -63,5 +63,36 @@
 			<artifactId>geoxygene-contrib</artifactId>
 			<version>${geoxygene.noyau.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung2</artifactId>
+			<version>2.0.1</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-graph-impl</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-algorithms</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<!-- <dependency> <groupId>net.sf.jung</groupId> <artifactId>jung-algorithms</artifactId> 
+			<version>2.0.1</version> </dependency> <dependency> <groupId>net.sf.jung</groupId> 
+			<artifactId>jung-jai</artifactId> <version>2.0.1</version> </dependency> -->
+		<dependency>
+			<groupId>org.scpsolver</groupId>
+			<artifactId>scpsolver</artifactId>
+			<version>20130227</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scpsolver</groupId>
+			<artifactId>lpsolvesolverpack</artifactId>
+			<version>20130227</version>
+		</dependency>
+
 	</dependencies>
 </project>

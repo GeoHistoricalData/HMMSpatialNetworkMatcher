@@ -1,0 +1,931 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x0000000000020a36, pid=8070, tid=0x00007f99eef5d700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_144-b01) (build 1.8.0_144-b01)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.144-b01 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  0x0000000000020a36
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f99e8012800):  JavaThread "main" [_thread_in_native, id=8072, stack(0x00007f99eee5d000,0x00007f99eef5e000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000020a36
+
+Registers:
+RAX=0x0000000000000000, RBX=0x00007f9997e67130, RCX=0x000000000000001c, RDX=0x000000000000001c
+RSP=0x00007f99eef5c418, RBP=0x00007f99eef5c470, RSI=0x000000000000001c, RDI=0x0000000000000000
+R8 =0x000000000000003f, R9 =0x00000000d8d120f8, R10=0x00007f99d8dfca08, R11=0x00007f99edd32fa0
+R12=0x0000000000000000, R13=0x00007f9997e67128, R14=0x00007f99eef5c4f8, R15=0x00007f99e8012800
+RIP=0x0000000000020a36, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000014
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f99eef5c418)
+0x00007f99eef5c418:   00007f9997b67eda 00007f99eef5c488
+0x00007f99eef5c428:   000000000000001c 00007f99eef5c4e0
+0x00007f99eef5c438:   00007f99e80129f8 00007f99eef5c4b0
+0x00007f99eef5c448:   00007f99eef5c448 0000000000000000
+0x00007f99eef5c458:   0000000000000000 00007f9997e5e6f8
+0x00007f99eef5c468:   00007f9997e67130 00007f99eef5c4d0
+0x00007f99eef5c478:   00007f99d8dfca34 00007f99eef5c498
+0x00007f99eef5c488:   00007f99eef5c4e0 00007f99eef5c490
+0x00007f99eef5c498:   0000000000000000 00007f99eef5c4f8
+0x00007f99eef5c4a8:   00007f9997e706a0 0000000000000000
+0x00007f99eef5c4b8:   00007f9997e67130 0000000000000000
+0x00007f99eef5c4c8:   00007f99eef5c4f0 00007f99eef5c548
+0x00007f99eef5c4d8:   00007f99d8ded040 00000000d788ad78
+0x00007f99eef5c4e8:   00007f99d8df653b 000000000000001c
+0x00007f99eef5c4f8:   0000000000000000 00000000d66aa248
+0x00007f99eef5c508:   00007f99eef5c508 00007f9997e594a9
+0x00007f99eef5c518:   00007f99eef5c580 00007f9997e59ea8
+0x00007f99eef5c528:   0000000000000000 00007f9997e59780
+0x00007f99eef5c538:   00007f99eef5c4f0 00007f99eef5c578
+0x00007f99eef5c548:   00007f99eef5c5c8 00007f99d8ded114
+0x00007f99eef5c558:   0000000000000000 0000000000000000
+0x00007f99eef5c568:   0000000000000000 0000000000000000
+0x00007f99eef5c578:   00000000d8d12418 00000000d66aa248
+0x00007f99eef5c588:   00007f99eef5c588 00007f9997e52f47
+0x00007f99eef5c598:   00007f99eef5c5f8 00007f9997e53b28
+0x00007f99eef5c5a8:   0000000000000000 00007f9997e52f60
+0x00007f99eef5c5b8:   00007f99eef5c578 00007f99eef5c5f0
+0x00007f99eef5c5c8:   00007f99eef5c640 00007f99d8ded040
+0x00007f99eef5c5d8:   0000000000000000 0000000000000000
+0x00007f99eef5c5e8:   00000000d8d12418 00000000d66aa248
+0x00007f99eef5c5f8:   00000000d7b82bb8 00007f99eef5c600
+0x00007f99eef5c608:   00007f9997e52fec 00007f99eef5c650 
+
+Instructions: (pc=0x0000000000020a36)
+0x0000000000020a16:   
+[error occurred during error reporting (printing registers, top of stack, instructions near pc), id 0xb]
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX={method} {0x00007f9997e67130} 'makeLp' '(II)Llpsolve/LpSolve;' in 'lpsolve/LpSolve'
+RCX=0x000000000000001c is an unknown value
+RDX=0x000000000000001c is an unknown value
+RSP=0x00007f99eef5c418 is pointing into the stack for thread: 0x00007f99e8012800
+RBP=0x00007f99eef5c470 is pointing into the stack for thread: 0x00007f99e8012800
+RSI=0x000000000000001c is an unknown value
+RDI=0x0000000000000000 is an unknown value
+R8 =0x000000000000003f is an unknown value
+R9 =0x00000000d8d120f8 is an oop
+java.util.HashMap$Node 
+ - klass: 'java/util/HashMap$Node'
+R10=0x00007f99d8dfca08 is at code_begin+808 in an Interpreter codelet
+method entry point (kind = native)  [0x00007f99d8dfc6e0, 0x00007f99d8dfcfe0]  2304 bytes
+R11=0x00007f99edd32fa0: <offset 0x9c7fa0> in /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/server/libjvm.so at 0x00007f99ed36b000
+R12=0x0000000000000000 is an unknown value
+R13=0x00007f9997e67128 is pointing into metadata
+R14=0x00007f99eef5c4f8 is pointing into the stack for thread: 0x00007f99e8012800
+R15=0x00007f99e8012800 is a thread
+
+
+Stack: [0x00007f99eee5d000,0x00007f99eef5e000],  sp=0x00007f99eef5c418,  free space=1021k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  0x0000000000020a36
+j  lpsolve.LpSolve.makeLp(II)Llpsolve/LpSolve;+0
+j  scpsolver.lpsolver.LPSOLVESolver.solve(Lscpsolver/problems/LinearProgram;)[D+33
+j  scpsolver.problems.LPWizard.solve(Lscpsolver/lpsolver/LinearProgramSolver;)Lscpsolver/problems/LPSolution;+7
+j  scpsolver.problems.LPWizard.solve()Lscpsolver/problems/LPSolution;+4
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.postProcessStrategy.OptimizationPostStratregy.simplify(Ljava/util/Map;)Ljava/util/Map;+2124
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HMMMatchingProcess.match()V+258
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.HMMMatchingLauncher.lauchMatchingProcess()V+138
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.TempTest.main([Ljava/lang/String;)V+96
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x693e96]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x1056
+V  [libjvm.so+0x6d52b2]  jni_invoke_static(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*)+0x362
+V  [libjvm.so+0x6f1b1a]  jni_CallStaticVoidMethod+0x17a
+C  [libjli.so+0x7bdf]  JavaMain+0x81f
+C  [libpthread.so.0+0x76ba]  start_thread+0xca
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  lpsolve.LpSolve.makeLp(II)Llpsolve/LpSolve;+0
+j  scpsolver.lpsolver.LPSOLVESolver.solve(Lscpsolver/problems/LinearProgram;)[D+33
+j  scpsolver.problems.LPWizard.solve(Lscpsolver/lpsolver/LinearProgramSolver;)Lscpsolver/problems/LPSolution;+7
+j  scpsolver.problems.LPWizard.solve()Lscpsolver/problems/LPSolution;+4
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.postProcessStrategy.OptimizationPostStratregy.simplify(Ljava/util/Map;)Ljava/util/Map;+2124
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HMMMatchingProcess.match()V+258
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.HMMMatchingLauncher.lauchMatchingProcess()V+138
+j  fr.ign.cogit.HMMSpatialNetworkMatcher.matching.TempTest.main([Ljava/lang/String;)V+96
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f99e80c9800 JavaThread "Service Thread" daemon [_thread_blocked, id=8088, stack(0x00007f99d1824000,0x00007f99d1925000)]
+  0x00007f99e80c6800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=8087, stack(0x00007f99d1925000,0x00007f99d1a26000)]
+  0x00007f99e80c4800 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=8086, stack(0x00007f99d1a26000,0x00007f99d1b27000)]
+  0x00007f99e80c1800 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=8085, stack(0x00007f99d1b27000,0x00007f99d1c28000)]
+  0x00007f99e80c0000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=8084, stack(0x00007f99d1c28000,0x00007f99d1d29000)]
+  0x00007f99e808d000 JavaThread "Finalizer" daemon [_thread_blocked, id=8083, stack(0x00007f99d2006000,0x00007f99d2107000)]
+  0x00007f99e8088000 JavaThread "Reference Handler" daemon [_thread_blocked, id=8082, stack(0x00007f99d2107000,0x00007f99d2208000)]
+=>0x00007f99e8012800 JavaThread "main" [_thread_in_native, id=8072, stack(0x00007f99eee5d000,0x00007f99eef5e000)]
+
+Other Threads:
+  0x00007f99e8080800 VMThread [stack: 0x00007f99d2208000,0x00007f99d2309000] [id=8081]
+  0x00007f99e80cc800 WatcherThread [stack: 0x00007f99d1723000,0x00007f99d1824000] [id=8089]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 101888K, used 59502K [0x00000000d5580000, 0x00000000f3800000, 0x0000000100000000)
+  eden space 100864K, 58% used [0x00000000d5580000,0x00000000d8ea39b0,0x00000000db800000)
+  from space 1024K, 96% used [0x00000000f3600000,0x00000000f36f8030,0x00000000f3700000)
+  to   space 1024K, 0% used [0x00000000f3700000,0x00000000f3700000,0x00000000f3800000)
+ ParOldGen       total 81920K, used 63423K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 77% used [0x0000000080000000,0x0000000083deff28,0x0000000085000000)
+ Metaspace       used 14256K, capacity 14514K, committed 14848K, reserved 1062912K
+  class space    used 1636K, capacity 1737K, committed 1792K, reserved 1048576K
+
+Card table byte_map: [0x00007f99d8624000,0x00007f99d8a25000] byte_map_base: 0x00007f99d8224000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f99ee334dc0
+ Begin Bits: [0x00007f99d4076000, 0x00007f99d6076000)
+ End Bits:   [0x00007f99d6076000, 0x00007f99d8076000)
+
+Polling page: 0x00007f99eef87000
+
+CodeCache: size=245760Kb used=9807Kb max_used=10862Kb free=235952Kb
+ bounds [0x00007f99d8de5000, 0x00007f99d9975000, 0x00007f99e7de5000]
+ total_blobs=2855 nmethods=2447 adapters=321
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 74,349 Thread 0x00007f99e80c6800 3667       3       java.util.ArrayList$SubList$1::checkForComodification (26 bytes)
+Event: 74,349 Thread 0x00007f99e80c6800 nmethod 3667 0x00007f99d9157290 code [0x00007f99d9157400, 0x00007f99d9157668]
+Event: 74,351 Thread 0x00007f99e80c4800 nmethod 3658 0x00007f99d9754c50 code [0x00007f99d9754e40, 0x00007f99d9755498]
+Event: 74,351 Thread 0x00007f99e80c4800 3668       4       sun.nio.cs.UTF_8$Decoder::decode (779 bytes)
+Event: 74,370 Thread 0x00007f99e80c4800 nmethod 3668 0x00007f99d9536f50 code [0x00007f99d95372a0, 0x00007f99d95385d0]
+Event: 74,370 Thread 0x00007f99e80c4800 3662       4       fr.ign.cogit.HMMSpatialNetworkMatcher.impl.ep.DirectionDifferenceEmissionProbability::compute (142 bytes)
+Event: 74,381 Thread 0x00007f99e80c6800 3669 % !   3       scpsolver.lpsolver.SolverFactory::loadLibrary @ 363 (865 bytes)
+Event: 74,388 Thread 0x00007f99e80c6800 nmethod 3669% 0x00007f99d980b750 code [0x00007f99d980c680, 0x00007f99d9817fc8]
+Event: 74,390 Thread 0x00007f99e80c4800 nmethod 3662 0x00007f99d8f18690 code [0x00007f99d8f189e0, 0x00007f99d8f19b90]
+Event: 74,390 Thread 0x00007f99e80c4800 3660       4       fr.ign.cogit.HMMSpatialNetworkMatcher.impl.ep.FrechetEmissionProbability::compute (83 bytes)
+
+GC Heap History (10 events):
+Event: 73,174 GC heap before
+{Heap before GC invocations=137 (full 0):
+ PSYoungGen      total 61952K, used 61856K [0x00000000d5580000, 0x00000000f3900000, 0x0000000100000000)
+  eden space 61440K, 100% used [0x00000000d5580000,0x00000000d9180000,0x00000000d9180000)
+  from space 512K, 81% used [0x00000000f3880000,0x00000000f38e8010,0x00000000f3900000)
+  to   space 1024K, 0% used [0x00000000f3700000,0x00000000f3700000,0x00000000f3800000)
+ ParOldGen       total 81920K, used 61729K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c48650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+Event: 73,175 GC heap after
+Heap after GC invocations=137 (full 0):
+ PSYoungGen      total 60928K, used 640K [0x00000000d5580000, 0x00000000f3900000, 0x0000000100000000)
+  eden space 59904K, 0% used [0x00000000d5580000,0x00000000d5580000,0x00000000d9000000)
+  from space 1024K, 62% used [0x00000000f3700000,0x00000000f37a0010,0x00000000f3800000)
+  to   space 1024K, 0% used [0x00000000f3800000,0x00000000f3800000,0x00000000f3900000)
+ ParOldGen       total 81920K, used 61737K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c4a650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+}
+Event: 73,289 GC heap before
+{Heap before GC invocations=138 (full 0):
+ PSYoungGen      total 60928K, used 60544K [0x00000000d5580000, 0x00000000f3900000, 0x0000000100000000)
+  eden space 59904K, 100% used [0x00000000d5580000,0x00000000d9000000,0x00000000d9000000)
+  from space 1024K, 62% used [0x00000000f3700000,0x00000000f37a0010,0x00000000f3800000)
+  to   space 1024K, 0% used [0x00000000f3800000,0x00000000f3800000,0x00000000f3900000)
+ ParOldGen       total 81920K, used 61737K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c4a650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+Event: 73,291 GC heap after
+Heap after GC invocations=138 (full 0):
+ PSYoungGen      total 72704K, used 128K [0x00000000d5580000, 0x00000000f3880000, 0x0000000100000000)
+  eden space 72192K, 0% used [0x00000000d5580000,0x00000000d5580000,0x00000000d9c00000)
+  from space 512K, 25% used [0x00000000f3800000,0x00000000f3820000,0x00000000f3880000)
+  to   space 1024K, 0% used [0x00000000f3680000,0x00000000f3680000,0x00000000f3780000)
+ ParOldGen       total 81920K, used 61753K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c4e650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+}
+Event: 73,439 GC heap before
+{Heap before GC invocations=139 (full 0):
+ PSYoungGen      total 72704K, used 72320K [0x00000000d5580000, 0x00000000f3880000, 0x0000000100000000)
+  eden space 72192K, 100% used [0x00000000d5580000,0x00000000d9c00000,0x00000000d9c00000)
+  from space 512K, 25% used [0x00000000f3800000,0x00000000f3820000,0x00000000f3880000)
+  to   space 1024K, 0% used [0x00000000f3680000,0x00000000f3680000,0x00000000f3780000)
+ ParOldGen       total 81920K, used 61753K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c4e650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+Event: 73,441 GC heap after
+Heap after GC invocations=139 (full 0):
+ PSYoungGen      total 88064K, used 256K [0x00000000d5580000, 0x00000000f3880000, 0x0000000100000000)
+  eden space 87040K, 0% used [0x00000000d5580000,0x00000000d5580000,0x00000000daa80000)
+  from space 1024K, 25% used [0x00000000f3680000,0x00000000f36c0000,0x00000000f3780000)
+  to   space 1024K, 0% used [0x00000000f3780000,0x00000000f3780000,0x00000000f3880000)
+ ParOldGen       total 81920K, used 61761K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c50650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+}
+Event: 73,679 GC heap before
+{Heap before GC invocations=140 (full 0):
+ PSYoungGen      total 88064K, used 87296K [0x00000000d5580000, 0x00000000f3880000, 0x0000000100000000)
+  eden space 87040K, 100% used [0x00000000d5580000,0x00000000daa80000,0x00000000daa80000)
+  from space 1024K, 25% used [0x00000000f3680000,0x00000000f36c0000,0x00000000f3780000)
+  to   space 1024K, 0% used [0x00000000f3780000,0x00000000f3780000,0x00000000f3880000)
+ ParOldGen       total 81920K, used 61761K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c50650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+Event: 73,681 GC heap after
+Heap after GC invocations=140 (full 0):
+ PSYoungGen      total 104960K, used 96K [0x00000000d5580000, 0x00000000f3800000, 0x0000000100000000)
+  eden space 104448K, 0% used [0x00000000d5580000,0x00000000d5580000,0x00000000dbb80000)
+  from space 512K, 18% used [0x00000000f3780000,0x00000000f3798000,0x00000000f3800000)
+  to   space 1024K, 0% used [0x00000000f3600000,0x00000000f3600000,0x00000000f3700000)
+ ParOldGen       total 81920K, used 61777K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c54650,0x0000000085000000)
+ Metaspace       used 13970K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1605K, capacity 1672K, committed 1792K, reserved 1048576K
+}
+Event: 74,219 GC heap before
+{Heap before GC invocations=141 (full 0):
+ PSYoungGen      total 104960K, used 104544K [0x00000000d5580000, 0x00000000f3800000, 0x0000000100000000)
+  eden space 104448K, 100% used [0x00000000d5580000,0x00000000dbb80000,0x00000000dbb80000)
+  from space 512K, 18% used [0x00000000f3780000,0x00000000f3798000,0x00000000f3800000)
+  to   space 1024K, 0% used [0x00000000f3600000,0x00000000f3600000,0x00000000f3700000)
+ ParOldGen       total 81920K, used 61777K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 75% used [0x0000000080000000,0x0000000083c54650,0x0000000085000000)
+ Metaspace       used 14039K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1614K, capacity 1672K, committed 1792K, reserved 1048576K
+Event: 74,222 GC heap after
+Heap after GC invocations=141 (full 0):
+ PSYoungGen      total 101888K, used 992K [0x00000000d5580000, 0x00000000f3800000, 0x0000000100000000)
+  eden space 100864K, 0% used [0x00000000d5580000,0x00000000d5580000,0x00000000db800000)
+  from space 1024K, 96% used [0x00000000f3600000,0x00000000f36f8030,0x00000000f3700000)
+  to   space 1024K, 0% used [0x00000000f3700000,0x00000000f3700000,0x00000000f3800000)
+ ParOldGen       total 81920K, used 63423K [0x0000000080000000, 0x0000000085000000, 0x00000000d5580000)
+  object space 81920K, 77% used [0x0000000080000000,0x0000000083deff28,0x0000000085000000)
+ Metaspace       used 14039K, capacity 14256K, committed 14592K, reserved 1062912K
+  class space    used 1614K, capacity 1672K, committed 1792K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 74,335 Thread 0x00007f99e8012800 Uncommon trap: reason=predicate action=maybe_recompile pc=0x00007f99d8ef601c method=java.util.Vector.indexOf(Ljava/lang/Object;I)I @ 44
+Event: 74,336 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d968da04 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 74,336 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d968da04 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 74,344 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d92a2360 method=java.util.Collections$UnmodifiableCollection$1.<init>(Ljava/util/Collections$UnmodifiableCollection;)V @ 17
+Event: 74,344 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d94e654c method=fr.ign.cogit.HMMSpatialNetworkMatcher.matching.utils.Combinations.getAllCombinations(Ljava/util/Collection;)Ljava/util/List; @ 9
+Event: 74,344 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d94e654c method=fr.ign.cogit.HMMSpatialNetworkMatcher.matching.utils.Combinations.getAllCombinations(Ljava/util/Collection;)Ljava/util/List; @ 9
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d9352a98 method=java.util.regex.Pattern$Slice.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 75
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d9404548 method=java.util.regex.Pattern$CharProperty.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 37
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d9352a98 method=java.util.regex.Pattern$Slice.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 75
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f99d9404548 method=java.util.regex.Pattern$CharProperty.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 37
+
+Internal exceptions (10 events):
+Event: 74,328 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d7830630) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,328 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d78311c0) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,328 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d7831c50) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,328 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d78325e8) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,328 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d7832f88) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,383 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d8d0ae80) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,383 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d8d0b9b0) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,383 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d8d0c440) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,383 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d8d0cdd8) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 74,383 Thread 0x00007f99e8012800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d8d0d778) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u144/9417/hotspot/src/share/vm/prims/jni.cpp, line 709]
+
+Events (10 events):
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT UNPACKING pc=0x00007f99d8dea229 sp=0x00007f99eef5c1d8 mode 2
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: trap_request=0xffffffde fr.pc=0x00007f99d9404548
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT PACKING pc=0x00007f99d9404548 sp=0x00007f99eef5c180
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT UNPACKING pc=0x00007f99d8dea229 sp=0x00007f99eef5c158 mode 2
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: trap_request=0xffffffde fr.pc=0x00007f99d9352a98
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT PACKING pc=0x00007f99d9352a98 sp=0x00007f99eef5c380
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT UNPACKING pc=0x00007f99d8dea229 sp=0x00007f99eef5c1d8 mode 2
+Event: 74,383 Thread 0x00007f99e8012800 Uncommon trap: trap_request=0xffffffde fr.pc=0x00007f99d9404548
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT PACKING pc=0x00007f99d9404548 sp=0x00007f99eef5c180
+Event: 74,383 Thread 0x00007f99e8012800 DEOPT UNPACKING pc=0x00007f99d8dea229 sp=0x00007f99eef5c158 mode 2
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 10228731                           /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/bin/java
+00600000-00601000 rw-p 00000000 08:01 10228731                           /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/bin/java
+0174c000-0176d000 rw-p 00000000 00:00 0                                  [heap]
+80000000-85000000 rw-p 00000000 00:00 0 
+85000000-d5580000 ---p 00000000 00:00 0 
+d5580000-f3800000 rw-p 00000000 00:00 0 
+f3800000-100000000 ---p 00000000 00:00 0 
+100000000-1001c0000 rw-p 00000000 00:00 0 
+1001c0000-140000000 ---p 00000000 00:00 0 
+7f99975ae000-7f99975c4000 r-xp 00000000 08:01 4723114                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f99975c4000-7f99977c3000 ---p 00016000 08:01 4723114                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f99977c3000-7f99977c4000 rw-p 00015000 08:01 4723114                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f99977c4000-7f9997936000 r-xp 00000000 08:01 11534365                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f9997936000-7f9997b36000 ---p 00172000 08:01 11534365                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f9997b36000-7f9997b40000 r--p 00172000 08:01 11534365                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f9997b40000-7f9997b42000 rw-p 0017c000 08:01 11534365                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f9997b42000-7f9997b46000 rw-p 00000000 00:00 0 
+7f9997b46000-7f9997bfb000 r-xp 00000000 08:01 6688183                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/liblpsolve55j_x64.so
+7f9997bfb000-7f9997dfb000 ---p 000b5000 08:01 6688183                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/liblpsolve55j_x64.so
+7f9997dfb000-7f9997dfd000 r--p 000b5000 08:01 6688183                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/liblpsolve55j_x64.so
+7f9997dfd000-7f9997e00000 rw-p 000b7000 08:01 6688183                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/liblpsolve55j_x64.so
+7f9997e00000-7f9997ec0000 rw-p 00000000 00:00 0 
+7f9997ec0000-7f9998000000 ---p 00000000 00:00 0 
+7f9998000000-7f9998021000 rw-p 00000000 00:00 0 
+7f9998021000-7f999c000000 ---p 00000000 00:00 0 
+7f999c000000-7f999c021000 rw-p 00000000 00:00 0 
+7f999c021000-7f99a0000000 ---p 00000000 00:00 0 
+7f99a0000000-7f99a1777000 rw-p 00000000 00:00 0 
+7f99a1777000-7f99a4000000 ---p 00000000 00:00 0 
+7f99a4000000-7f99a4c04000 rw-p 00000000 00:00 0 
+7f99a4c04000-7f99a8000000 ---p 00000000 00:00 0 
+7f99a8000000-7f99a9465000 rw-p 00000000 00:00 0 
+7f99a9465000-7f99ac000000 ---p 00000000 00:00 0 
+7f99ac000000-7f99ac021000 rw-p 00000000 00:00 0 
+7f99ac021000-7f99b0000000 ---p 00000000 00:00 0 
+7f99b01ab000-7f99b03ab000 rw-p 00000000 00:00 0 
+7f99b03ab000-7f99b03bc000 r-xp 00000000 08:01 10228838                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnio.so
+7f99b03bc000-7f99b05bb000 ---p 00011000 08:01 10228838                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnio.so
+7f99b05bb000-7f99b05bc000 rw-p 00010000 08:01 10228838                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnio.so
+7f99b05bc000-7f99b35bd000 rw-p 00000000 00:00 0 
+7f99b35bd000-7f99b35d3000 r-xp 00000000 08:01 10228813                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnet.so
+7f99b35d3000-7f99b37d3000 ---p 00016000 08:01 10228813                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnet.so
+7f99b37d3000-7f99b37d4000 rw-p 00016000 08:01 10228813                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libnet.so
+7f99b37d4000-7f99b39d4000 rw-p 00000000 00:00 0 
+7f99b39d4000-7f99b39d9000 r-xp 00000000 08:01 11542345                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f99b39d9000-7f99b3bd8000 ---p 00005000 08:01 11542345                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f99b3bd8000-7f99b3bd9000 r--p 00004000 08:01 11542345                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f99b3bd9000-7f99b3bda000 rw-p 00005000 08:01 11542345                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f99b3bda000-7f99b3bdc000 r-xp 00000000 08:01 11542334                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f99b3bdc000-7f99b3ddc000 ---p 00002000 08:01 11542334                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f99b3ddc000-7f99b3ddd000 r--p 00002000 08:01 11542334                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f99b3ddd000-7f99b3dde000 rw-p 00003000 08:01 11542334                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f99b3dde000-7f99b3dff000 r-xp 00000000 08:01 11543712                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f99b3dff000-7f99b3ffe000 ---p 00021000 08:01 11543712                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f99b3ffe000-7f99b3fff000 r--p 00020000 08:01 11543712                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f99b3fff000-7f99b4000000 rw-p 00021000 08:01 11543712                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f99b4000000-7f99b4021000 rw-p 00000000 00:00 0 
+7f99b4021000-7f99b8000000 ---p 00000000 00:00 0 
+7f99b8000000-7f99b8021000 rw-p 00000000 00:00 0 
+7f99b8021000-7f99bc000000 ---p 00000000 00:00 0 
+7f99bc000000-7f99bc021000 rw-p 00000000 00:00 0 
+7f99bc021000-7f99c0000000 ---p 00000000 00:00 0 
+7f99c0000000-7f99c0021000 rw-p 00000000 00:00 0 
+7f99c0021000-7f99c4000000 ---p 00000000 00:00 0 
+7f99c4000000-7f99c4021000 rw-p 00000000 00:00 0 
+7f99c4021000-7f99c8000000 ---p 00000000 00:00 0 
+7f99c8000000-7f99c8021000 rw-p 00000000 00:00 0 
+7f99c8021000-7f99cc000000 ---p 00000000 00:00 0 
+7f99cc000000-7f99cc021000 rw-p 00000000 00:00 0 
+7f99cc021000-7f99d0000000 ---p 00000000 00:00 0 
+7f99d0111000-7f99d0112000 r--p 00000000 00:00 0 
+7f99d0112000-7f99d0116000 r--s 0003a000 08:01 10228888                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunpkcs11.jar
+7f99d0116000-7f99d0118000 r--s 00009000 08:01 10228890                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunec.jar
+7f99d0118000-7f99d0133000 r--s 001d3000 08:01 10228892                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/nashorn.jar
+7f99d0133000-7f99d0139000 r--s 0003f000 08:01 10228891                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunjce_provider.jar
+7f99d0139000-7f99d013b000 r--s 00001000 08:01 10228887                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/dnsns.jar
+7f99d013b000-7f99d01d0000 r--s 01110000 08:01 10228889                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/jfxrt.jar
+7f99d01d0000-7f99d01da000 r--s 00116000 08:01 10228893                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/localedata.jar
+7f99d01da000-7f99d0200000 r--p 00000000 08:01 13244171                   /usr/share/locale-langpack/fr/LC_MESSAGES/libc.mo
+7f99d0200000-7f99d020f000 r-xp 00000000 08:01 11542355                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f99d020f000-7f99d040e000 ---p 0000f000 08:01 11542355                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f99d040e000-7f99d040f000 r--p 0000e000 08:01 11542355                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f99d040f000-7f99d0410000 rw-p 0000f000 08:01 11542355                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f99d0410000-7f99d0415000 r-xp 00000000 08:01 11542373                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f99d0415000-7f99d0614000 ---p 00005000 08:01 11542373                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f99d0614000-7f99d0615000 r--p 00004000 08:01 11542373                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f99d0615000-7f99d0616000 rw-p 00005000 08:01 11542373                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f99d0616000-7f99d061f000 r-xp 00000000 08:01 11542367                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f99d061f000-7f99d081e000 ---p 00009000 08:01 11542367                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f99d081e000-7f99d081f000 r--p 00008000 08:01 11542367                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f99d081f000-7f99d0820000 rw-p 00009000 08:01 11542367                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f99d0820000-7f99d0955000 r-xp 00000000 08:01 11542330                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f99d0955000-7f99d0b55000 ---p 00135000 08:01 11542330                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f99d0b55000-7f99d0b56000 r--p 00135000 08:01 11542330                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f99d0b56000-7f99d0b5a000 rw-p 00136000 08:01 11542330                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f99d0b5a000-7f99d0b6b000 r-xp 00000000 08:01 11542347                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f99d0b6b000-7f99d0d6a000 ---p 00011000 08:01 11542347                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f99d0d6a000-7f99d0d6b000 r--p 00010000 08:01 11542347                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f99d0d6b000-7f99d0d6c000 rw-p 00011000 08:01 11542347                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f99d0d6c000-7f99d0d6d000 r--s 00010000 08:01 10228897                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/zipfs.jar
+7f99d0d6d000-7f99d0d6e000 r--s 0000a000 08:01 10228895                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/jaccess.jar
+7f99d0d6e000-7f99d0d8a000 r--s 00393000 08:01 10228896                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/cldrdata.jar
+7f99d0d8a000-7f99d0d91000 r--s 00000000 08:01 11812804                   /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7f99d0d91000-7f99d0de5000 r-xp 00000000 08:01 10228840                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt_xawt.so
+7f99d0de5000-7f99d0fe5000 ---p 00054000 08:01 10228840                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt_xawt.so
+7f99d0fe5000-7f99d0fe9000 rw-p 00054000 08:01 10228840                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt_xawt.so
+7f99d0fe9000-7f99d0fea000 rw-p 00000000 00:00 0 
+7f99d0fea000-7f99d108c000 r-xp 00000000 08:01 10228873                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt.so
+7f99d108c000-7f99d128c000 ---p 000a2000 08:01 10228873                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt.so
+7f99d128c000-7f99d1298000 rw-p 000a2000 08:01 10228873                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libawt.so
+7f99d1298000-7f99d12bc000 rw-p 00000000 00:00 0 
+7f99d12bc000-7f99d12bf000 r--s 00008000 08:01 10618954                   /home/bcostes/.m2/repository/net/sf/jung/jung-api/2.0.1/jung-api-2.0.1.jar
+7f99d12bf000-7f99d12c1000 r--s 0000e000 08:01 10618945                   /home/bcostes/.m2/repository/net/sf/jung/jung-graph-impl/2.0.1/jung-graph-impl-2.0.1.jar
+7f99d12c1000-7f99d12da000 r--s 00135000 08:01 10751970                   /home/bcostes/.m2/repository/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar
+7f99d12da000-7f99d1301000 r--s 001f6000 08:01 10487300                   /home/bcostes/.m2/repository/org/apache/commons/commons-math3/3.6/commons-math3-3.6.jar
+7f99d1301000-7f99d1302000 r--s 00003000 08:01 10487359                   /home/bcostes/.m2/repository/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1.jar
+7f99d1302000-7f99d130c000 r--s 000ae000 08:01 10489017                   /home/bcostes/.m2/repository/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar
+7f99d130c000-7f99d130f000 r--s 00010000 08:01 10488339                   /home/bcostes/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar
+7f99d130f000-7f99d1314000 r--s 00048000 08:01 10619851                   /home/bcostes/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar
+7f99d1314000-7f99d1316000 r--s 0000f000 08:01 10488984                   /home/bcostes/.m2/repository/org/jboss/logging/jboss-logging/3.3.0.Final/jboss-logging-3.3.0.Final.jar
+7f99d1316000-7f99d1322000 r--s 00082000 08:01 10488316                   /home/bcostes/.m2/repository/org/hibernate/hibernate-entitymanager/5.1.0.Final/hibernate-entitymanager-5.1.0.Final.jar
+7f99d1322000-7f99d1332000 r--s 0011d000 08:01 10620832                   /home/bcostes/.m2/repository/org/eclipse/emf/ecore/2.6.1/ecore-2.6.1.jar
+7f99d1332000-7f99d1336000 r--s 00030000 08:01 10616902                   /home/bcostes/.m2/repository/org/eclipse/emf/common/2.6.0/common-2.6.0.jar
+7f99d1336000-7f99d133a000 r--s 00035000 08:01 10493690                   /home/bcostes/.m2/repository/org/geotools/ogc/net.opengis.fes/17.2/net.opengis.fes-17.2.jar
+7f99d133a000-7f99d133b000 r--s 0000c000 08:01 10493688                   /home/bcostes/.m2/repository/org/geotools/ogc/org.w3.xlink/17.2/org.w3.xlink-17.2.jar
+7f99d133b000-7f99d1341000 r--s 00063000 08:01 10493686                   /home/bcostes/.m2/repository/org/geotools/ogc/net.opengis.wfs/17.2/net.opengis.wfs-17.2.jar
+7f99d1341000-7f99d1343000 r--s 00013000 08:01 10487427                   /home/bcostes/.m2/repository/org/apache/xml/xml-commons-resolver/1.2/xml-commons-resolver-1.2.jar
+7f99d1343000-7f99d134b000 r--s 0007a000 08:01 10493684                   /home/bcostes/.m2/repository/org/geotools/ogc/net.opengis.ows/17.2/net.opengis.ows-17.2.jar
+7f99d134b000-7f99d134e000 r--s 0001b000 08:01 10493682                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-ows/17.2/gt-xsd-ows-17.2.jar
+7f99d134e000-7f99d1351000 r--s 0000f000 08:01 10493680                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-fes/17.2/gt-xsd-fes-17.2.jar
+7f99d1351000-7f99d136a000 r--s 00163000 08:01 10493678                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-gml3/17.2/gt-xsd-gml3-17.2.jar
+7f99d136a000-7f99d136d000 r--s 0001a000 08:01 10493676                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-gml2/17.2/gt-xsd-gml2-17.2.jar
+7f99d136d000-7f99d1374000 r--s 000ec000 08:01 10620839                   /home/bcostes/.m2/repository/org/eclipse/xsd/xsd/2.6.0/xsd-2.6.0.jar
+7f99d1374000-7f99d137a000 r--s 00044000 08:01 10747949                   /home/bcostes/.m2/repository/commons-jxpath/commons-jxpath/1.3/commons-jxpath-1.3.jar
+7f99d137a000-7f99d137e000 r--s 00018000 08:01 10747932                   /home/bcostes/.m2/repository/picocontainer/picocontainer/1.2/picocontainer-1.2.jar
+7f99d137e000-7f99d1383000 r--s 00025000 08:01 10493674                   /home/bcostes/.m2/repository/org/geotools/gt-graph/17.2/gt-graph-17.2.jar
+7f99d1383000-7f99d1389000 r--s 00047000 08:01 10493672                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-core/17.2/gt-xsd-core-17.2.jar
+7f99d1389000-7f99d138d000 r--s 00017000 08:01 10493670                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-filter/17.2/gt-xsd-filter-17.2.jar
+7f99d138d000-7f99d1391000 r--s 00021000 08:01 10493668                   /home/bcostes/.m2/repository/org/geotools/xsd/gt-xsd-wfs/17.2/gt-xsd-wfs-17.2.jar
+7f99d1391000-7f99d139b000 r--s 00096000 08:01 10493666                   /home/bcostes/.m2/repository/org/geotools/gt-xml/17.2/gt-xml-17.2.jar
+7f99d139b000-7f99d13a5000 r--s 0006e000 08:01 10749265                   /home/bcostes/.m2/repository/jfree/jcommon/1.0.16/jcommon-1.0.16.jar
+7f99d13a5000-7f99d13b6000 r--s 0014c000 08:01 10620109                   /home/bcostes/.m2/repository/jfree/jfreechart/1.0.13/jfreechart-1.0.13.jar
+7f99d13b6000-7f99d13c2000 r--s 00076000 08:01 10619107                   /home/bcostes/.m2/repository/net/sourceforge/collections/collections-generic/4.01/collections-generic-4.01.jar
+7f99d13c2000-7f99d13c8000 r--s 00081000 08:01 10619859                   /home/bcostes/.m2/repository/postgresql/postgresql/9.1-901-1.jdbc4/postgresql-9.1-901-1.jdbc4.jar
+7f99d13c8000-7f99d13ce000 r--s 00033000 08:01 10617890                   /home/bcostes/.m2/repository/com/google/code/gson/gson/2.6.2/gson-2.6.2.jar
+7f99d13ce000-7f99d13d3000 r--s 00040000 08:01 10486316                   /home/bcostes/.m2/repository/org/twitter4j/twitter4j-core/4.0.2/twitter4j-core-4.0.2.jar
+7f99d13d3000-7f99d13db000 r--s 00048000 08:01 10493631                   /home/bcostes/.m2/repository/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar
+7f99d13db000-7f99d13e8000 r--s 000aa000 08:01 10493629                   /home/bcostes/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar
+7f99d13e8000-7f99d13ec000 r--s 00013000 08:01 10485877                   /home/bcostes/.m2/repository/org/scribe/scribe/1.3.5/scribe-1.3.5.jar
+7f99d13ec000-7f99d13f2000 r--s 00042000 08:01 10624881                   /home/bcostes/.m2/repository/com/flickr4java/flickr4java/2.17/flickr4java-2.17.jar
+7f99d13f2000-7f99d13ff000 r--s 00083000 08:01 10619996                   /home/bcostes/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar
+7f99d13ff000-7f99d1402000 r--s 00025000 08:01 10619953                   /home/bcostes/.m2/repository/commons-dbcp/commons-dbcp/1.4/commons-dbcp-1.4.jar
+7f99d1402000-7f99d1405000 r--s 00034000 08:01 10493658                   /home/bcostes/.m2/repository/org/geotools/gt-jdbc/17.2/gt-jdbc-17.2.jar
+7f99d1405000-7f99d1407000 r--s 0000b000 08:01 10493656                   /home/bcostes/.m2/repository/org/geotools/jdbc/gt-jdbc-postgis/17.2/gt-jdbc-postgis-17.2.jar
+7f99d1407000-7f99d140a000 r--s 0002e000 08:01 10493654                   /home/bcostes/.m2/repository/org/geotools/gt-cql/17.2/gt-cql-17.2.jar
+7f99d140a000-7f99d140c000 r--s 00007000 08:01 10488141                   /home/bcostes/.m2/repository/org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.jar
+7f99d140c000-7f99d1417000 r--s 00065000 08:01 10619917                   /home/bcostes/.m2/repository/ch/qos/logback/logback-core/1.1.3/logback-core-1.1.3.jar
+7f99d1417000-7f99d141d000 r--s 0003f000 08:01 10619900                   /home/bcostes/.m2/repository/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar
+7f99d141d000-7f99d141f000 r--s 0000c000 08:01 10618996                   /home/bcostes/.m2/repository/net/postgis/postgis-jdbc/2.2.0/postgis-jdbc-2.2.0.jar
+7f99d141f000-7f99d1428000 r--s 00071000 08:01 10489060                   /home/bcostes/.m2/repository/org/apfloat/apfloat/1.8.2/apfloat-1.8.2.jar
+7f99d1428000-7f99d142f000 r--s 00065000 08:01 10489047                   /home/bcostes/.m2/repository/org/geolatte/geolatte-geom/1.0.1/geolatte-geom-1.0.1.jar
+7f99d142f000-7f99d1430000 r--s 00002000 08:01 10488179                   /home/bcostes/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar
+7f99d1430000-7f99d1441000 r--s 00155000 08:01 10618767                   /home/bcostes/.m2/repository/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0.jar
+7f99d1441000-7f99d1445000 r--s 000dc000 08:01 10618755                   /home/bcostes/.m2/repository/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar
+7f99d1445000-7f99d1447000 r--s 0000d000 08:01 10618077                   /home/bcostes/.m2/repository/com/github/dblock/waffle/waffle-jna/1.7/waffle-jna-1.7.jar
+7f99d1447000-7f99d144f000 r--s 00097000 08:01 10489030                   /home/bcostes/.m2/repository/org/postgresql/postgresql/9.4-1200-jdbc41/postgresql-9.4-1200-jdbc41.jar
+7f99d144f000-7f99d1453000 r--s 00018000 08:01 10488350                   /home/bcostes/.m2/repository/org/hibernate/hibernate-spatial/5.1.0.Final/hibernate-spatial-5.1.0.Final.jar
+7f99d1453000-7f99d1455000 r--s 0000e000 08:01 10618057                   /home/bcostes/.m2/repository/com/fasterxml/classmate/1.3.0/classmate-1.3.0.jar
+7f99d1455000-7f99d1458000 r--s 0002b000 08:01 10489005                   /home/bcostes/.m2/repository/org/jboss/jandex/2.0.0.Final/jandex-2.0.0.Final.jar
+7f99d1458000-7f99d145d000 r--s 00068000 08:01 10620119                   /home/bcostes/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar
+7f99d145d000-7f99d14c8000 r--s 00500000 08:01 10488327                   /home/bcostes/.m2/repository/org/hibernate/hibernate-core/5.1.0.Final/hibernate-core-5.1.0.Final.jar
+7f99d14c8000-7f99d14cb000 r--s 00006000 08:01 10487227                   /home/bcostes/.m2/repository/org/apache/avalon/framework/avalon-framework-api/4.3.1/avalon-framework-api-4.3.1.jar
+7f99d14cb000-7f99d14cd000 r--s 0000f000 08:01 10489487                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-extension/1.7/batik-extension-1.7.jar
+7f99d14cd000-7f99d14da000 r--s 00086000 08:01 10489461                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-svg-dom/1.7/batik-svg-dom-1.7.jar
+7f99d14da000-7f99d14e4000 r--s 00075000 08:01 10487125                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/xmlgraphics-commons/1.3.1/xmlgraphics-commons-1.3.1.jar
+7f99d14e4000-7f99d1506000 r--s 00206000 08:01 10487113                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/fop/0.95/fop-0.95.jar
+7f99d1506000-7f99d150a000 r--s 0002b000 08:01 10493627                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-gvt/1.9/batik-gvt-1.9.jar
+7f99d150a000-7f99d150c000 r--s 00005000 08:01 10493625                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-script/1.9/batik-script-1.9.jar
+7f99d150c000-7f99d1518000 r--s 0009e000 08:01 10493623                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-bridge/1.9/batik-bridge-1.9.jar
+7f99d1518000-7f99d151a000 r--s 00011000 08:01 10493621                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-parser/1.9/batik-parser-1.9.jar
+7f99d151a000-7f99d1525000 r--s 0006a000 08:01 10493619                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-anim/1.9/batik-anim-1.9.jar
+7f99d1525000-7f99d1528000 r--s 0001d000 08:01 10493589                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-transcoder/1.9/batik-transcoder-1.9.jar
+7f99d1528000-7f99d152f000 r--s 00060000 08:01 10493617                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-awt-util/1.9/batik-awt-util-1.9.jar
+7f99d152f000-7f99d1534000 r--s 00032000 08:01 10493587                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-svggen/1.9/batik-svggen-1.9.jar
+7f99d1534000-7f99d1535000 r--s 00002000 08:01 10493585                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-i18n/1.9/batik-i18n-1.9.jar
+7f99d1535000-7f99d1537000 r--s 00001000 08:01 10493583                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-constants/1.9/batik-constants-1.9.jar
+7f99d1537000-7f99d153c000 r--s 00010000 08:01 10618653                   /home/bcostes/.m2/repository/xml-apis/xml-apis-ext/1.3.04/xml-apis-ext-1.3.04.jar
+7f99d153c000-7f99d1540000 r--s 00040000 08:01 14044216                   /home/bcostes/.m2/repository/xalan/serializer/2.7.2/serializer-2.7.2.jar
+7f99d1540000-7f99d1565000 r--s 002de000 08:01 10624879                   /home/bcostes/.m2/repository/xalan/xalan/2.7.2/xalan-2.7.2.jar
+7f99d1565000-7f99d1567000 r--s 00007000 08:01 10493615                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-xml/1.9/batik-xml-1.9.jar
+7f99d1567000-7f99d156a000 r--s 0001c000 08:01 10493613                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-util/1.9/batik-util-1.9.jar
+7f99d156a000-7f99d156c000 r--s 00002000 08:01 10493611                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-ext/1.9/batik-ext-1.9.jar
+7f99d156c000-7f99d1574000 r--s 00048000 08:01 10493609                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-css/1.9/batik-css-1.9.jar
+7f99d1574000-7f99d1578000 r--s 00029000 08:01 10493581                   /home/bcostes/.m2/repository/org/apache/xmlgraphics/batik-dom/1.9/batik-dom-1.9.jar
+7f99d1578000-7f99d157a000 r--s 00009000 08:01 10618577                   /home/bcostes/.m2/repository/gov/nist/math/jama/gov.nist.math.jama/1.1.1/gov.nist.math.jama-1.1.1.jar
+7f99d157a000-7f99d157e000 r--s 00027000 08:01 10618570                   /home/bcostes/.m2/repository/jmathplot/jmathplot/1.0/jmathplot-1.0.jar
+7f99d157e000-7f99d1581000 r--s 00010000 08:01 10619017                   /home/bcostes/.m2/repository/net/sourceforge/jeval/jeval/0.9.4/jeval-0.9.4.jar
+7f99d1581000-7f99d1588000 r--s 00057000 08:01 10618160                   /home/bcostes/.m2/repository/com/jhlabs/filters/2.0.235-1/filters-2.0.235-1.jar
+7f99d1588000-7f99d158a000 r--s 00045000 08:01 10620060                   /home/bcostes/.m2/repository/java3d/vecmath/1.3.1/vecmath-1.3.1.jar
+7f99d158a000-7f99d158e000 r--s 00027000 08:01 10616876                   /home/bcostes/.m2/repository/org/lwjgl/lwjgl/lwjgl_util/2.9.0/lwjgl_util-2.9.0.jar
+7f99d158e000-7f99d158f000 r--s 00002000 08:01 10618800                   /home/bcostes/.m2/repository/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-osx.jar
+7f99d158f000-7f99d1590000 r--s 00025000 08:01 10620608                   /home/bcostes/.m2/repository/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-windows.jar
+7f99d1590000-7f99d1591000 r--s 00002000 08:01 10618797                   /home/bcostes/.m2/repository/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-linux.jar
+7f99d1591000-7f99d1592000 r--s 00001000 08:01 10618813                   /home/bcostes/.m2/repository/net/java/jutils/jutils/1.0.0/jutils-1.0.0.jar
+7f99d1592000-7f99d1596000 r--s 0002f000 08:01 10620599                   /home/bcostes/.m2/repository/net/java/jinput/jinput/2.0.5/jinput-2.0.5.jar
+7f99d1596000-7f99d1597000 r--s 0007e000 08:01 10616848                   /home/bcostes/.m2/repository/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-osx.jar
+7f99d1597000-7f99d1598000 r--s 0008a000 08:01 10616852                   /home/bcostes/.m2/repository/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-linux.jar
+7f99d1598000-7f99d1599000 r--s 00094000 08:01 10616845                   /home/bcostes/.m2/repository/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-windows.jar
+7f99d1599000-7f99d15a6000 r--s 000e6000 08:01 10489141                   /home/bcostes/.m2/repository/org/lwjgl/lwjgl/lwjgl/2.9.0/lwjgl-2.9.0.jar
+7f99d15a6000-7f99d15ab000 r--s 00041000 08:01 10620039                   /home/bcostes/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+7f99d15ab000-7f99d15b1000 r--s 00033000 08:01 10620353                   /home/bcostes/.m2/repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar
+7f99d15b1000-7f99d15b4000 r--s 00023000 08:01 10620476                   /home/bcostes/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar
+7f99d15b4000-7f99d15b6000 r--s 00004000 08:01 10489131                   /home/bcostes/.m2/repository/org/geonames/geonames/1.0/geonames-1.0.jar
+7f99d15b6000-7f99d15b8000 r--s 00008000 08:01 10618543                   /home/bcostes/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar
+7f99d15b8000-7f99d15be000 r--s 00045000 08:01 10619983                   /home/bcostes/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar
+7f99d15be000-7f99d15bf000 r--s 00005000 08:01 10489751                   /home/bcostes/.m2/repository/org/pentaho/pentaho-commons/pentaho-package-manager/0.9.9/pentaho-package-manager-0.9.9.jar
+7f99d15bf000-7f99d15c1000 r--s 00016000 08:01 10620579                   /home/bcostes/.m2/repository/net/sf/squirrel-sql/thirdparty-non-maven/java-cup/0.11a/java-cup-0.11a.jar
+7f99d15c1000-7f99d1600000 r--s 005d2000 08:01 10619970                   /home/bcostes/.m2/repository/nz/ac/waikato/cms/weka/weka-dev/3.7.5/weka-dev-3.7.5.jar
+7f99d1600000-7f99d1614000 r--s 001bd000 08:01 10619161                   /home/bcostes/.m2/repository/javax/media/jai_core/1.1.3/jai_core-1.1.3.jar
+7f99d1614000-7f99d1623000 r--s 00158000 08:01 10489104                   /home/bcostes/.m2/repository/org/hsqldb/hsqldb/2.3.0/hsqldb-2.3.0.jar
+7f99d1623000-7f99d1624000 r--s 00238000 08:01 10493664                   /home/bcostes/.m2/repository/org/geotools/gt-epsg-hsql/17.2/gt-epsg-hsql-17.2.jar
+7f99d1624000-7f99d162d000 r--s 00075000 08:01 10493607                   /home/bcostes/.m2/repository/org/geotools/gt-metadata/17.2/gt-metadata-17.2.jar
+7f99d162d000-7f99d162f000 r--s 0000b000 08:01 10624817                   /home/bcostes/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-streams/1.1.17/imageio-ext-streams-1.1.17.jar
+7f99d162f000-7f99d1631000 r--s 00008000 08:01 10624884                   /home/bcostes/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-arcgrid/1.1.17/imageio-ext-arcgrid-1.1.17.jar
+7f99d1631000-7f99d1632000 r--s 00005000 08:01 10493662                   /home/bcostes/.m2/repository/org/geotools/gt-arcgrid/17.2/gt-arcgrid-17.2.jar
+7f99d1632000-7f99d1633000 r--s 00007000 08:01 10493660                   /home/bcostes/.m2/repository/org/geotools/gt-geotiff/17.2/gt-geotiff-17.2.jar
+7f99d1633000-7f99d1635000 r--s 00015000 08:01 10493694                   /home/bcostes/.m2/repository/org/geotools/gt-data/17.2/gt-data-17.2.jar
+7f99d1635000-7f99d1639000 r--s 00032000 08:01 10493692                   /home/bcostes/.m2/repository/org/geotools/gt-shapefile/17.2/gt-shapefile-17.2.jar
+7f99d1639000-7f99d163b000 r--s 00023000 08:01 10488909                   /home/bcostes/.m2/repository/org/jdom/jdom/1.1.3/jdom-1.1.3.jar
+7f99d163b000-7f99d1656000 r--s 00193000 08:01 10493601                   /home/bcostes/.m2/repository/org/geotools/gt-main/17.2/gt-main-17.2.jar
+7f99d1656000-7f99d165c000 r--s 0002e000 08:01 10493599                   /home/bcostes/.m2/repository/org/geotools/gt-api/17.2/gt-api-17.2.jar
+7f99d165c000-7f99d166d000 r--s 000b2000 08:01 10617967                   /home/bcostes/.m2/repository/com/vividsolutions/jts/1.13/jts-1.13.jar
+7f99d166d000-7f99d1675000 r--s 00028000 08:01 10620883                   /home/bcostes/.m2/repository/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar
+7f99d1675000-7f99d1676000 r--s 00007000 08:01 10618821                   /home/bcostes/.m2/repository/net/sf/geographiclib/GeographicLib-Java/1.44/GeographicLib-Java-1.44.jar
+7f99d1676000-7f99d1677000 r--s 00002000 08:01 10619252                   /home/bcostes/.m2/repository/jgridshift/jgridshift/1.0/jgridshift-1.0.jar
+7f99d1677000-7f99d167c000 r--s 0004f000 08:01 10617980                   /home/bcostes/.m2/repository/com/googlecode/efficient-java-matrix-library/core/0.26/core-0.26.jar
+7f99d167c000-7f99d168c000 r--s 00116000 08:01 10493605                   /home/bcostes/.m2/repository/org/geotools/gt-referencing/17.2/gt-referencing-17.2.jar
+7f99d168c000-7f99d168f000 r--s 00015000 08:01 10618733                   /home/bcostes/.m2/repository/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar
+7f99d168f000-7f99d1692000 r--s 00014000 08:01 10618741                   /home/bcostes/.m2/repository/net/java/dev/jsr-275/jsr-275/1.0-beta-2/jsr-275-1.0-beta-2.jar
+7f99d1692000-7f99d16a0000 r--s 00048000 08:01 10493603                   /home/bcostes/.m2/repository/org/geotools/gt-opengis/17.2/gt-opengis-17.2.jar
+7f99d16a0000-7f99d16a3000 r--s 00025000 08:01 10618701                   /home/bcostes/.m2/repository/commons-io/commons-io/2.1/commons-io-2.1.jar
+7f99d16a3000-7f99d16a5000 r--s 00003000 08:01 10624877                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/vectorbin/jt-vectorbin/1.0.15/jt-vectorbin-1.0.15.jar
+7f99d16a5000-7f99d16a6000 r--s 00004000 08:01 10624875                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/rlookup/jt-rlookup/1.0.15/jt-rlookup-1.0.15.jar
+7f99d16a6000-7f99d16a7000 r--s 00004000 08:01 10624873                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/classifier/jt-classifier/1.0.15/jt-classifier-1.0.15.jar
+7f99d16a7000-7f99d16a8000 r--s 00008000 08:01 10624871                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/piecewise/jt-piecewise/1.0.15/jt-piecewise-1.0.15.jar
+7f99d16a8000-7f99d16aa000 r--s 00002000 08:01 10624869                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/imagefunction/jt-imagefunction/1.0.15/jt-imagefunction-1.0.15.jar
+7f99d16aa000-7f99d16ac000 r--s 00008000 08:01 10624867                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/colorindexer/jt-colorindexer/1.0.15/jt-colorindexer-1.0.15.jar
+7f99d16ac000-7f99d16ae000 r--s 00005000 08:01 10624865                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/orderdither/jt-orderdither/1.0.15/jt-orderdither-1.0.15.jar
+7f99d16ae000-7f99d16af000 r--s 00004000 08:01 10624863                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/errordiffusion/jt-errordiffusion/1.0.15/jt-errordiffusion-1.0.15.jar
+7f99d16af000-7f99d16b0000 r--s 0000f000 08:01 10624861                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/colorconvert/jt-colorconvert/1.0.15/jt-colorconvert-1.0.15.jar
+7f99d16b0000-7f99d16b1000 r--s 00001000 08:01 10624859                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/format/jt-format/1.0.15/jt-format-1.0.15.jar
+7f99d16b1000-7f99d16b2000 r--s 00003000 08:01 10624857                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/binarize/jt-binarize/1.0.15/jt-binarize-1.0.15.jar
+7f99d16b2000-7f99d16b4000 r--s 00007000 08:01 10624855                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/zonal/jt-zonal/1.0.15/jt-zonal-1.0.15.jar
+7f99d16b4000-7f99d16b5000 r--s 0000f000 08:01 10624853                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/warp/jt-warp/1.0.15/jt-warp-1.0.15.jar
+7f99d16b5000-7f99d16b8000 r--s 0001e000 08:01 10624851                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/utilities/jt-utilities/1.0.15/jt-utilities-1.0.15.jar
+7f99d16b8000-7f99d16b9000 r--s 00002000 08:01 10624849                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/translate/jt-translate/1.0.15/jt-translate-1.0.15.jar
+7f99d16b9000-7f99d16e4000 r--s 001f9000 08:01 10617919                   /home/bcostes/.m2/repository/com/google/guava/guava/17.0/guava-17.0.jar
+7f99d16e4000-7f99d16e6000 r--s 00007000 08:01 10624847                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/stats/jt-stats/1.0.15/jt-stats-1.0.15.jar
+7f99d16e6000-7f99d16e8000 r--s 00014000 08:01 10624845                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/scale/jt-scale/1.0.15/jt-scale-1.0.15.jar
+7f99d16e8000-7f99d16e9000 r--s 00004000 08:01 10624843                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/rescale/jt-rescale/1.0.15/jt-rescale-1.0.15.jar
+7f99d16e9000-7f99d16ea000 r--s 00001000 08:01 10624841                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/nullop/jt-nullop/1.0.15/jt-nullop-1.0.15.jar
+7f99d16ea000-7f99d16eb000 r--s 00007000 08:01 10624839                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/mosaic/jt-mosaic/1.0.15/jt-mosaic-1.0.15.jar
+7f99d16eb000-7f99d16ec000 r--s 00009000 08:01 10624837                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/lookup/jt-lookup/1.0.15/jt-lookup-1.0.15.jar
+7f99d16ec000-7f99d16ed000 r--s 00005000 08:01 10624835                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/iterators/jt-iterators/1.0.15/jt-iterators-1.0.15.jar
+7f99d16ed000-7f99d16ee000 r--s 00002000 08:01 10624833                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/crop/jt-crop/1.0.15/jt-crop-1.0.15.jar
+7f99d16ee000-7f99d16ef000 r--s 00004000 08:01 10624831                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/buffer/jt-buffer/1.0.15/jt-buffer-1.0.15.jar
+7f99d16ef000-7f99d16f0000 r--s 00003000 08:01 10624829                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/border/jt-border/1.0.15/jt-border-1.0.15.jar
+7f99d16f0000-7f99d16f1000 r--s 00003000 08:01 10624827                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/bandcombine/jt-bandcombine/1.0.15/jt-bandcombine-1.0.15.jar
+7f99d16f1000-7f99d16f3000 r--s 00001000 08:01 10624825                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/bandselect/jt-bandselect/1.0.15/jt-bandselect-1.0.15.jar
+7f99d16f3000-7f99d16f5000 r--s 00007000 08:01 10624823                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/bandmerge/jt-bandmerge/1.0.15/jt-bandmerge-1.0.15.jar
+7f99d16f5000-7f99d16f7000 r--s 0000b000 08:01 10624821                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/algebra/jt-algebra/1.0.15/jt-algebra-1.0.15.jar
+7f99d16f7000-7f99d16f8000 r--s 0001c000 08:01 10624819                   /home/bcostes/.m2/repository/it/geosolutions/jaiext/affine/jt-affine/1.0.15/jt-affine-1.0.15.jar
+7f99d16f8000-7f99d16fc000 r--s 0002e000 08:01 10488962                   /home/bcostes/.m2/repository/org/jaitools/jt-utils/1.4.0/jt-utils-1.4.0.jar
+7f99d16fc000-7f99d16fd000 r--s 00004000 08:01 10488924                   /home/bcostes/.m2/repository/org/jaitools/jt-zonalstats/1.4.0/jt-zonalstats-1.4.0.jar
+7f99d16fd000-7f99d1701000 r--s 0003c000 08:01 10619186                   /home/bcostes/.m2/repository/javax/media/jai_codec/1.1.3/jai_codec-1.1.3.jar
+7f99d1701000-7f99d170a000 r--s 0004a000 08:01 10624811                   /home/bcostes/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-tiff/1.1.17/imageio-ext-tiff-1.1.17.jar
+7f99d170a000-7f99d171b000 r--s 00106000 08:01 10619179                   /home/bcostes/.m2/repository/javax/media/jai_imageio/1.1/jai_imageio-1.1.jar
+7f99d171b000-7f99d1723000 r--s 00089000 08:01 10493597                   /home/bcostes/.m2/repository/org/geotools/gt-coverage/17.2/gt-coverage-17.2.jar
+7f99d1723000-7f99d1724000 ---p 00000000 00:00 0 
+7f99d1724000-7f99d1824000 rw-p 00000000 00:00 0 
+7f99d1824000-7f99d1827000 ---p 00000000 00:00 0 
+7f99d1827000-7f99d1925000 rw-p 00000000 00:00 0 
+7f99d1925000-7f99d1928000 ---p 00000000 00:00 0 
+7f99d1928000-7f99d1a26000 rw-p 00000000 00:00 0 
+7f99d1a26000-7f99d1a29000 ---p 00000000 00:00 0 
+7f99d1a29000-7f99d1b27000 rw-p 00000000 00:00 0 
+7f99d1b27000-7f99d1b2a000 ---p 00000000 00:00 0 
+7f99d1b2a000-7f99d1c28000 rw-p 00000000 00:00 0 
+7f99d1c28000-7f99d1c2b000 ---p 00000000 00:00 0 
+7f99d1c2b000-7f99d1d29000 rw-p 00000000 00:00 0 
+7f99d1d29000-7f99d2006000 r--p 00000000 08:01 11535545                   /usr/lib/locale/locale-archive
+7f99d2006000-7f99d2009000 ---p 00000000 00:00 0 
+7f99d2009000-7f99d2107000 rw-p 00000000 00:00 0 
+7f99d2107000-7f99d210a000 ---p 00000000 00:00 0 
+7f99d210a000-7f99d2208000 rw-p 00000000 00:00 0 
+7f99d2208000-7f99d2209000 ---p 00000000 00:00 0 
+7f99d2209000-7f99d329c000 rw-p 00000000 00:00 0 
+7f99d329c000-7f99d3476000 r--s 03d4d000 08:01 10228805                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/rt.jar
+7f99d3476000-7f99d8076000 rw-p 00000000 00:00 0 
+7f99d8076000-7f99d8077000 ---p 00000000 00:00 0 
+7f99d8077000-7f99d8177000 rw-p 00000000 00:00 0 
+7f99d8177000-7f99d8178000 ---p 00000000 00:00 0 
+7f99d8178000-7f99d8278000 rw-p 00000000 00:00 0 
+7f99d8278000-7f99d8279000 ---p 00000000 00:00 0 
+7f99d8279000-7f99d83a1000 rw-p 00000000 00:00 0 
+7f99d83a1000-7f99d8624000 ---p 00000000 00:00 0 
+7f99d8624000-7f99d864c000 rw-p 00000000 00:00 0 
+7f99d864c000-7f99d88ce000 ---p 00000000 00:00 0 
+7f99d88ce000-7f99d89c0000 rw-p 00000000 00:00 0 
+7f99d89c0000-7f99d8a24000 ---p 00000000 00:00 0 
+7f99d8a24000-7f99d8a54000 rw-p 00000000 00:00 0 
+7f99d8a54000-7f99d8de5000 ---p 00000000 00:00 0 
+7f99d8de5000-7f99d9975000 rwxp 00000000 00:00 0 
+7f99d9975000-7f99e7de5000 ---p 00000000 00:00 0 
+7f99e7de5000-7f99e7dff000 r-xp 00000000 08:01 10228836                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libzip.so
+7f99e7dff000-7f99e7fff000 ---p 0001a000 08:01 10228836                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libzip.so
+7f99e7fff000-7f99e8000000 rw-p 0001a000 08:01 10228836                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libzip.so
+7f99e8000000-7f99e9053000 rw-p 00000000 00:00 0 
+7f99e9053000-7f99ec000000 ---p 00000000 00:00 0 
+7f99ec000000-7f99ec002000 r--s 00005000 08:01 10624815                   /home/bcostes/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-geocore/1.1.17/imageio-ext-geocore-1.1.17.jar
+7f99ec002000-7f99ec007000 r--s 00017000 08:01 10488293                   /home/bcostes/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar
+7f99ec007000-7f99ec010000 r--s 0006d000 08:01 10618505                   /home/bcostes/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar
+7f99ec010000-7f99ec014000 r--s 00021000 08:01 6820284                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/lib/SCPSolver.jar
+7f99ec014000-7f99ec019000 r--s 00084000 08:01 10228912                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jfr.jar
+7f99ec019000-7f99ec0de000 rw-p 00000000 00:00 0 
+7f99ec0de000-7f99ec0df000 ---p 00000000 00:00 0 
+7f99ec0df000-7f99ec1df000 rw-p 00000000 00:00 0 
+7f99ec1df000-7f99ec1ea000 r-xp 00000000 08:01 4725881                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f99ec1ea000-7f99ec3e9000 ---p 0000b000 08:01 4725881                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f99ec3e9000-7f99ec3ea000 r--p 0000a000 08:01 4725881                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f99ec3ea000-7f99ec3eb000 rw-p 0000b000 08:01 4725881                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f99ec3eb000-7f99ec3f1000 rw-p 00000000 00:00 0 
+7f99ec3f1000-7f99ec3fc000 r-xp 00000000 08:01 4725885                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f99ec3fc000-7f99ec5fb000 ---p 0000b000 08:01 4725885                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f99ec5fb000-7f99ec5fc000 r--p 0000a000 08:01 4725885                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f99ec5fc000-7f99ec5fd000 rw-p 0000b000 08:01 4725885                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f99ec5fd000-7f99ec613000 r-xp 00000000 08:01 4723433                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f99ec613000-7f99ec812000 ---p 00016000 08:01 4723433                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f99ec812000-7f99ec813000 r--p 00015000 08:01 4723433                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f99ec813000-7f99ec814000 rw-p 00016000 08:01 4723433                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f99ec814000-7f99ec816000 rw-p 00000000 00:00 0 
+7f99ec816000-7f99ec81e000 r-xp 00000000 08:01 4725876                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f99ec81e000-7f99eca1d000 ---p 00008000 08:01 4725876                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f99eca1d000-7f99eca1e000 r--p 00007000 08:01 4725876                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f99eca1e000-7f99eca1f000 rw-p 00008000 08:01 4725876                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f99eca1f000-7f99eca4a000 r-xp 00000000 08:01 10228863                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libjava.so
+7f99eca4a000-7f99ecc49000 ---p 0002b000 08:01 10228863                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libjava.so
+7f99ecc49000-7f99ecc4b000 rw-p 0002a000 08:01 10228863                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libjava.so
+7f99ecc4b000-7f99ecc58000 r-xp 00000000 08:01 10228814                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libverify.so
+7f99ecc58000-7f99ece58000 ---p 0000d000 08:01 10228814                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libverify.so
+7f99ece58000-7f99ece5a000 rw-p 0000d000 08:01 10228814                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/libverify.so
+7f99ece5a000-7f99ece61000 r-xp 00000000 08:01 4725886                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f99ece61000-7f99ed060000 ---p 00007000 08:01 4725886                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f99ed060000-7f99ed061000 r--p 00006000 08:01 4725886                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f99ed061000-7f99ed062000 rw-p 00007000 08:01 4725886                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f99ed062000-7f99ed16a000 r-xp 00000000 08:01 4723429                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f99ed16a000-7f99ed369000 ---p 00108000 08:01 4723429                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f99ed369000-7f99ed36a000 r--p 00107000 08:01 4723429                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f99ed36a000-7f99ed36b000 rw-p 00108000 08:01 4723429                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f99ed36b000-7f99ee03e000 r-xp 00000000 08:01 10228867                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/server/libjvm.so
+7f99ee03e000-7f99ee23d000 ---p 00cd3000 08:01 10228867                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/server/libjvm.so
+7f99ee23d000-7f99ee317000 rw-p 00cd2000 08:01 10228867                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/amd64/server/libjvm.so
+7f99ee317000-7f99ee362000 rw-p 00000000 00:00 0 
+7f99ee362000-7f99ee522000 r-xp 00000000 08:01 4725868                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f99ee522000-7f99ee722000 ---p 001c0000 08:01 4725868                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f99ee722000-7f99ee726000 r--p 001c0000 08:01 4725868                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f99ee726000-7f99ee728000 rw-p 001c4000 08:01 4725868                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f99ee728000-7f99ee72c000 rw-p 00000000 00:00 0 
+7f99ee72c000-7f99ee72f000 r-xp 00000000 08:01 4725870                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f99ee72f000-7f99ee92e000 ---p 00003000 08:01 4725870                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f99ee92e000-7f99ee92f000 r--p 00002000 08:01 4725870                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f99ee92f000-7f99ee930000 rw-p 00003000 08:01 4725870                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f99ee930000-7f99ee945000 r-xp 00000000 08:01 10227842                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/lib/amd64/jli/libjli.so
+7f99ee945000-7f99eeb45000 ---p 00015000 08:01 10227842                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/lib/amd64/jli/libjli.so
+7f99eeb45000-7f99eeb46000 rw-p 00015000 08:01 10227842                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/lib/amd64/jli/libjli.so
+7f99eeb46000-7f99eeb5e000 r-xp 00000000 08:01 4725867                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f99eeb5e000-7f99eed5d000 ---p 00018000 08:01 4725867                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f99eed5d000-7f99eed5e000 r--p 00017000 08:01 4725867                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f99eed5e000-7f99eed5f000 rw-p 00018000 08:01 4725867                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f99eed5f000-7f99eed63000 rw-p 00000000 00:00 0 
+7f99eed63000-7f99eed89000 r-xp 00000000 08:01 4725866                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f99eed89000-7f99eed8a000 r--s 00009000 08:01 10624813                   /home/bcostes/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-utilities/1.1.17/imageio-ext-utilities-1.1.17.jar
+7f99eed8a000-7f99eed8b000 r--s 00002000 08:01 10618306                   /home/bcostes/.m2/repository/com/graphhopper/external/hmm-lib/1.0.0/hmm-lib-1.0.0.jar
+7f99eed8b000-7f99eed8c000 r--s 00151000 08:01 6820282                    /home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/lib/LPSOLVESolverPack.jar
+7f99eed8c000-7f99eed91000 r--s 002f9000 08:01 10228758                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/charsets.jar
+7f99eed91000-7f99eee5d000 rw-p 00000000 00:00 0 
+7f99eee5d000-7f99eee60000 ---p 00000000 00:00 0 
+7f99eee60000-7f99eef63000 rw-p 00000000 00:00 0 
+7f99eef63000-7f99eef66000 r--s 0001a000 08:01 10229067                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jce.jar
+7f99eef66000-7f99eef6b000 r--s 0009a000 08:01 10228757                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jsse.jar
+7f99eef6b000-7f99eef7e000 r--s 00345000 08:01 10229037                   /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/resources.jar
+7f99eef7e000-7f99eef86000 rw-s 00000000 08:01 395949                     /tmp/hsperfdata_bcostes/8070
+7f99eef86000-7f99eef87000 rw-p 00000000 00:00 0 
+7f99eef87000-7f99eef88000 r--p 00000000 00:00 0 
+7f99eef88000-7f99eef89000 r--p 00025000 08:01 4725866                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f99eef89000-7f99eef8a000 rw-p 00026000 08:01 4725866                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f99eef8a000-7f99eef8b000 rw-p 00000000 00:00 0 
+7ffe724f6000-7ffe7251b000 rw-p 00000000 00:00 0                          [stack]
+7ffe72526000-7ffe72529000 r--p 00000000 00:00 0                          [vvar]
+7ffe72529000-7ffe7252b000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Djavax.net.ssl.trustStore=/home/bcostes/Documents/IGN/HmmMatching/eclipse/trust.jks -Djavax.net.ssl.keyStorePassword=leschiensaboient -Xmx2048M -Dfile.encoding=UTF-8 
+java_command: fr.ign.cogit.HMMSpatialNetworkMatcher.matching.TempTest
+java_class_path (initial): /home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/resources.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/rt.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jsse.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jce.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/charsets.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/jfr.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/jfxrt.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/jaccess.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/dnsns.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunjce_provider.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/nashorn.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunec.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/cldrdata.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/sunpkcs11.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/zipfs.jar:/home/bcostes/Documents/IGN/HmmMatching/eclipse/jdk1.8.0_144/jre/lib/ext/localedata.jar:/home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/target/classes:/home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/lib/LPSOLVESolverPack.jar:/home/bcostes/workspace_hmmmatching/HMMSpatialNetworkMatcher/HMMSpatialNetworkMatcher/lib/SCPSolver.jar:/home/bcostes/.m2/repository/com/graphhopper/external/hmm-lib/1.0.0/hmm-lib-1.0.0.jar:/home/bcostes/workspace_hmmmatching/geoxygene/geoxygene-feature/target/classes:/home/bcostes/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar:/home/bcostes/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/home/bcostes/bin:/home/bcostes/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xacba10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xacba10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x924ba0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x924ba0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x924ba0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x924ba0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x9263e0], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x9277e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x9277e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x9277e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x9277e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
+
+uname:Linux 4.4.0-119-generic #143-Ubuntu SMP Mon Apr 2 16:08:24 UTC 2018 x86_64
+libc:glibc 2.23 NPTL 2.23 
+rlimit: STACK 8192k, CORE 0k, NPROC 30485, NOFILE 1048576, AS infinity
+load average:1,72 1,43 1,18
+
+/proc/meminfo:
+MemTotal:        7845404 kB
+MemFree:         1354260 kB
+MemAvailable:    2909140 kB
+Buffers:          143512 kB
+Cached:          1945052 kB
+SwapCached:            0 kB
+Active:          4945924 kB
+Inactive:        1266732 kB
+Active(anon):    4134256 kB
+Inactive(anon):   344812 kB
+Active(file):     811668 kB
+Inactive(file):   921920 kB
+Unevictable:          80 kB
+Mlocked:              80 kB
+SwapTotal:       8052732 kB
+SwapFree:        8052732 kB
+Dirty:               764 kB
+Writeback:             0 kB
+AnonPages:       4124308 kB
+Mapped:           587072 kB
+Shmem:            354808 kB
+Slab:             133700 kB
+SReclaimable:      89416 kB
+SUnreclaim:        44284 kB
+KernelStack:       12704 kB
+PageTables:        51504 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    11975432 kB
+Committed_AS:   10703364 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      129196 kB
+DirectMap2M:     3731456 kB
+DirectMap1G:     5242880 kB
+
+
+CPU:total 4 (initial active 4) (4 cores per cpu, 1 threads per core) family 6 model 94 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 94
+model name	: Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0xc2
+cpu MHz		: 2962.578
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb invpcid_single intel_pt rsb_ctxsw spec_ctrl retpoline kaiser tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5184.12
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 94
+model name	: Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0xc2
+cpu MHz		: 2953.234
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb invpcid_single intel_pt rsb_ctxsw spec_ctrl retpoline kaiser tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5184.12
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 94
+model name	: Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0xc2
+cpu MHz		: 2953.640
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb invpcid_single intel_pt rsb_ctxsw spec_ctrl retpoline kaiser tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5184.12
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 94
+model name	: Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0xc2
+cpu MHz		: 2928.148
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb invpcid_single intel_pt rsb_ctxsw spec_ctrl retpoline kaiser tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5184.12
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 7845404k(1354260k free), swap 8052732k(8052732k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.144-b01) for linux-amd64 JRE (1.8.0_144-b01), built on Jul 21 2017 21:57:33 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Thu Apr 12 10:45:35 2018
+elapsed time: 74 seconds (0d 0h 1m 14s)
+

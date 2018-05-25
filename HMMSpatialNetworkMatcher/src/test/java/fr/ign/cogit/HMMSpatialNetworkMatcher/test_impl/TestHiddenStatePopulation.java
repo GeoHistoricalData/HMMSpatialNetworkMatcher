@@ -6,12 +6,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IEmissionProbablityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.HiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.HiddenStatePopulation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.Observation;
@@ -21,31 +21,17 @@ import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPosition;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPositionList;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 
-public class TestObservation {
-  
-  static Observation obs;
+public class TestHiddenStatePopulation {
+
+  static HiddenStatePopulation popH;
+  static IObservation o;
+  static HiddenState s1, s2, s3, s4;
+  static Collection<IHiddenState> result;
 
   @BeforeClass
-  public static void setUpBeforeClass() throws Exception {
-    obs = Mockito.mock(Observation.class, Mockito.CALLS_REAL_METHODS);
-  }
+  public static void setUpBeforeClass() {
+    popH = new HiddenStatePopulation();
 
-
-  @Test
-  public void testEmissionProbability() {
-    IHiddenState state = Mockito.mock(IHiddenState.class);
-    
-    IEmissionProbablityStrategy e = Mockito.mock(IEmissionProbablityStrategy.class);
-    obs.setEmissionProbaStrategy(e);
-    Mockito.when(e.compute(obs, state)).thenReturn(10.);
-
-    assertEquals(obs.computeEmissionProbability(state), 10., 0.0001);
-  }
-  
-  @Test
-  public void testCandidates() {
-HiddenStatePopulation popH = new HiddenStatePopulation();
-    
     IDirectPosition p1 = new DirectPosition(0,0);
     IDirectPosition p2 = new DirectPosition(1,1);
     IDirectPosition p3 = new DirectPosition(0,1);
@@ -53,33 +39,75 @@ HiddenStatePopulation popH = new HiddenStatePopulation();
     IDirectPosition p5 = new DirectPosition(3,3);
     IDirectPosition p6 = new DirectPosition(4,4);
     IDirectPosition p7 = new DirectPosition(0.25,1);
-    IDirectPosition p8 = new DirectPosition(0.75,1);
+    IDirectPosition p8 = new DirectPosition(0.75,1); 
 
-
-    
-    HiddenState s1 = new HiddenState(new GM_LineString(
+    s1 = new HiddenState(new GM_LineString(
         new DirectPositionList(Arrays.asList(p1,p2))));
-    HiddenState s2 = new HiddenState(new GM_LineString(
+    s2 = new HiddenState(new GM_LineString(
         new DirectPositionList(Arrays.asList(p1,p3))));
-    HiddenState s3 = new HiddenState(new GM_LineString(
+    s3 = new HiddenState(new GM_LineString(
         new DirectPositionList(Arrays.asList(p1,p4))));
-    HiddenState s4 = new HiddenState(new GM_LineString(
+    s4 = new HiddenState(new GM_LineString(
         new DirectPositionList(Arrays.asList(p5,p6))));
     
     popH.add(s1);
     popH.add(s2);
     popH.add(s3);
     popH.add(s4);
-    
-    Mockito.when(obs.getGeom()).thenReturn(new GM_LineString(new DirectPositionList(Arrays.asList(p7,p8))));
-    
+
+    o = new Observation(new GM_LineString(new DirectPositionList(Arrays.asList(p7,p8))));
+  }
+
+
+  @After
+  public void tearDown() {
+    result.clear();
+  }
+
+  @Test
+  public void testFilter1() {
+
     ParametersSet.get().SELECTION_THRESHOLD = 1;
-    Collection<IHiddenState>result = obs.candidates(popH);
+    result = popH.filter(o);
+
     assertEquals(result.size(), 3);
     assertTrue(result.contains(s1));
     assertTrue(result.contains(s2));
     assertTrue(result.contains(s3));
     assertTrue(!result.contains(s4));
   }
+  
+  @Test
+  public void testFilter2() {
 
+    ParametersSet.get().SELECTION_THRESHOLD = 0.5;
+    result = popH.filter(o);
+
+    assertEquals(result.size(), 2);
+    assertTrue(result.contains(s1));
+    assertTrue(result.contains(s2));
+    assertTrue(!result.contains(s4));
+    assertTrue(!result.contains(s3));
+  }
+
+  @Test
+  public void testFilter3() {
+    ParametersSet.get().SELECTION_THRESHOLD = 5;
+    result = popH.filter(o);
+
+    assertEquals(result.size(), 4);
+    assertTrue(result.contains(s1));
+    assertTrue(result.contains(s2));
+    assertTrue(result.contains(s3));
+    assertTrue(result.contains(s4));
+  }
+  
+  @Test
+  public void testFilter4() {
+
+    ParametersSet.get().SELECTION_THRESHOLD = 0.1;
+    result = popH.filter(o);
+
+    assertEquals(result.size(), 0);
+  }
 }

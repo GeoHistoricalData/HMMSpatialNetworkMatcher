@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core;
 
 public class ParametersSet {
   

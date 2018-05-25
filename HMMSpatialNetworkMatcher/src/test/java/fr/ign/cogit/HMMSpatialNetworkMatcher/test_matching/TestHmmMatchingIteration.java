@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.test_matching;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +18,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.CompositeHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.HiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.Observation;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.HmmMatchingIteration;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HmmMatchingIteration;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
 import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPosition;

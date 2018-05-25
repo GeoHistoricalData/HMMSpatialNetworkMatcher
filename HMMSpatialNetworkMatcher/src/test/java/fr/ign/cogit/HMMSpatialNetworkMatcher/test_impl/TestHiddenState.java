@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.test_impl;
 
 import static org.junit.Assert.assertEquals;
 

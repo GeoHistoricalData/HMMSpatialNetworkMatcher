@@ -31,6 +31,10 @@ public class Observation extends FT_Feature implements IObservation{
       IEmissionProbablityStrategy emissionProbaStrategy) {
     this.emissionProbaStrategy = emissionProbaStrategy;
   }
+  
+  public IEmissionProbablityStrategy getEmissionProbaStrategy () {
+    return this.emissionProbaStrategy;
+  }
 
   /**
    * get the probability that this has been emited by state

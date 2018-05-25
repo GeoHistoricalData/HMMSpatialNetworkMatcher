@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core;
 
 import java.util.Collection;
 import java.util.HashMap;

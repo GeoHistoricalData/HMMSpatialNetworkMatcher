@@ -1,10 +1,11 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.postProcessStrategy;
 
 import java.util.Map;
 import java.util.Set;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HMMMatchingProcess;
 
 public interface PostProcessStrategy {
   
@@ -14,6 +15,6 @@ public interface PostProcessStrategy {
    * @param tempMatching
    * @return
    */
-  public abstract Map<IObservation, IHiddenState> simplify(Map<IObservation, Set<IHiddenState>> tempMatching);
+  public abstract Map<IObservation, Set<IHiddenState>> simplify(HMMMatchingProcess hmmProcess);
 
 }

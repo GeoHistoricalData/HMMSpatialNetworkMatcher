@@ -1,7 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 
-import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
-
 /**
  * Strategy pattern ; several algorithms to compute transition probabilities
  * @author bcostes

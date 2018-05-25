@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.postProcessStrategy.PostProcessStrategy;
 
 /**
  * Process the matching algorithm
@@ -41,7 +42,7 @@ public class HMMMatchingProcess {
   /**
    * Simplified matching result
    */
-  private Map<IObservation, IHiddenState> simplifiedMatching;
+  private Map<IObservation, Set<IHiddenState>> simplifiedMatching;
   /**
    * Strategy to deal with unmatched objects
    */
@@ -56,7 +57,7 @@ public class HMMMatchingProcess {
     this.observations = observations;
     this.states = states;
     this.matching = new HashMap<>();
-    this.simplifiedMatching = new HashMap<IObservation, IHiddenState>();
+    this.simplifiedMatching = new HashMap<IObservation, Set<IHiddenState>>();
     this.postProcessStrategy = postProcessStrategy;
   }
 
@@ -98,14 +99,18 @@ public class HMMMatchingProcess {
         }
       }
     }
-    // deal with unmatched entities
-   // this.matching = this.postProcessStrategy.simplify(tempMatching);
-    // TODO : remove this
     this.matching = tempMatching;
+    // deal with unmatched entities
+    if(this.postProcessStrategy != null) {
+      this.simplifiedMatching= this.postProcessStrategy.simplify(this);
+    }
+    else {
+      this.simplifiedMatching = tempMatching;
+    }
   }
 
 
-  public Map<IObservation, IHiddenState> getSimplifiedMatching() {
+  public Map<IObservation, Set<IHiddenState>> getSimplifiedMatching() {
     return this.simplifiedMatching;
   }
 
@@ -113,5 +118,21 @@ public class HMMMatchingProcess {
   public Map<IObservation, Set<IHiddenState>> getMatching() {
     return matching;
   }
+
+
+  public IObservationCollection getObservations() {
+    return observations;
+  }
+
+  public IHiddenStateCollection getStates() {
+    return states;
+  }
+
+
+  public PathBuilder getPathBuilder() {
+    return pathBuilder;
+  }
+ 
+  
 
 }

@@ -1,13 +1,14 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Interface for collection of IHiddenState
  * @author bcostes
  *
  */
-public interface IHiddenStateCollection {
+public interface IHiddenStateCollection{
   
 
 /**
@@ -19,4 +20,8 @@ public interface IHiddenStateCollection {
  */
   public Collection<IHiddenState> filter(IObservation obs);
   
+  public abstract List<IHiddenState> toList();
+
+  
+ 
 }
