@@ -10,3 +10,18 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+# Log file
+*.log
+
+*.classpath
+*.project
+
+# class files
+/HMMSpatialNetworkMatcher/target/
+
+# settings 
+/HMMSpatialNetworkMatcher/.settings/
+
+# Unit test
+/HMMSpatialNetworkMatcher/src/test/
