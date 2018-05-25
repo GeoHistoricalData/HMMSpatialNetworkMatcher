@@ -1,10 +1,10 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io;
 
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatHiddenState;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HiddenStatePopulation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObservation;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HiddenStatePopulation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ObservationPopulation;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ParametersSet;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IPopulation;
 import fr.ign.cogit.geoxygene.contrib.cartetopo.Arc;

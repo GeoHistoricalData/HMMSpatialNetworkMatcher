@@ -7,7 +7,6 @@ import java.util.List;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.utils.Combinations;
 import fr.ign.cogit.geoxygene.feature.Population;
 /**

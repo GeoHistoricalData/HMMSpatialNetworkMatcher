@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.root;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.root;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 

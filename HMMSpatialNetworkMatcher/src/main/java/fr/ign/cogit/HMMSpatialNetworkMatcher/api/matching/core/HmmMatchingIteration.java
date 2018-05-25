@@ -1,4 +1,4 @@
-package fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core;
+package fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.root.MatchingTransitionDescriptor;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.root.MatchingTransitionDescriptor;
 
 /**
  * One iteration of the algorithm (matching of one path).

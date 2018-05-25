@@ -9,13 +9,13 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.CompositeEmissionProbabilityStr
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.DirectionDifferenceEmissionProbability;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.FrechetEmissionProbability;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.LineMedianDIstanceEmissionProbability;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder.StrokePathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy.OptimizationPostStratregy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HMMMatchingLauncher;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.tp.AngularTransitionProbability;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 

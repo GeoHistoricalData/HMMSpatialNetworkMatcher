@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.root.AbstractObservation;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.root.AbstractObservation;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.api.feature.IPopulation;

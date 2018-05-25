@@ -14,9 +14,9 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ObservationPopulation;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ParametersSet;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
 
 /**

@@ -10,7 +10,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HMMMatchingProcess;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core.HMMMatchingProcess;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMExporter;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMImporter;
 

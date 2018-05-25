@@ -3,7 +3,7 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 import java.util.Map;
 import java.util.Set;
 
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.core.HMMMatchingProcess;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core.HMMMatchingProcess;
 
 public interface PostProcessStrategy {
   
