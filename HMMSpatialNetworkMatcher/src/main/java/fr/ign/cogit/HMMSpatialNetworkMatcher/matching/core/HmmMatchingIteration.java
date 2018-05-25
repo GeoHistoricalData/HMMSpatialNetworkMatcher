@@ -18,7 +18,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.impl.tp.MatchingTransitionDescriptor;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.root.MatchingTransitionDescriptor;
 
 /**
  * One iteration of the algorithm (matching of one path).

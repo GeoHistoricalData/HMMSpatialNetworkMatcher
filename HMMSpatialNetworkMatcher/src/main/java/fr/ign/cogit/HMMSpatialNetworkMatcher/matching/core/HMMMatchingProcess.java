@@ -12,7 +12,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.matching.postProcessStrategy.PostProcessStrategy;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
 
 /**
  * Process the matching algorithm

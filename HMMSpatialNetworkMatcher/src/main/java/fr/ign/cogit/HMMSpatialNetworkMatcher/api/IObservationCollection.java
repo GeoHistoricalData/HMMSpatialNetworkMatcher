@@ -3,13 +3,17 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 import java.util.List;
 
 /**
- * Empty interface for collection of IObservation
+ * Interface for collection of IObservation
  * @author bcostes
  *
  */
 
 public interface IObservationCollection{
 
+  /**
+   * Return this collection as a List
+   * @return
+   */
   public abstract List<IObservation> toList();
   
 }

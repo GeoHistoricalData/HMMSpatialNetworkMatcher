@@ -22,4 +22,14 @@ public interface IObservation {
    * @return
    */
   public abstract Collection<IHiddenState> candidates(IHiddenStateCollection states);
+  
+  /**
+   * Set the emission probability strategy
+   */
+  public abstract void setEmissionProbabilityStrategy(IEmissionProbablityStrategy epStrategy);
+  
+  /**
+   * Get the emission probability strategy
+   */
+  public abstract IEmissionProbablityStrategy getEmissionProbabilityStrategy();
  }

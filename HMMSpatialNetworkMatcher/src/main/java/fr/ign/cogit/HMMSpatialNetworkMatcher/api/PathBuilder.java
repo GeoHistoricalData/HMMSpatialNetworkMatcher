@@ -2,6 +2,11 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 
 import java.util.List;
 
+/**
+ * Strategy Pattern to build several types of Path
+ * @author bcostes
+ *
+ */
 public interface PathBuilder {
 
   /**
