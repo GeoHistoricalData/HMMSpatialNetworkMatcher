@@ -30,12 +30,19 @@ public class LaunchExemple {
     Logger.getRootLogger().setLevel(Level.OFF);
     
     // First network
-    String fileNetwork1 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
-        + "/verniquet_l93_utf8_corr.shp";
+//    String fileNetwork1 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
+//        + "/verniquet_l93_utf8_corr.shp";
+//    
+//    // Second network
+//    String fileNetwork2 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
+//        + "/jacoubet_l93_utf8.shp";
+    
+    String fileNetwork1 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/data"
+        + "/roads_osm2.shp";
     
     // Second network
-    String fileNetwork2 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
-        + "/jacoubet_l93_utf8.shp";
+    String fileNetwork2 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/data"
+        + "/roads_bdcarto2.shp";
     
     // Emission probability stratregy
     // If you want to use more than one criteria, use CompositeEmissionProbability to wrap them
@@ -43,6 +50,7 @@ public class LaunchExemple {
     epStrategy.add(new LineMedianDIstanceEmissionProbability(), 1.);
     epStrategy.add(new FrechetEmissionProbability(), 1.);
     epStrategy.add(new DirectionDifferenceEmissionProbability(), 1.);
+    
     
     // Transition probability Strategy
     ITransitionProbabilityStrategy tpStrategy = new AngularTransitionProbability();
@@ -60,13 +68,13 @@ public class LaunchExemple {
     
     // Launcher
     HMMMatchingLauncher matchingLauncher = new HMMMatchingLauncher(fileNetwork1, fileNetwork2, epStrategy,
-        tpStrategy, pathBuilder, postProcressStrategy);
+        tpStrategy, pathBuilder, postProcressStrategy, true);
 
     // Execute the HMM matching algorithm
     matchingLauncher.lauchMatchingProcess();
     
     // Export result
-    matchingLauncher.exportMatchingResults("/home/bcostes/Bureau/test");
+    matchingLauncher.exportMatchingResults("/home/bcostes/Bureau/test2");
   }
 
 }

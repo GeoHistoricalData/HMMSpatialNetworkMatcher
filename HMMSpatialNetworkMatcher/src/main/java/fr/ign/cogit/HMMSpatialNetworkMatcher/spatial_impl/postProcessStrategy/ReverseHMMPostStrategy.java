@@ -12,6 +12,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.IHMMMatching;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core.HMMMatchingProcess;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.CompositeHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatHiddenState;
@@ -30,7 +31,7 @@ public class ReverseHMMPostStrategy implements PostProcessStrategy{
  
 
   @Override
-  public Map<IObservation, Set<IHiddenState>> simplify(HMMMatchingProcess hmmProcess) {
+  public Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess) {
     // TODO Auto-generated method stub
 
     ObservationPopulation observations = new ObservationPopulation();

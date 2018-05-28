@@ -12,7 +12,7 @@ import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core.HMMMatchingProcess;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.IHMMMatching;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.CompositeHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.CompositeObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatHiddenState;
@@ -28,7 +28,7 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
 
 
   @Override
-  public Map<IObservation, Set<IHiddenState>> simplify(HMMMatchingProcess hmmProcess) { 
+  public Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess) { 
 
         Map<FeatObservation, List<FeatHiddenState>> matching = new HashMap<>();
 

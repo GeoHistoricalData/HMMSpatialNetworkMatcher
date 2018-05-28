@@ -47,10 +47,13 @@ PostProcessStrategy postProcressStrategy = new OptimizationPostStratregy();
 ParametersSet.get().SELECTION_THRESHOLD = 30;
 ParametersSet.get().NETWORK_PROJECTION = false;
 ParametersSet.get().PATH_MIN_LENGTH = 5;
-    
+
+// use parallelization or not    
+boolean parallel = false;
+
 // Launcher
 HMMMatchingLauncher matchingLauncher = new HMMMatchingLauncher(fileNetwork1, fileNetwork2, epStrategy,
-        tpStrategy, pathBuilder, postProcressStrategy);
+        tpStrategy, pathBuilder, postProcressStrategy, parallel);
 
 // Execute the HMM matching algorithm
 matchingLauncher.lauchMatchingProcess();

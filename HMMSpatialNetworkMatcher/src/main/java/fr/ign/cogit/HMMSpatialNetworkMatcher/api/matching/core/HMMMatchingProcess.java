@@ -13,6 +13,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.IHMMMatching;
 
 /**
  * Process the matching algorithm
@@ -20,7 +21,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
  * @author bcostes
  *
  */
-public class HMMMatchingProcess {
+public class HMMMatchingProcess implements IHMMMatching{
 
   /**
    * Strategy to build path of observations
@@ -65,6 +66,7 @@ public class HMMMatchingProcess {
   /**
    * Main matching function
    */
+  @Override
   public void match() {
 
     // Generate Paths
@@ -109,26 +111,27 @@ public class HMMMatchingProcess {
     }
   }
 
-
+  @Override
   public Map<IObservation, Set<IHiddenState>> getSimplifiedMatching() {
     return this.simplifiedMatching;
   }
 
-
+  @Override
   public Map<IObservation, Set<IHiddenState>> getMatching() {
     return matching;
   }
 
-
+  @Override
   public IObservationCollection getObservations() {
     return observations;
   }
-
+  
+  @Override
   public IHiddenStateCollection getStates() {
     return states;
   }
 
-
+  @Override
   public PathBuilder getPathBuilder() {
     return pathBuilder;
   }
