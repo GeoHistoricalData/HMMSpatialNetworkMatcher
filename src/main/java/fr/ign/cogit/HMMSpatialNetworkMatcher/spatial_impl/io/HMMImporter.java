@@ -15,7 +15,7 @@ import fr.ign.cogit.geoxygene.util.conversion.ShapefileReader;
 import fr.ign.cogit.geoxygene.util.index.Tiling;
 
 public class HMMImporter{
-  
+
   private ObservationPopulation observations;
   private HiddenStatePopulation states;
   public ObservationPopulation getObservations() {
@@ -30,12 +30,12 @@ public class HMMImporter{
   public void setStates(HiddenStatePopulation states) {
     this.states = states;
   }
-  
+
   public void loadAndPrepareNetworks(String fileNetwork1, String fileNetwork2) {
     // lecture des SHP
     IPopulation<IFeature> inRef = ShapefileReader.read(fileNetwork1);
     IPopulation<IFeature> inComp = ShapefileReader.read(fileNetwork2);
-    
+
     /*
      * Création des réseaux
      */
@@ -44,12 +44,12 @@ public class HMMImporter{
     IPopulation<Arc> popArcRef = netRef.getPopArcs();
     for (IFeature f : inRef) {
       Arc a = popArcRef.nouvelElement();
-      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), 30.0));
+      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), ParametersSet.get().SELECTION_THRESHOLD ));
     }
     IPopulation<Arc> popArcComp = netComp.getPopArcs();
     for (IFeature f : inComp) {
       Arc a = popArcComp.nouvelElement();
-      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), 30.0));
+      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), ParametersSet.get().SELECTION_THRESHOLD));
     }
     netRef.creeTopologieArcsNoeuds(1);
     netRef.creeNoeudsManquants(1);
@@ -66,7 +66,7 @@ public class HMMImporter{
     netComp.filtreArcsNull(1);
     netComp.filtreArcsDoublons();
     netComp.filtreNoeudsSimples();
-    
+
     if (ParametersSet.get().NETWORK_PROJECTION) {
       // Si demandé, on rééchantillonne en projetant les réseaux les uns sur les autres.
       // A éviter ...
@@ -91,10 +91,10 @@ public class HMMImporter{
       s.addCorrespondant(a);
       states.add(s);
     }
-   this.observations.initSpatialIndex(Tiling.class, true);
-   this.states.initSpatialIndex(Tiling.class, true);
-   
+    this.observations.initSpatialIndex(Tiling.class, true);
+    this.states.initSpatialIndex(Tiling.class, true);
+
   }
-  
+
 
 }
