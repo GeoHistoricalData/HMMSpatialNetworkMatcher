@@ -32,9 +32,13 @@ public class DirectionDifferenceEmissionProbability implements IEmissionProbabli
     //
     Angle ori1 = Operateurs.directionPrincipale(l1.getControlPoint());
     Angle ori2 = Operateurs.directionPrincipale(l2.getControlPoint());
-    Angle ori3 = Operateurs.directionPrincipale(l2.reverse().getControlPoint());
-    double value = Math.min(Angle.ecart(ori1, ori2).getValeur()*180./Math.PI,
-        Angle.ecart(ori1, ori3).getValeur()*180./Math.PI); 
+    if(ori1.getValeur() > Math.PI/2){
+      ori1 = new Angle(Math.PI - ori1.getValeur());
+    }
+    if(ori2.getValeur() > Math.PI/2){
+      ori2 = new Angle(Math.PI - ori2.getValeur());
+    }
+    double value = Angle.ecart(ori1, ori2).getValeur()*180./Math.PI;
     return -value;
   }
 
