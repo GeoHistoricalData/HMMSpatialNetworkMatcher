@@ -8,7 +8,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObserv
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
 import fr.ign.cogit.geoxygene.contrib.geometrie.Distances;
 
-public class LineMedianDIstanceEmissionProbability  implements IEmissionProbablityStrategy{
+public class LineMedianDistanceEmissionProbability  implements IEmissionProbablityStrategy{
 
   public double compute(IObservation obs, IHiddenState state) {
     // TODO Auto-generated method stub
