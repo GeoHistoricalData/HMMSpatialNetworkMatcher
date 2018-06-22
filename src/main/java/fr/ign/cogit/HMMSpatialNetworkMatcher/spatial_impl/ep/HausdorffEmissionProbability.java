@@ -19,9 +19,7 @@ public class HausdorffEmissionProbability implements IEmissionProbablityStrategy
         
     ILineString l1 = (ILineString)((FeatObservation)obs).getGeom().clone();
     ILineString l2 = (ILineString)((FeatHiddenState)state).getGeom().clone();
-    double d1 = Distances.premiereComposanteHausdorff(l1,l2);
-    double d2 = Distances.premiereComposanteHausdorff(l2,l1);
-    double distance = Math.min(d1,d2);
+    double distance = Distances.hausdorff(l1, l2);
     return -distance;
   }
   
