@@ -28,13 +28,27 @@ import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
 /**
  * Generates pseudo random paths that cover the whole network
  * Each edge is likely to be used multiple time ....
+ * Length of each path is greater or equals to ParametersSet.get().PATH_MIN_LENGTH.
  * Each path is not exactly random : we try to guide the process by weighting the random selection of edges
- * by the distance bewteen initial and final nodes
+ * by the distance between initial and final nodes
  * TODO : does not work for undirected graph
  * @author bcostes
  *
  */
 public class RandomPathBuilder implements PathBuilder{
+  
+  /**
+   * True of length of each path must be exactly ParametersSet.get().PATH_MIN_LENGTH
+   */
+  private boolean fixedLength;
+
+  public RandomPathBuilder(boolean fixedLength) {
+    this.fixedLength = fixedLength;
+  }
+  
+  public RandomPathBuilder() {
+    this.fixedLength = false;
+  }
 
   @Override
   public List<Path> buildPaths(IObservationCollection observations) {
@@ -180,16 +194,22 @@ public class RandomPathBuilder implements PathBuilder{
           p.addAll(sp.getPath(backupIni, p2));
 
         }
-        if(p.size() < ParametersSet.get().PATH_MIN_LENGTH) {
-          // the path is too small
-          continue;
-        }
         if(!p.contains(e1)) {
           p.add(0,e1);
         }
         if(!p.contains(e2)) {
           p.add(e2);
         }
+        if(p.size() < ParametersSet.get().PATH_MIN_LENGTH) {
+          // the path is too small
+          continue;
+        }
+        
+        // if we want to have path of length equals to ParametersSet.get().PATH_MIN_LENGTH
+        if(this.fixedLength && p.size() > ParametersSet.get().PATH_MIN_LENGTH) {
+          p = p.subList(0, ParametersSet.get().PATH_MIN_LENGTH);
+        }
+
         Path path = new Path(p);
         result.add(path);
         remainingEdges.removeAll(p);

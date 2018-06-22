@@ -75,7 +75,7 @@ matchingLauncher.exportMatchingResults("/home/bcostes/Bureau/test");
 
 * StrokePathBuilder builds strokes based on Bin Jiang "every best fit" algorithm
 * RandomShortestPathBuilder builds paths calculated as shortest paths between random couples of nodes
-* RandomPathBuilder builds pseudo-randoms paths.
+* RandomPathBuilder(boolean fixedLength) builds pseudo-randoms paths. If fixedLength == True, length of each path is exactly PATH_MIN_LENGTH. Facultative and False by default.
 
 ## Post process strategies
 
