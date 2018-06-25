@@ -25,3 +25,7 @@ buildNumber.properties
 
 # Unit test
 /HMMSpatialNetworkMatcher/src/test/
+
+.idea
+.settings
+*.iml

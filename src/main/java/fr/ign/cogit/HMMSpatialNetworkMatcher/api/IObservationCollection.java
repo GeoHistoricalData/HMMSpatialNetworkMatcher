@@ -14,6 +14,6 @@ public interface IObservationCollection{
    * Return this collection as a List
    * @return
    */
-  public abstract List<IObservation> toList();
+  List<IObservation> toList();
   
 }

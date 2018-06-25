@@ -13,6 +13,6 @@ public interface PostProcessStrategy {
    * @param tempMatching
    * @return
    */
-  public abstract Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess);
+  Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess);
 
 }

@@ -38,8 +38,8 @@ public class ReverseHMMPostStrategy implements PostProcessStrategy{
     HiddenStatePopulation states = new HiddenStatePopulation();
 
 
-    IEmissionProbablityStrategy emp = ((FeatObservation)hmmProcess.getObservations().toList().get(0)).getEmissionProbabilityStrategy();
-    ITransitionProbabilityStrategy tp = ((FeatHiddenState)hmmProcess.getStates().toList().get(0)).getTransitionProbabilityStrategy();
+    IEmissionProbablityStrategy emp = hmmProcess.getObservations().toList().get(0).getEmissionProbabilityStrategy();
+    ITransitionProbabilityStrategy tp = hmmProcess.getStates().toList().get(0).getTransitionProbabilityStrategy();
 
     for(IObservation obs : hmmProcess.getObservations().toList()) {
       FeatHiddenState state = new FeatHiddenState(((FeatObservation)obs).getGeom());

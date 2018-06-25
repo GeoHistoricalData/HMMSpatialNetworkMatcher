@@ -18,13 +18,13 @@ public interface IHiddenStateCollection{
  * @param threshold
  * @return
  */
-  public Collection<IHiddenState> filter(IObservation obs);
+Collection<IHiddenState> filter(IObservation obs);
   
   /**
    * Return this collection as a List
    * @return
    */
-  public abstract List<IHiddenState> toList();
+  List<IHiddenState> toList();
 
   
  

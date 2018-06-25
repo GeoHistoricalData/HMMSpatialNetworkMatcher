@@ -21,34 +21,34 @@ public interface IHMMMatching {
    * Get matching result
    * @return
    */
-  public Map<IObservation, Set<IHiddenState>> getMatching();
+  Map<IObservation, Set<IHiddenState>> getMatching();
   
   /**
    * Run the matching algorithm
    */
-  public void match();
+  void match();
   
   /**
    * Get the observations used by the matching
    * @return
    */
-  public IObservationCollection getObservations();
+  IObservationCollection getObservations();
 
   /**
    * Get the hidden states used by the matching
    * @return
    */
-  public IHiddenStateCollection getStates();
+  IHiddenStateCollection getStates();
   
   /**
    * Get the strategy used to build paths
    * @return
    */
-  public PathBuilder getPathBuilder();
+  PathBuilder getPathBuilder();
   
   /**
    * Get the matching links simplified by the post process strategy
    * @return
    */
-  public Map<IObservation, Set<IHiddenState>> getSimplifiedMatching();
+  Map<IObservation, Set<IHiddenState>> getSimplifiedMatching();
 }

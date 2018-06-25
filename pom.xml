@@ -39,16 +39,27 @@
       <groupId>fr.ign.cogit</groupId>
       <artifactId>geoxygene-feature</artifactId>
       <version>${geoxygene.noyau.version}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.hibernate.javax.persistence</groupId>
+      		<artifactId>hibernate-jpa-2.1-api</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>fr.ign.cogit</groupId>
       <artifactId>geoxygene-io</artifactId>
       <version>${geoxygene.noyau.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>fr.ign.cogit</groupId>
-      <artifactId>geoxygene-api</artifactId>
-      <version>${geoxygene.noyau.version}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>nz.ac.waikato.cms.weka</groupId>
+      		<artifactId>weka-dev</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>org.geonames</groupId>
+      		<artifactId>geonames</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>fr.ign.cogit</groupId>
@@ -64,6 +75,28 @@
       <groupId>fr.ign.cogit</groupId>
       <artifactId>geoxygene-contrib</artifactId>
       <version>${geoxygene.noyau.version}</version>
+      <exclusions>
+        <exclusion>
+        	<groupId>fr.ign.cogit</groupId>
+        	<artifactId>geoxygene-database</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.hibernate.common</groupId>
+        	<artifactId>hibernate-commons-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.hibernate.javax.persistence</groupId>
+        	<artifactId>hibernate-jpa-2.1-api</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-core</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-entitymanager</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>net.sf.jung</groupId>
@@ -84,13 +117,13 @@
     <dependency>
       <groupId>org.scpsolver</groupId>
       <artifactId>scpsolver</artifactId>
-      <version>20130227</version>
+      <version>20180615</version>
     </dependency>
     <dependency>
       <groupId>org.scpsolver</groupId>
       <artifactId>lpsolvesolverpack</artifactId>
-      <version>20130227</version>
-    </dependency>  
+      <version>20180615</version>
+    </dependency>
   </dependencies>
 
   <repositories>
@@ -108,6 +141,13 @@
       <url>https://forge-cogit.ign.fr/nexus/content/repositories/snapshots</url>
       <snapshots>
         <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>osgeo-geotools</id>
+      <url>http://download.osgeo.org/webdav/geotools/</url>
+      <snapshots>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>

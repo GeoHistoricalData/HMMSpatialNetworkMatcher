@@ -15,16 +15,16 @@ public interface IHiddenState {
    * @param o2
    * @return
    */
-  public abstract double computeTransitionProbability(IHiddenState nextState, IObservation o1, IObservation o2);
+  double computeTransitionProbability(IHiddenState nextState, IObservation o1, IObservation o2);
   
   /**
    * Set the transition probability strategy
    */
-  public abstract void setTransitionProbabilityStrategy(ITransitionProbabilityStrategy epStrategy);
+  void setTransitionProbabilityStrategy(ITransitionProbabilityStrategy epStrategy);
   
   /**
    * Get the transition probability strategy
    */
-  public abstract ITransitionProbabilityStrategy getTransitionProbabilityStrategy();
+  ITransitionProbabilityStrategy getTransitionProbabilityStrategy();
 
 }

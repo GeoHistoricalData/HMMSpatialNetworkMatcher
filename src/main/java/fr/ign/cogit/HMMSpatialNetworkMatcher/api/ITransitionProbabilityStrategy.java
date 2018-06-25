@@ -16,7 +16,7 @@ public interface ITransitionProbabilityStrategy {
    * @param nextState
    * @return
    */
-  public abstract double compute(IObservation obs1, IHiddenState currentState,
-      IObservation obs2, IHiddenState nextState);
+  double compute(IObservation obs1, IHiddenState currentState,
+                 IObservation obs2, IHiddenState nextState);
 
 }

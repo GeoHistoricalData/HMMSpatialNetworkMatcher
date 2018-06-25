@@ -14,5 +14,5 @@ public interface PathBuilder {
    * @param observations
    * @return
    */
-  public abstract List<Path> buildPaths(IObservationCollection observations);
+  List<Path> buildPaths(IObservationCollection observations);
 }

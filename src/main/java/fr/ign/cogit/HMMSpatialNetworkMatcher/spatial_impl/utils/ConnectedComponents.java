@@ -32,7 +32,7 @@ public class ConnectedComponents<E, V> {
     Map<Integer, Set<E>> verticesColors = new HashMap<Integer, Set<E>>();
     Set<E> processed = new HashSet<E>();
 
-    E random = (E) g.getVertices().iterator().next();
+    E random = g.getVertices().iterator().next();
     int color = 0;
     while (random != null) {
       if (!processed.contains(random)) {
@@ -43,7 +43,7 @@ public class ConnectedComponents<E, V> {
       untagged.addAll(g.getVertices());
       untagged.removeAll(processed);
       if (!untagged.isEmpty()) {
-        random = (E) untagged.iterator().next();
+        random = untagged.iterator().next();
       } else {
         random = null;
       }

@@ -11,7 +11,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.DirectionDifferenceEmissionProbability;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.FrechetEmissionProbability;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.LineMedianDIstanceEmissionProbability;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.LineMedianDistanceEmissionProbability;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder.StrokePathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy.OptimizationPostStratregy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HMMMatchingLauncher;
@@ -47,7 +47,7 @@ public class LaunchExemple {
     // Emission probability stratregy
     // If you want to use more than one criteria, use CompositeEmissionProbability to wrap them
     CompositeEmissionProbabilityStrategy epStrategy = new CompositeEmissionProbabilityStrategy();
-    epStrategy.add(new LineMedianDIstanceEmissionProbability(), 1.);
+    epStrategy.add(new LineMedianDistanceEmissionProbability(), 1.);
     epStrategy.add(new FrechetEmissionProbability(), 1.);
     epStrategy.add(new DirectionDifferenceEmissionProbability(), 1.);
     

@@ -7,6 +7,6 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
  */
 public interface IEmissionProbablityStrategy {
 
-  public abstract double compute(IObservation obs, IHiddenState state);
+  double compute(IObservation obs, IHiddenState state);
   
 }

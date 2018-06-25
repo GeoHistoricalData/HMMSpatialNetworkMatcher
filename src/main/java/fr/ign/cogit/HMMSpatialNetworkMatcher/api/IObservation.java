@@ -14,22 +14,22 @@ public interface IObservation {
    * @param state
    * @return
    */
-  public abstract double computeEmissionProbability(IHiddenState state);
+  double computeEmissionProbability(IHiddenState state);
   
   /**
    * Get possible candidates for matching among whole network
    * @param states
    * @return
    */
-  public abstract Collection<IHiddenState> candidates(IHiddenStateCollection states);
+  Collection<IHiddenState> candidates(IHiddenStateCollection states);
   
   /**
    * Set the emission probability strategy
    */
-  public abstract void setEmissionProbabilityStrategy(IEmissionProbablityStrategy epStrategy);
+  void setEmissionProbabilityStrategy(IEmissionProbablityStrategy epStrategy);
   
   /**
    * Get the emission probability strategy
    */
-  public abstract IEmissionProbablityStrategy getEmissionProbabilityStrategy();
+  IEmissionProbablityStrategy getEmissionProbabilityStrategy();
  }
