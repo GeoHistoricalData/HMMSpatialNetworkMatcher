@@ -10,10 +10,10 @@ public interface IHiddenState {
   /**
    * Compute probability that o2
    * has been emitted by nextState knowing that o1 has been emitted by this
-   * @param nextState
-   * @param o1
-   * @param o2
-   * @return
+   * @param nextState next state
+   * @param o1 observation 1
+   * @param o2 observation 2
+   * @return transition probability
    */
   double computeTransitionProbability(IHiddenState nextState, IObservation o1, IObservation o2);
   

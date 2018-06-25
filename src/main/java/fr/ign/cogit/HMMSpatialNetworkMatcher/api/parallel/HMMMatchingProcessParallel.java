@@ -1,23 +1,12 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api.parallel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveTask;
-
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.api.*;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.IHMMMatching;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.core.HmmMatchingIteration;
+
+import java.util.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * Process the matching algorithm with recursive strategy
@@ -63,7 +52,7 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
   /**
    * Current path processed by the recursive task
    */
-  private Path currentPath;
+  private Path<IObservation> currentPath;
   
   /**
    * For sysout only
@@ -79,7 +68,7 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
     this.observations = observations;
     this.states = states;
     this.matching = new HashMap<>();
-    this.simplifiedMatching = new HashMap<IObservation, Set<IHiddenState>>();
+    this.simplifiedMatching = new HashMap<>();
     this.postProcessStrategy = postProcessStrategy;
     this.firstIteration = firsIteration;
   }
@@ -131,7 +120,7 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
 
 
 
-  public void setCurrentPath(Path currentPath) {
+  private void setCurrentPath(Path<IObservation> currentPath) {
     this.currentPath = currentPath;
   }
 
@@ -147,9 +136,9 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
     if(this.firstIteration) {
       // first iteraiton of the recrusive / parallel matching process
       // Generate Paths
-      List<Path> paths = this.pathBuilder.buildPaths(this.observations);
+      List<Path<IObservation>> paths = this.pathBuilder.buildPaths(this.observations);
       List<HMMMatchingProcessParallel>hmmIterations = new ArrayList<>();
-      for(Path path : paths) {
+      for(Path<IObservation> path : paths) {
         // matching iteration for each path
         HMMMatchingProcessParallel hmmProcessParallel = new HMMMatchingProcessParallel
             (pathBuilder, observations, states, postProcessStrategy, false);
@@ -175,14 +164,14 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
       //get matching result
       Map<IObservation, IHiddenState> matchingItResult = hmmIt.getMatching();
       // Structure to store temporary matching results
-      Map<IObservation, Set<IHiddenState>> tempMatching = new HashMap<IObservation, Set<IHiddenState>>();
+      Map<IObservation, Set<IHiddenState>> tempMatching = new HashMap<>();
       // add matching result in temporary result structure
       for(IObservation o : matchingItResult.keySet()) {
         if(tempMatching.containsKey(o)) {
           tempMatching.get(o).add(matchingItResult.get(o));
         }
         else {
-          Set<IHiddenState> set = new HashSet<IHiddenState>();
+          Set<IHiddenState> set = new HashSet<>();
           set.add(matchingItResult.get(o));
           tempMatching.put(o, set);
         }
@@ -197,9 +186,9 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
   
   /**
    * Compile matching results from 2 parallel task, i.e two separate paths.
-   * @param result1
-   * @param result2
-   * @return
+   * @param result1 results from task 1
+   * @param result2 results from task 2
+   * @return merged results
    */
   private Map<IObservation, Set<IHiddenState>> compile(
       Map<IObservation, Set<IHiddenState>> result1,

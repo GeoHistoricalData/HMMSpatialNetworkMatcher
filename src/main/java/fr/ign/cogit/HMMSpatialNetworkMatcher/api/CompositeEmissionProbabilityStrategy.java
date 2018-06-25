@@ -14,13 +14,14 @@ public class CompositeEmissionProbabilityStrategy implements IEmissionProbablity
   private Map<IEmissionProbablityStrategy, Double> strategies;
   
   public CompositeEmissionProbabilityStrategy() {
-    this.strategies = new  HashMap<IEmissionProbablityStrategy, Double>();
+    this.strategies = new HashMap<>();
   }
   
   public void add(IEmissionProbablityStrategy strategy, double weight) {
     this.strategies.put(strategy, weight);
   }
-  
+
+  @SuppressWarnings("unused")
   public void setStrategies(Map<IEmissionProbablityStrategy, Double> strategies) {
     this.strategies = strategies;
   }

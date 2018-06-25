@@ -1,13 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Stack;
-
-import org.apache.commons.collections15.Transformer;
-
 import edu.uci.ics.jung.algorithms.shortestpath.DijkstraShortestPath;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
@@ -18,6 +10,9 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObserv
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ObservationPopulation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ParametersSet;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
+import org.apache.commons.collections15.Transformer;
+
+import java.util.*;
 
 /**
  * Path are built by selecting random couples of nodes and calculatinf shortest path
@@ -27,16 +22,17 @@ import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
  * @author bcostes
  *
  */
+@SuppressWarnings("unused")
 public class RandomShortestPathBuilder implements PathBuilder{
 
   @Override
-  public List<Path> buildPaths(IObservationCollection observations) {
+  public List<Path<IObservation>> buildPaths(IObservationCollection observations) {
     if(!(observations instanceof ObservationPopulation)) {
       throw new RuntimeException("observations type must extends ObservationPopulation to"
           + "compute random paths");
     }
 
-    List<Path> result = new ArrayList<>();
+    List<Path<IObservation>> result = new ArrayList<>();
 
     ObservationPopulation obsPop = (ObservationPopulation) observations;
 
@@ -52,12 +48,7 @@ public class RandomShortestPathBuilder implements PathBuilder{
 
     Random r = new Random();
 
-    Transformer<FeatObservation, Double> wtTransformer = new Transformer<FeatObservation, Double>() {
-      @Override
-      public Double transform(FeatObservation a) {
-        return a.getGeom().length();                
-      }            
-    };
+    Transformer<FeatObservation, Double> wtTransformer = a -> a.getGeom().length();
     DijkstraShortestPath<IDirectPosition, FeatObservation> sp = new DijkstraShortestPath<>(graph, wtTransformer);
 
 
@@ -85,18 +76,12 @@ public class RandomShortestPathBuilder implements PathBuilder{
           continue;
         }
 
-        Path path = new Path(p);
+        Path<IObservation> path = new Path<>(p);
         result.add(path);
         remainingEdges.removeAll(p);
         break;
       }
     }
-
-
     return result;
   }
-  
-  
-  
- 
 }

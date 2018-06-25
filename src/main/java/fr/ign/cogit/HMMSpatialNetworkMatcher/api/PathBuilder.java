@@ -11,8 +11,8 @@ public interface PathBuilder {
 
   /**
    * Method to build paths of continuous observations
-   * @param observations
-   * @return
+   * @param observations collection of observations
+   * @return paths
    */
-  List<Path> buildPaths(IObservationCollection observations);
+  List<Path<IObservation>> buildPaths(IObservationCollection observations);
 }

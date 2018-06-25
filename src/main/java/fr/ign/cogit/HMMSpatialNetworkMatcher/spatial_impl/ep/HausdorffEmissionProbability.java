@@ -8,6 +8,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObserv
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
 import fr.ign.cogit.geoxygene.contrib.geometrie.Distances;
 
+@SuppressWarnings("unused")
 public class HausdorffEmissionProbability implements IEmissionProbablityStrategy{
 
   public double compute(IObservation obs, IHiddenState state) {

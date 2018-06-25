@@ -18,37 +18,37 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 public interface IHMMMatching {
   
   /**
-   * Get matching result
-   * @return
+   * Get matching result.
+   * @return matching result
    */
   Map<IObservation, Set<IHiddenState>> getMatching();
   
   /**
-   * Run the matching algorithm
+   * Run the matching algorithm.
    */
   void match();
   
   /**
-   * Get the observations used by the matching
-   * @return
+   * Get the observations used by the matching.
+   * @return observations used
    */
   IObservationCollection getObservations();
 
   /**
-   * Get the hidden states used by the matching
-   * @return
+   * Get the hidden states used by the matching.
+   * @return states
    */
   IHiddenStateCollection getStates();
   
   /**
-   * Get the strategy used to build paths
-   * @return
+   * Get the strategy used to build paths.
+   * @return strategy
    */
   PathBuilder getPathBuilder();
   
   /**
-   * Get the matching links simplified by the post process strategy
-   * @return
+   * Get the matching links simplified by the post process strategy.
+   * @return simplified matching
    */
   Map<IObservation, Set<IHiddenState>> getSimplifiedMatching();
 }

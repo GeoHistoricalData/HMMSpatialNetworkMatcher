@@ -1,15 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.CompositeHiddenState;
@@ -25,6 +15,8 @@ import fr.ign.cogit.geoxygene.feature.Population;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileWriter;
 
+import java.util.*;
+
 public class HMMExporter {
 
   public void export(Map<IObservation, Set<IHiddenState>> matching, Map<IObservation, Set<IHiddenState>> simplifiedMatching, String output) {
@@ -35,8 +27,8 @@ public class HMMExporter {
   }
 
   private void exportMatching(Map<IObservation, Set<IHiddenState>> matching, String output) {
-    Map<IFeature, Set<IFeature>> controlFinalLinks = new HashMap<IFeature, Set<IFeature>>();
-    IPopulation<IFeature> out = new Population<IFeature>();
+    Map<IFeature, Set<IFeature>> controlFinalLinks = new HashMap<>();
+    IPopulation<IFeature> out = new Population<>();
 
     for(IObservation o: matching.keySet()){
       FeatObservation a = (FeatObservation)o;
@@ -60,7 +52,7 @@ public class HMMExporter {
                   controlFinalLinks.get(f1).add(f2);
                 }
                 else{
-                  controlFinalLinks.put(f1, new HashSet<IFeature>(Arrays.asList(f2)));
+                  controlFinalLinks.put(f1, new HashSet<>(Collections.singletonList(f2)));
                 }
                 ILineString g2  = new GM_LineString( f2.getGeom().coord());
                 g2  = Operateurs.resampling(g2, g2.length()/4);
@@ -111,30 +103,28 @@ public class HMMExporter {
                 ILineString line35 = new GM_LineString(Arrays.asList(p12, p22));
                 ILineString line36 = new GM_LineString(Arrays.asList(p13, p22));
 
-                List<ILineString> lines = new ArrayList<ILineString>(Arrays.asList(line11, line12,line13,
+                List<ILineString> lines = new ArrayList<>(Arrays.asList(line11, line12,line13,
                     line14, line21, line22, line23, line31, line32, line33,
                     line34, line35,line36));
 
 
-                ILineString lmin = Collections.min(lines, new Comparator<ILineString>() {
-                  public int compare(ILineString l1,ILineString l2) {
-                    if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+                ILineString lmin = Collections.min(lines, (l1, l2) -> {
+                  if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+                    return 1;
+                  }
+                  else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                    return -1;
+                  }
+                  else{
+                    double length1 = l1.length();
+                    double length2 = l2.length();
+                    if(length1 > length2){
                       return 1;
                     }
-                    else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                    else if(length1 < length2){
                       return -1;
                     }
-                    else{
-                      double length1 = l1.length();  
-                      double length2 = l2.length();
-                      if(length1 > length2){
-                        return 1;
-                      }
-                      else if(length1 < length2){
-                        return -1;
-                      }
-                      return 0;
-                    }
+                    return 0;
                   }
                 });
 
@@ -145,8 +135,7 @@ public class HMMExporter {
             }
           }
           else {
-            IHiddenState hd =s;
-            FeatHiddenState a2 = (FeatHiddenState)hd;
+            FeatHiddenState a2 = (FeatHiddenState) s;
             for(IFeature f2: a2.getCorrespondants()){
               if(controlFinalLinks.containsKey(f1)){
                 if(controlFinalLinks.get(f1).contains(f2)){
@@ -155,7 +144,7 @@ public class HMMExporter {
                 controlFinalLinks.get(f1).add(f2);
               }
               else{
-                controlFinalLinks.put(f1, new HashSet<IFeature>(Arrays.asList(f2)));
+                controlFinalLinks.put(f1, new HashSet<>(Collections.singletonList(f2)));
               }
               ILineString g2  = new GM_LineString( f2.getGeom().coord());
               g2  = Operateurs.resampling(g2, g2.length()/4);
@@ -206,30 +195,28 @@ public class HMMExporter {
               ILineString line35 = new GM_LineString(Arrays.asList(p12, p22));
               ILineString line36 = new GM_LineString(Arrays.asList(p13, p22));
 
-              List<ILineString> lines = new ArrayList<ILineString>(Arrays.asList(line11, line12,line13,
+              List<ILineString> lines = new ArrayList<>(Arrays.asList(line11, line12,line13,
                   line14, line21, line22, line23, line31, line32, line33,
                   line34, line35,line36));
 
 
-              ILineString lmin = Collections.min(lines, new Comparator<ILineString>() {
-                public int compare(ILineString l1,ILineString l2) {
-                  if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+              ILineString lmin = Collections.min(lines, (l1, l2) -> {
+                if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+                  return 1;
+                }
+                else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                  return -1;
+                }
+                else{
+                  double length1 = l1.length();
+                  double length2 = l2.length();
+                  if(length1 > length2){
                     return 1;
                   }
-                  else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                  else if(length1 < length2){
                     return -1;
                   }
-                  else{
-                    double length1 = l1.length();  
-                    double length2 = l2.length();
-                    if(length1 > length2){
-                      return 1;
-                    }
-                    else if(length1 < length2){
-                      return -1;
-                    }
-                    return 0;
-                  }
+                  return 0;
                 }
               });
 
@@ -244,9 +231,10 @@ public class HMMExporter {
     ShapefileWriter.write(out, output + ".shp");
   }
 
+  @SuppressWarnings("unused")
   private void exportSimplifiedMatching(Map<IObservation, IHiddenState> matching, String output) {
-    Map<IFeature, Set<IFeature>> controlFinalLinks = new HashMap<IFeature, Set<IFeature>>();
-    IPopulation<IFeature> out = new Population<IFeature>();
+    Map<IFeature, Set<IFeature>> controlFinalLinks = new HashMap<>();
+    IPopulation<IFeature> out = new Population<>();
 
     for(IObservation o: matching.keySet()){
       FeatObservation a = (FeatObservation)o;
@@ -268,7 +256,7 @@ public class HMMExporter {
                 controlFinalLinks.get(f1).add(f2);
               }
               else{
-                controlFinalLinks.put(f1, new HashSet<IFeature>(Arrays.asList(f2)));
+                controlFinalLinks.put(f1, new HashSet<>(Collections.singletonList(f2)));
               }
               ILineString g2  = new GM_LineString( f2.getGeom().coord());
               g2  = Operateurs.resampling(g2, g2.length()/4);
@@ -319,30 +307,28 @@ public class HMMExporter {
               ILineString line35 = new GM_LineString(Arrays.asList(p12, p22));
               ILineString line36 = new GM_LineString(Arrays.asList(p13, p22));
 
-              List<ILineString> lines = new ArrayList<ILineString>(Arrays.asList(line11, line12,line13,
+              List<ILineString> lines = new ArrayList<>(Arrays.asList(line11, line12,line13,
                   line14, line21, line22, line23, line31, line32, line33,
                   line34, line35,line36));
 
 
-              ILineString lmin = Collections.min(lines, new Comparator<ILineString>() {
-                public int compare(ILineString l1,ILineString l2) {
-                  if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+              ILineString lmin = Collections.min(lines, (l1, l2) -> {
+                if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+                  return 1;
+                }
+                else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                  return -1;
+                }
+                else{
+                  double length1 = l1.length();
+                  double length2 = l2.length();
+                  if(length1 > length2){
                     return 1;
                   }
-                  else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                  else if(length1 < length2){
                     return -1;
                   }
-                  else{
-                    double length1 = l1.length();  
-                    double length2 = l2.length();
-                    if(length1 > length2){
-                      return 1;
-                    }
-                    else if(length1 < length2){
-                      return -1;
-                    }
-                    return 0;
-                  }
+                  return 0;
                 }
               });
 
@@ -363,7 +349,7 @@ public class HMMExporter {
               controlFinalLinks.get(f1).add(f2);
             }
             else{
-              controlFinalLinks.put(f1, new HashSet<IFeature>(Arrays.asList(f2)));
+              controlFinalLinks.put(f1, new HashSet<>(Collections.singletonList(f2)));
             }
             ILineString g2  = new GM_LineString( f2.getGeom().coord());
             g2  = Operateurs.resampling(g2, g2.length()/4);
@@ -414,30 +400,28 @@ public class HMMExporter {
             ILineString line35 = new GM_LineString(Arrays.asList(p12, p22));
             ILineString line36 = new GM_LineString(Arrays.asList(p13, p22));
 
-            List<ILineString> lines = new ArrayList<ILineString>(Arrays.asList(line11, line12,line13,
+            List<ILineString> lines = new ArrayList<>(Arrays.asList(line11, line12,line13,
                 line14, line21, line22, line23, line31, line32, line33,
                 line34, line35,line36));
 
 
-            ILineString lmin = Collections.min(lines, new Comparator<ILineString>() {
-              public int compare(ILineString l1,ILineString l2) {
-                if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+            ILineString lmin = Collections.min(lines, (l1, l2) -> {
+              if(l1.startPoint().equals(l1.endPoint(), 0.005)){
+                return 1;
+              }
+              else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                return -1;
+              }
+              else{
+                double length1 = l1.length();
+                double length2 = l2.length();
+                if(length1 > length2){
                   return 1;
                 }
-                else if(l2.startPoint().equals(l2.endPoint(), 0.005)){
+                else if(length1 < length2){
                   return -1;
                 }
-                else{
-                  double length1 = l1.length();  
-                  double length2 = l2.length();
-                  if(length1 > length2){
-                    return 1;
-                  }
-                  else if(length1 < length2){
-                    return -1;
-                  }
-                  return 0;
-                }
+                return 0;
               }
             });
 

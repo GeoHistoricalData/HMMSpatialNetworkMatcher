@@ -14,15 +14,14 @@ public interface IHiddenStateCollection{
 /**
  * Method to filter elements from this collection
  * the observation
- * @param obs
- * @param threshold
- * @return
+ * @param obs observation
+ * @return filtered hidden states
  */
 Collection<IHiddenState> filter(IObservation obs);
   
   /**
    * Return this collection as a List
-   * @return
+   * @return a list of hidden states
    */
   List<IHiddenState> toList();
 

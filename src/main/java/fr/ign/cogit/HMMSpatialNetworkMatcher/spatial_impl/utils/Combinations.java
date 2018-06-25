@@ -88,9 +88,9 @@ public class Combinations<T extends IFeature> {
   }
 
   /**
-   *  Méthode qui teste si un ensemble de linestring peut être aggrégé
-   * @param lines
-   * @return
+   *  Méthode qui teste si un ensemble de linestring peut être aggrégé.
+   * @param lines linestring to merge
+   * @return true if merge possible
    */
   private boolean lineMergePossible(List<T> lines) {
     if(lines.size() == 1){
@@ -102,7 +102,7 @@ public class Combinations<T extends IFeature> {
         return false;
       }
     }
-    Map<IDirectPosition, Integer> pts = new HashMap<IDirectPosition, Integer>();
+    Map<IDirectPosition, Integer> pts = new HashMap<>();
     for(T a: lines){
       ILineString l = (ILineString)a.getGeom();
       if(pts.containsKey(l.startPoint())){

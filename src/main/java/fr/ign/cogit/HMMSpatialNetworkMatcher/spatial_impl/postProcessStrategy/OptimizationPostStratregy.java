@@ -1,13 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
@@ -23,6 +15,8 @@ import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import scpsolver.problems.LPSolution;
 import scpsolver.problems.LPWizard;
 import scpsolver.problems.LPWizardConstraint;
+
+import java.util.*;
 
 public class OptimizationPostStratregy implements PostProcessStrategy{
 
@@ -54,13 +48,13 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
         for (FeatObservation aref : matching.keySet()) {
           for (FeatHiddenState acomp : matching.get(aref)) {
             if (!candidatesMatching.containsKey(aref)) {
-              candidatesMatching.put(aref, new ArrayList<FeatHiddenState>());
+              candidatesMatching.put(aref, new ArrayList<>());
             }
             if (!candidatesMatching.get(aref).contains(acomp)) {
               candidatesMatching.get(aref).add(acomp);
             }
             if (!reverseCandidatesMatching.containsKey(acomp)) {
-              reverseCandidatesMatching.put(acomp, new ArrayList<FeatObservation>());
+              reverseCandidatesMatching.put(acomp, new ArrayList<>());
             }
             if (!reverseCandidatesMatching.get(acomp).contains(aref)) {
               reverseCandidatesMatching.get(acomp).add(aref);
@@ -68,7 +62,7 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
           }
         }
         // arccomp
-        UndirectedSparseMultigraph<FeatHiddenState, Integer> graph = new UndirectedSparseMultigraph<FeatHiddenState, Integer>();
+        UndirectedSparseMultigraph<FeatHiddenState, Integer> graph = new UndirectedSparseMultigraph<>();
         int cptEdges = 0;
         for (FeatObservation arcRef : candidatesMatching.keySet()) {
           if (candidatesMatching.get(arcRef).isEmpty()) {
@@ -86,7 +80,7 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
           }
         }
         // on regroupe par composantes connexes
-        ConnectedComponents<FeatHiddenState, Integer> cc = new ConnectedComponents<FeatHiddenState, Integer>(
+        ConnectedComponents<FeatHiddenState, Integer> cc = new ConnectedComponents<>(
             graph);
         List<UndirectedSparseMultigraph<FeatHiddenState, Integer>> connectedComponents = cc
             .buildConnectedComponents();
@@ -100,10 +94,9 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
           
           double probaMax = Double.MIN_VALUE;
           double probaMin = Double.MAX_VALUE;
-          
-          Set<FeatHiddenState> candidates = new HashSet<>();
+
           // les arcscomp concernés
-          candidates.addAll(connectedComponent.getVertices());
+          Set<FeatHiddenState> candidates = new HashSet<>(connectedComponent.getVertices());
           // les arcsRef
           Set<FeatObservation> references = new HashSet<>();
           for (FeatHiddenState arcComp : candidates) {
@@ -161,12 +154,12 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
 
           for (FeatObservation clusterRef : clusterColRef) {
             indexesRef.put(cptRef++, clusterRef);
-            if(clusterColRef instanceof CompositeObservation) {
-              hypergraph.getHypervertices().addAll(((CompositeObservation)clusterRef).getObservations());
-            }
-            else {
+//            if(clusterColRef instanceof CompositeObservation) {
+//              hypergraph.getHypervertices().addAll(((CompositeObservation)clusterRef).getObservations());
+//            }
+//            else {
               hypergraph.getHypervertices().add(clusterRef);
-            }
+//            }
           }
           for (FeatHiddenState clusterComp : clusterColComp) {
             indexesComp.put(cptComp++, clusterComp);
@@ -304,24 +297,26 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
         // private Set<Set<Arc>> hypedges;
         private Map<Set<IFeature>, Double> hypedges;
 
-        public LocalHypergraph() {
+        private LocalHypergraph() {
           // this.hypedges = new HashSet<Set<Arc>>();
-          this.hypvertices = new HashSet<IFeature>();
-          this.hypedges = new HashMap<Set<IFeature>, Double>();
+          this.hypvertices = new HashSet<>();
+          this.hypedges = new HashMap<>();
         }
-
-        public Map<Set<IFeature>, Double> getHyperedges() {
+        @SuppressWarnings("unused")
+        private Map<Set<IFeature>, Double> getHyperedges() {
           return hypedges;
         }
 
+        @SuppressWarnings("unused")
         public void setHyperedges(Map<Set<IFeature>, Double> costs) {
           this.hypedges = costs;
         }
 
-        public Set<IFeature> getHypervertices() {
+        private Set<IFeature> getHypervertices() {
           return hypvertices;
         }
 
+        @SuppressWarnings("unused")
         public void setHypervertices(Set<IFeature> hypvertices) {
           this.hypvertices = hypvertices;
         }

@@ -12,7 +12,7 @@ public interface IObservationCollection{
 
   /**
    * Return this collection as a List
-   * @return
+   * @return list of observations
    */
   List<IObservation> toList();
   

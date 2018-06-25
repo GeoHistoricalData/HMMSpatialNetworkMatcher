@@ -25,11 +25,8 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.Observatio
  * @author bcostes
  *
  */
+@SuppressWarnings("unused")
 public class ReverseHMMPostStrategy implements PostProcessStrategy{
-  
-  
- 
-
   @Override
   public Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess) {
     // TODO Auto-generated method stub

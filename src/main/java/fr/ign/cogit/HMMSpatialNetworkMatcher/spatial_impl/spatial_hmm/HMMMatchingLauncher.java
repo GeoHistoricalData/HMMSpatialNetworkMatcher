@@ -90,7 +90,7 @@ public class HMMMatchingLauncher {
     }
     
     // initialize and launch main matching process
-    IHMMMatching hmm = null;
+    IHMMMatching hmm;
     if(this.parralelProcess) {
     hmm = new HMMMatchingProcessParallel(this.pathBuilder, observations,
         states, postProcessStrategy, true);

@@ -16,9 +16,7 @@ public class ObservationPopulation extends Population<FeatObservation> implement
 
   @Override
   public List<IObservation> toList() {
-    List<IObservation> list = new ArrayList<>();
-    list.addAll(this.getElements());
-    return list;
+    return new ArrayList<>(this.getElements());
   }
 
 

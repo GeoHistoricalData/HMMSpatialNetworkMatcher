@@ -30,7 +30,7 @@ public class HmmMatchingIteration {
   /**
    * The sequence of observations to be matched
    */
-  private Path path;
+  private Path<IObservation> path;
   /**
    * Matching result
    */
@@ -42,10 +42,10 @@ public class HmmMatchingIteration {
    */
   private IHiddenStateCollection hiddenStates;
   
-  public HmmMatchingIteration(Path path, IHiddenStateCollection hiddenStates) {
+  public HmmMatchingIteration(Path<IObservation> path, IHiddenStateCollection hiddenStates) {
     this.path = path;
     this.hiddenStates = hiddenStates;
-    this.matching = new HashMap<IObservation, IHiddenState>();
+    this.matching = new HashMap<>();
   }
 
   /**
@@ -65,7 +65,7 @@ public class HmmMatchingIteration {
     Collection<IHiddenState> currentCandidates = currentO.candidates(this.hiddenStates);
 
     // initial emission probabilities
-    Map<IHiddenState, Double> startP = new HashMap<IHiddenState, Double>();
+    Map<IHiddenState, Double> startP = new HashMap<>();
     
    
     // is there at least one potential candidate ?
@@ -87,7 +87,7 @@ public class HmmMatchingIteration {
       return;
     }
 
-    ViterbiAlgorithm<IHiddenState, IObservation, MatchingTransitionDescriptor> viterbi = new ViterbiAlgorithm<IHiddenState, IObservation, MatchingTransitionDescriptor>(true);
+    ViterbiAlgorithm<IHiddenState, IObservation, MatchingTransitionDescriptor> viterbi = new ViterbiAlgorithm<>(true);
     viterbi.startWithInitialObservation(currentO, currentCandidates, startP);
     boolean viterbiIsBroken = false;
     
@@ -106,17 +106,17 @@ public class HmmMatchingIteration {
       }
 
       // emission probabilities
-      Map<IHiddenState, Double> eP = new HashMap<IHiddenState, Double>();
+      Map<IHiddenState, Double> eP = new HashMap<>();
       for(IHiddenState state  :nextCandidates){
         eP.put(state, nextO.computeEmissionProbability(state));
       }
       // transition probabilities
-      final Map<Transition<IHiddenState>, Double> transitionLogProbabilities = new LinkedHashMap<Transition<IHiddenState>, Double>();
+      final Map<Transition<IHiddenState>, Double> transitionLogProbabilities = new LinkedHashMap<>();
       //   final Map<Transition<MatchingState>, MatchingTransitionDescriptor> transitionDescriptors = new LinkedHashMap<>();
 
       for(IHiddenState state1 :currentCandidates){
         for(IHiddenState state2: nextCandidates){
-          transitionLogProbabilities.put(new Transition<IHiddenState>(state1, state2),
+          transitionLogProbabilities.put(new Transition<>(state1, state2),
               state1.computeTransitionProbability(state2, currentO, nextO));
           // transitionDescriptors.put(new Transition<MatchingState>(state1, state2), new MatchingTransitionDescriptor(state1, state2));
 
@@ -141,7 +141,7 @@ public class HmmMatchingIteration {
     final List<SequenceState<IHiddenState, IObservation, MatchingTransitionDescriptor>> result =
         viterbi.computeMostLikelySequence();
 
-    Set<IObservation> processed = new HashSet<IObservation>();
+    Set<IObservation> processed = new HashSet<>();
     for(SequenceState<IHiddenState, IObservation, MatchingTransitionDescriptor> s : result){
       processed.add(s.observation);
       this.matching.put(s.observation, s.state); 
@@ -156,11 +156,13 @@ public class HmmMatchingIteration {
 
   }
 
+  @SuppressWarnings("unused")
   public Path getPath() {
     return path;
   }
 
-  public void setPath(Path path) {
+  @SuppressWarnings("unused")
+  public void setPath(Path<IObservation> path) {
     this.path = path;
   }
 
@@ -172,12 +174,13 @@ public class HmmMatchingIteration {
     this.matching = matching;
   }
 
+  @SuppressWarnings("unused")
   public IHiddenStateCollection getHiddenStates() {
     return hiddenStates;
   }
 
+  @SuppressWarnings("unused")
   public void setHiddenStates(IHiddenStateCollection hiddenStates) {
     this.hiddenStates = hiddenStates;
   }
-
 }

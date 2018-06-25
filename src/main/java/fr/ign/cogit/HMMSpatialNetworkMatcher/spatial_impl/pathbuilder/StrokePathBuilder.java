@@ -1,13 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Stack;
-
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservationCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
@@ -22,11 +14,13 @@ import fr.ign.cogit.geoxygene.contrib.cartetopo.Noeud;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 import fr.ign.cogit.geoxygene.util.algo.geomstructure.Vector2D;
 
+import java.util.*;
+
 public class StrokePathBuilder implements PathBuilder{
 
   private static final double LINEAR_THRESOLD = Math.PI/6.;
 
-  public List<Path> buildPaths(IObservationCollection observations) {
+  public List<Path<IObservation>> buildPaths(IObservationCollection observations) {
     if(!(observations instanceof ObservationPopulation)) {
       throw new RuntimeException("observations type must extends ObservationPopulation to"
           + "compute strokes");
@@ -34,7 +28,7 @@ public class StrokePathBuilder implements PathBuilder{
     ObservationPopulation observationsPop = (ObservationPopulation)observations;
     CarteTopo t = new CarteTopo("");
     IPopulation<Arc> arcsT = t.getPopArcs();
-    Map<Arc,FeatObservation> mappingArcs = new HashMap<Arc,FeatObservation>();
+    Map<Arc,FeatObservation> mappingArcs = new HashMap<>();
     for(FeatObservation a : observationsPop.getElements()){
       Arc newa = arcsT.nouvelElement();
       newa.setGeometrie(new GM_LineString(a.getGeom().coord()));
@@ -46,40 +40,38 @@ public class StrokePathBuilder implements PathBuilder{
 
 
     List<List<Arc>> roads_arcs = this.buildLinesClusters(t);
-    List<Path> result = new ArrayList<Path>();
+    List<Path<IObservation>> result = new ArrayList<>();
     for(List<Arc> road: roads_arcs){
-      List<IObservation> newR = new ArrayList<IObservation>();
+      List<IObservation> newR = new ArrayList<>();
       for(Arc a : road){
         newR.add(mappingArcs.get(a));
       }
-      result.add(new Path(newR));
+      result.add(new Path<>(newR));
     }
     return result;
   }
 
   private List<List<Arc>> buildLinesClusters(CarteTopo t) {
-    List<List<Arc>> result = new ArrayList<List<Arc>>();
+    List<List<Arc>> result = new ArrayList<>();
     List<Arc> arcs = t.getListeArcs();
-    Stack<Arc> processed = new Stack<Arc>();
+    Stack<Arc> processed = new Stack<>();
     Arc random = arcs.get(new Random().nextInt(arcs.size()));
     while (random != null) {
       if (!processed.contains(random)) {
         processed.add(random);
-        List<Arc> clusterFrom = new ArrayList<Arc>();
+        List<Arc> clusterFrom = new ArrayList<>();
         this.search_ebf(random, -1, processed, clusterFrom);
 
-        List<Arc> clusterTo = new ArrayList<Arc>();
+        List<Arc> clusterTo = new ArrayList<>();
         this.search_ebf(random, 1, processed, clusterTo);
 
-        List<Arc> road = new ArrayList<Arc>();
         Collections.reverse(clusterFrom);
-        road.addAll(clusterFrom);
+        List<Arc> road = new ArrayList<>(clusterFrom);
         road.add(random);
         road.addAll(clusterTo);
         result.add(road);
       }
-      List<Arc> untagged = new ArrayList<Arc>();
-      untagged.addAll(arcs);
+      List<Arc> untagged = new ArrayList<>(arcs);
       untagged.removeAll(processed);
       if (!untagged.isEmpty()) {
         random = untagged.get(new Random().nextInt(untagged.size()));
@@ -92,14 +84,14 @@ public class StrokePathBuilder implements PathBuilder{
 
   private void search_ebf(Arc old_s, int direction, Stack<Arc> processed,
       List<Arc> cluster) {
-    Noeud search_point = null;
+    Noeud search_point;
     if (direction == 1) {
       search_point = old_s.getNoeudFin();
     } else {
       search_point = old_s.getNoeudIni();
     }
-    List<Arc> searched = new ArrayList<Arc>();
-    List<Arc> selected = new ArrayList<Arc>();
+    List<Arc> searched = new ArrayList<>();
+    List<Arc> selected = new ArrayList<>();
     searched.addAll(search_point.getEntrants());
     searched.addAll(search_point.getSortants());
     searched.remove(old_s);
@@ -113,7 +105,6 @@ public class StrokePathBuilder implements PathBuilder{
       old_remain_angles[i] = deflectionAngle(old_s, remain);
       i++;
     }
-    i = 0;
     if (searched.size() > 1) {
       for (Arc pair_a : searched) {
         boolean isMin = true;
@@ -181,7 +172,6 @@ public class StrokePathBuilder implements PathBuilder{
         v1 = new Vector2D(p.coord().get(p.coord().size() - 2), p.coord().get(
             p.coord().size() - 1));
         v2 = new Vector2D(q.coord().get(0), q.coord().get(1));
-      } else {
       }
 
     } catch (Exception e) {
@@ -190,6 +180,7 @@ public class StrokePathBuilder implements PathBuilder{
     if (v1 == null) {
       return Double.POSITIVE_INFINITY;
     }
+    assert v2 != null;
     return v1.angleVecteur(v2).getValeur();
   }
 

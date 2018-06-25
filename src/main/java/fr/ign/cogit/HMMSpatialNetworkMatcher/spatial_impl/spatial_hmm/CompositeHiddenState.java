@@ -21,7 +21,7 @@ public class CompositeHiddenState extends FeatHiddenState{
 
   public CompositeHiddenState(List<FeatHiddenState> states) {
     super(new GM_LineString(new DirectPositionList()));
-    this.states = new ArrayList<FeatHiddenState>(states);
+    this.states = new ArrayList<>(states);
     this.setTransitionProbabilityStrategy(states.get(0).getTransitionProbabilityStrategy());
     this.computeGeometry();
   }
@@ -41,7 +41,7 @@ public class CompositeHiddenState extends FeatHiddenState{
   }
   
   private void computeGeometry() {
-    List<ILineString> list = this.states.stream().map(s->s.getGeom()).collect(Collectors.toList());
+    List<ILineString> list = this.states.stream().map(FeatHiddenState::getGeom).collect(Collectors.toList());
     this.setGeom(Operateurs.union(list));
   }
 

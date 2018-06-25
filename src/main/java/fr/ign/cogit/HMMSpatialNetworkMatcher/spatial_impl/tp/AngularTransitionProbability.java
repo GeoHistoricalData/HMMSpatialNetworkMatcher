@@ -56,8 +56,8 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
 
     if(currentState.equals(nextState)){
       // on récupère le point intermédiaire sur la polyligne obs1 + obs2
-      IDirectPosition pcompMiddle = null;
-      Angle angle1 = null;
+      IDirectPosition pcompMiddle;
+      Angle angle1;
       if(geomComp1.startPoint().equals(geomComp2.startPoint())){
         pcompMiddle = geomComp1.startPoint();
         angle1 =  Angle.angleTroisPoints(
@@ -83,7 +83,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
       }
 
       // on récupère son abscisse curviligne (en % de la longueur de la polyligne fusionnée)
-      ILineString lF = Operateurs.union(new ArrayList<ILineString>(Arrays.asList(geomComp1, geomComp2)));
+      ILineString lF = Operateurs.union(new ArrayList<>(Arrays.asList(geomComp1, geomComp2)));
       double posMiddle = lF.paramForPoint(pcompMiddle)[0];
       // en relatif
       double posMiddleR = posMiddle / lF.length();
@@ -97,16 +97,14 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
           ||geomRef1.endPoint().equals(pMiddleRef)) {
         Angle angle2 = new Angle(0);
         double d = Angle.ecart(angle1, angle2).getValeur();
-        double proba = -d*180/Math.PI ;
-        return proba;
+        return -d*180/Math.PI;
       }
       IDirectPosition p1 = geomRef1.startPoint();
       IDirectPosition p2 = geomRef1.endPoint();
       Angle angle2 = Angle.angleTroisPoints(p1, pMiddleRef, p2);
 
       double d = Angle.ecart(angle1, angle2).getValeur();
-      double proba = -d*180/Math.PI ;
-      return proba;
+      return -d*180/Math.PI;
     }
 
     else{
@@ -148,7 +146,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
       IDirectPosition prefini2 = geomRef2.startPoint();
       IDirectPosition preffin2 = geomRef2.endPoint();
 
-      IDirectPosition p1 = null, p2 = null, p3 = null;
+      IDirectPosition p1, p2, p3;
 
       if(prefini1.equals(prefini2)){
         p1 =  geomRef1.getControlPoint(1);
@@ -177,7 +175,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
       IDirectPosition pcompini2 = geomComp2.startPoint();
       IDirectPosition pcompfin2 = geomComp2.endPoint();
 
-      IDirectPosition pp1 = null, pp2 = null, pp3 = null;
+      IDirectPosition pp1, pp2, pp3;
 
 
       if(pcompini1.equals(pcompini2)){
@@ -230,8 +228,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
       Angle angle2 = Angle.angleTroisPoints(pp1, pp2 , pp3);
       double d = Angle.ecart(angle1, angle2).getValeur();
 
-      double proba = -d*180/Math.PI ;
-      return proba;
+      return -d*180/Math.PI;
     }
 
   }

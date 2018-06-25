@@ -11,15 +11,15 @@ public interface IObservation {
   
   /**
    * Compute emission probability with given HiddenState
-   * @param state
-   * @return
+   * @param state state
+   * @return emission probability
    */
   double computeEmissionProbability(IHiddenState state);
   
   /**
    * Get possible candidates for matching among whole network
-   * @param states
-   * @return
+   * @param states collection of hidden states
+   * @return candidates for matching
    */
   Collection<IHiddenState> candidates(IHiddenStateCollection states);
   

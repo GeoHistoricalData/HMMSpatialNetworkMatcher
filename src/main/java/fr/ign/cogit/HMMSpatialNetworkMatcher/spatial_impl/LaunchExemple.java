@@ -1,10 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl;
 
-import java.util.Collection;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.CompositeEmissionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
@@ -17,14 +12,11 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy.Op
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HMMMatchingLauncher;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.ParametersSet;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.tp.AngularTransitionProbability;
-import fr.ign.cogit.geoxygene.api.feature.IFeature;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class LaunchExemple {
   
-  public static void ma(Collection<? extends IFeature> d) {
-    
-  }
-
   public static void main(String[] args) {
     // Disable Logger messages
     Logger.getRootLogger().setLevel(Level.OFF);

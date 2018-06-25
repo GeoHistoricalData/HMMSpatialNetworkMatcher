@@ -35,6 +35,7 @@ import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
  * @author bcostes
  *
  */
+@SuppressWarnings("unused")
 public class RandomPathBuilder implements PathBuilder{
   
   /**
@@ -51,7 +52,7 @@ public class RandomPathBuilder implements PathBuilder{
   }
 
   @Override
-  public List<Path> buildPaths(IObservationCollection observations) {
+  public List<Path<IObservation>> buildPaths(IObservationCollection observations) {
     if(!(observations instanceof ObservationPopulation)) {
       throw new RuntimeException("observations type must extends ObservationPopulation to"
           + "compute random paths");
@@ -66,7 +67,7 @@ public class RandomPathBuilder implements PathBuilder{
     }
 
 
-    List<Path> result = new ArrayList<>();
+    List<Path<IObservation>> result = new ArrayList<>();
 
     Random r = new Random();
 
@@ -91,7 +92,7 @@ public class RandomPathBuilder implements PathBuilder{
         // p1 neighbors
         List<FeatObservation> incidents = new ArrayList<>(graph.getIncidentEdges(p1));
         List<org.apache.commons.math3.util.Pair<FeatObservation,Double>> itemWeights = new ArrayList<>();
-        Map<FeatObservation, Double> distances = new HashMap<FeatObservation,Double>();
+        Map<FeatObservation, Double> distances = new HashMap<>();
         for(FeatObservation possibleNext : incidents){
           IDirectPosition other = graph.getOpposite(p1, possibleNext);
           double d= other.distance(p2);
@@ -111,7 +112,7 @@ public class RandomPathBuilder implements PathBuilder{
             itemWeights.add(new Pair<>(possibleNext, Math.exp(-distances.get(possibleNext) /dmin)));
           }
         }
-        FeatObservation nextEdge = new EnumeratedDistribution<FeatObservation>(itemWeights).sample();
+        FeatObservation nextEdge = new EnumeratedDistribution<>(itemWeights).sample();
         IDirectPosition next = graph.getOpposite(p1, nextEdge);
         p.add(nextEdge);
 
@@ -127,7 +128,7 @@ public class RandomPathBuilder implements PathBuilder{
           // we try to guide the process by weighting the random selection of edges
           // by the distance bewteen initial and final nodes
           itemWeights = new ArrayList<>();
-          distances = new HashMap<FeatObservation,Double>();
+          distances = new HashMap<>();
           for(FeatObservation possibleNext : incidents){
             IDirectPosition other = graph.getOpposite(p1, possibleNext);
             double d= other.distance(p2);
@@ -147,7 +148,7 @@ public class RandomPathBuilder implements PathBuilder{
               itemWeights.add(new Pair<>(possibleNext, Math.exp(-distances.get(possibleNext) /dmin)));
             }
           }
-          nextEdge = new EnumeratedDistribution<FeatObservation>(itemWeights).sample();
+          nextEdge = new EnumeratedDistribution<>(itemWeights).sample();
 
           //      random = new Random();
           //      r = random.nextInt(incidents.size());
@@ -179,15 +180,10 @@ public class RandomPathBuilder implements PathBuilder{
           // partial subgraph
           UndirectedSparseMultigraph<IDirectPosition, FeatObservation> ssg = new UndirectedSparseMultigraph<>();
           for(IObservation a : (new HashSet<>(p))){
-            ssg.addEdge((FeatObservation)a, new edu.uci.ics.jung.graph.util.Pair<IDirectPosition>(((FeatObservation)a).getGeom().startPoint(),
+            ssg.addEdge((FeatObservation)a, new edu.uci.ics.jung.graph.util.Pair<>(((FeatObservation)a).getGeom().startPoint(),
                 ((FeatObservation)a).getGeom().endPoint()));
           }
-          Transformer<FeatObservation, Double> wtTransformer = new Transformer<FeatObservation, Double>() {
-            @Override
-            public Double transform(FeatObservation a) {
-              return a.getGeom().length();                
-            }            
-          };
+          Transformer<FeatObservation, Double> wtTransformer = a -> a.getGeom().length();
           DijkstraShortestPath<IDirectPosition, FeatObservation> sp = new DijkstraShortestPath<>(ssg, wtTransformer);
           // shortest path between p1 and p2 in the partial subgraph
           p.clear(); 
@@ -210,7 +206,7 @@ public class RandomPathBuilder implements PathBuilder{
           p = p.subList(0, ParametersSet.get().PATH_MIN_LENGTH);
         }
 
-        Path path = new Path(p);
+        Path<IObservation> path = new Path<>(p);
         result.add(path);
         remainingEdges.removeAll(p);
         break;

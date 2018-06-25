@@ -4,6 +4,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 
+@SuppressWarnings("unused")
 public class LengthDifferenceTransitionProbability implements ITransitionProbabilityStrategy{
 
   public double compute(IObservation obs1, IHiddenState currentState,

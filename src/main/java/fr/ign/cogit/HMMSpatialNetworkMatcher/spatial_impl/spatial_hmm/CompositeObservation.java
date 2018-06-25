@@ -42,7 +42,7 @@ public class CompositeObservation  extends FeatObservation implements IObservati
   }
   
   private void computeGeometry() {
-    List<ILineString> list = this.observations.stream().map(s->s.getGeom()).collect(Collectors.toList());
+    List<ILineString> list = this.observations.stream().map(FeatObservation::getGeom).collect(Collectors.toList());
     this.setGeom(Operateurs.union(list));
   }
 }

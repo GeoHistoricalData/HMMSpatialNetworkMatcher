@@ -1,15 +1,8 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
+
+import java.util.*;
 
 
 /**
@@ -27,10 +20,10 @@ public class ConnectedComponents<E, V> {
   }
 
   public List<UndirectedSparseMultigraph<E, V>> buildConnectedComponents() {
-    List<UndirectedSparseMultigraph<E, V>> connectedComponents = new ArrayList<UndirectedSparseMultigraph<E, V>>();
+    List<UndirectedSparseMultigraph<E, V>> connectedComponents = new ArrayList<>();
 
-    Map<Integer, Set<E>> verticesColors = new HashMap<Integer, Set<E>>();
-    Set<E> processed = new HashSet<E>();
+    Map<Integer, Set<E>> verticesColors = new HashMap<>();
+    Set<E> processed = new HashSet<>();
 
     E random = g.getVertices().iterator().next();
     int color = 0;
@@ -39,8 +32,7 @@ public class ConnectedComponents<E, V> {
         color++;
         colorEdges(random, color, verticesColors, processed);
       }
-      List<E> untagged = new ArrayList<E>();
-      untagged.addAll(g.getVertices());
+      List<E> untagged = new ArrayList<>(g.getVertices());
       untagged.removeAll(processed);
       if (!untagged.isEmpty()) {
         random = untagged.iterator().next();
@@ -52,7 +44,7 @@ public class ConnectedComponents<E, V> {
     // on récupère les arcs
     for (Integer i : verticesColors.keySet()) {
       Set<E> vertices = verticesColors.get(i);
-      Set<V> edges = new HashSet<V>();
+      Set<V> edges = new HashSet<>();
       for (E vertex : vertices) {
         for (V e : g.getIncidentEdges(vertex)) {
           if (!edges.contains(e)) {
@@ -60,7 +52,7 @@ public class ConnectedComponents<E, V> {
           }
         }
       }
-      UndirectedSparseMultigraph<E, V> connectedComponent = new UndirectedSparseMultigraph<E, V>();
+      UndirectedSparseMultigraph<E, V> connectedComponent = new UndirectedSparseMultigraph<>();
       if(edges.isEmpty()){
         for(E v: vertices){
           connectedComponent.addVertex(v);
@@ -74,23 +66,13 @@ public class ConnectedComponents<E, V> {
       connectedComponents.add(connectedComponent);
     }
 
-    Collections.sort(connectedComponents,
-        new Comparator<UndirectedSparseMultigraph<E, V>>() {
-      public int compare(UndirectedSparseMultigraph<E, V> o1,
-          UndirectedSparseMultigraph<E, V> o2) {
-        if (o1.getVertexCount() > o2.getVertexCount()) {
-          return -1;
-        } else if (o1.getVertexCount() < o2.getVertexCount()) {
-          return 1;
-        } else {
-          if (o1.getEdgeCount() > o2.getEdgeCount()) {
-            return -1;
-          } else if (o1.getEdgeCount() < o2.getEdgeCount()) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }
+    connectedComponents.sort((o1, o2) -> {
+      if (o1.getVertexCount() > o2.getVertexCount()) {
+        return -1;
+      } else if (o1.getVertexCount() < o2.getVertexCount()) {
+        return 1;
+      } else {
+        return Integer.compare(o2.getEdgeCount(), o1.getEdgeCount());
       }
     });
     return connectedComponents;
@@ -98,17 +80,17 @@ public class ConnectedComponents<E, V> {
 
   /**
    * Colorie le sommet vertex et appel récursif sur les sommets voisins
-   * @param g
-   * @param vertex
-   * @param i
-   * @param edgesColors
+   * @param vertex vertex
+   * @param color color
+   * @param verticesColors map of colored vertices
+   * @param processed set of processed vertices
    */
   private void colorEdges(E vertex, int color,
       Map<Integer, Set<E>> verticesColors, Set<E> processed) {
     if (verticesColors.containsKey(color)) {
       verticesColors.get(color).add(vertex);
     } else {
-      Set<E> set = new HashSet<E>();
+      Set<E> set = new HashSet<>();
       set.add(vertex);
       verticesColors.put(color, set);
     }

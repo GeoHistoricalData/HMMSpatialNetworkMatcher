@@ -5,7 +5,6 @@ import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IPopulation;
 import fr.ign.cogit.geoxygene.contrib.appariement.EnsembleDeLiens;
 import fr.ign.cogit.geoxygene.contrib.appariement.Lien;
-import fr.ign.cogit.geoxygene.feature.Population;
 import fr.ign.cogit.geoxygene.spatial.geomprim.GM_Point;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileReader;
 import fr.ign.cogit.geoxygene.util.index.Tiling;
@@ -17,15 +16,15 @@ import fr.ign.cogit.geoxygene.util.index.Tiling;
  */
 public class Scores {
 
-  IPopulation<IFeature> pop1;
-  IPopulation<IFeature> pop2;
-  EnsembleDeLiens matchingAuto;
-  EnsembleDeLiens matchingManuel;
+  private IPopulation<IFeature> pop1;
+  private IPopulation<IFeature> pop2;
+  private EnsembleDeLiens matchingAuto;
+  private EnsembleDeLiens matchingManuel;
 
-  IPopulation<IFeature> errorPlus = new Population<IFeature>();
-  IPopulation<IFeature> errorLess = new Population<IFeature>();
+//  IPopulation<IFeature> errorPlus = new Population<>();
+//  IPopulation<IFeature> errorLess = new Population<>();
 
-
+  @SuppressWarnings("unused")
   public Scores(IPopulation<IFeature> pop1, IPopulation<IFeature> pop2){
     this.pop1 = pop1;
     this.pop2 = pop2;
@@ -52,7 +51,7 @@ public class Scores {
         }
       }
     }
-    return vp / ((double)tot);
+    return vp / tot;
   }
 
   public double getRecall(){
@@ -73,7 +72,7 @@ public class Scores {
       }
     }
 
-    return vp / ((double)tot);
+    return vp / tot;
   }
 
   public void init(IPopulation<IFeature> matchingAuto, IPopulation<IFeature> matchingManuel, IPopulation<IFeature> popRef, IPopulation<IFeature> popComp){
