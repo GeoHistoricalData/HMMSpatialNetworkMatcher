@@ -1,6 +1,8 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.tp;
 
 import java.util.ArrayList;
+
+
 import java.util.Arrays;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
@@ -15,7 +17,24 @@ import fr.ign.cogit.geoxygene.contrib.geometrie.Angle;
 import fr.ign.cogit.geoxygene.contrib.geometrie.Operateurs;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPosition;
 
+/**
+ * Angular transition probability follows an exponential distribution
+ * @author bcostes
+ *
+ */
 public class AngularTransitionProbability implements ITransitionProbabilityStrategy{
+  
+  /**
+   * Parameter of the exponential distribution
+   */
+  private double lambda;
+  
+  
+  public AngularTransitionProbability(double lambda) {
+    super();
+    this.lambda = lambda;
+  }
+
 
   public double compute(IObservation obs1, IHiddenState currentState,
       IObservation obs2, IHiddenState nextState) {
@@ -97,14 +116,14 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
           ||geomRef1.endPoint().equals(pMiddleRef)) {
         Angle angle2 = new Angle(0);
         double d = Angle.ecart(angle1, angle2).getValeur();
-        return -d;
+        return - this.lambda*180.*d/Math.PI + Math.log(this.lambda);
       }
       IDirectPosition p1 = geomRef1.startPoint();
       IDirectPosition p2 = geomRef1.endPoint();
       Angle angle2 = Angle.angleTroisPoints(p1, pMiddleRef, p2);
 
       double d = Angle.ecart(angle1, angle2).getValeur();
-      return -d;
+      return - this.lambda*180.*d/Math.PI + Math.log(this.lambda);
     }
 
     else{
@@ -227,8 +246,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
 
       Angle angle2 = Angle.angleTroisPoints(pp1, pp2 , pp3);
       double d = Angle.ecart(angle1, angle2).getValeur();
-
-      return -d;
+      return - this.lambda*180.*d/Math.PI + Math.log(this.lambda);
     }
 
   }
