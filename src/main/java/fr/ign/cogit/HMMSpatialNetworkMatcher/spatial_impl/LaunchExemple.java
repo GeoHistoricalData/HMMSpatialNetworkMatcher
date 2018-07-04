@@ -29,23 +29,23 @@ public class LaunchExemple {
 //    String fileNetwork2 ="/home/bcostes/Documents/IGN/these/donnees/vecteur/filaires/filaires_corriges"
 //        + "/jacoubet_l93_utf8.shp";
     
-    String fileNetwork1 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/data"
-        + "/roads_osm2.shp";
+    String fileNetwork1 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching"
+        + "/snapshot_1784.0_1791.0_edges.shp";
     
     // Second network
-    String fileNetwork2 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/data"
-        + "/roads_bdcarto2.shp";
+    String fileNetwork2 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching"
+        + "/snapshot_1825.0_1836.0_edges.shp";
     
     // Emission probability stratregy
     // If you want to use more than one criteria, use CompositeEmissionProbability to wrap them
     CompositeEmissionProbabilityStrategy epStrategy = new CompositeEmissionProbabilityStrategy();
-    epStrategy.add(new LineMedianDistanceEmissionProbability(), 1.);
-    epStrategy.add(new FrechetEmissionProbability(), 1.);
-    epStrategy.add(new DirectionDifferenceEmissionProbability(), 1.);
+   // epStrategy.add(new LineMedianDistanceEmissionProbability(), 1.);
+    epStrategy.add(new FrechetEmissionProbability(1), 1.);
+   // epStrategy.add(new DirectionDifferenceEmissionProbability(), 1.);
     
     
     // Transition probability Strategy
-    ITransitionProbabilityStrategy tpStrategy = new AngularTransitionProbability();
+    ITransitionProbabilityStrategy tpStrategy = new AngularTransitionProbability(1);
     
     // How to build the paths of the HMM ?
     PathBuilder pathBuilder = new StrokePathBuilder();
@@ -54,7 +54,7 @@ public class LaunchExemple {
     PostProcessStrategy postProcressStrategy = new OptimizationPostStratregy();
     
     // Parameters of the algorithm
-    ParametersSet.get().SELECTION_THRESHOLD = 30;
+    ParametersSet.get().SELECTION_THRESHOLD = 25;
     ParametersSet.get().NETWORK_PROJECTION = false;
     ParametersSet.get().PATH_MIN_LENGTH = 5;
     
