@@ -26,6 +26,9 @@ buildNumber.properties
 # Unit test
 /HMMSpatialNetworkMatcher/src/test/
 
+# temporary repository
+/HMMSpatialNetworkMatcher/src/main/java/temporary/
+
 .idea
 .settings
 *.iml

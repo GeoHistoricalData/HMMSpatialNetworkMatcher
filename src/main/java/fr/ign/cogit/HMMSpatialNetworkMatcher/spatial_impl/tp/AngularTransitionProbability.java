@@ -97,14 +97,14 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
           ||geomRef1.endPoint().equals(pMiddleRef)) {
         Angle angle2 = new Angle(0);
         double d = Angle.ecart(angle1, angle2).getValeur();
-        return -d*180/Math.PI;
+        return -d;
       }
       IDirectPosition p1 = geomRef1.startPoint();
       IDirectPosition p2 = geomRef1.endPoint();
       Angle angle2 = Angle.angleTroisPoints(p1, pMiddleRef, p2);
 
       double d = Angle.ecart(angle1, angle2).getValeur();
-      return -d*180/Math.PI;
+      return -d;
     }
 
     else{
@@ -228,7 +228,7 @@ public class AngularTransitionProbability implements ITransitionProbabilityStrat
       Angle angle2 = Angle.angleTroisPoints(pp1, pp2 , pp3);
       double d = Angle.ecart(angle1, angle2).getValeur();
 
-      return -d*180/Math.PI;
+      return -d;
     }
 
   }
