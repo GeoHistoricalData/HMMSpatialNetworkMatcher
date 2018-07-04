@@ -8,7 +8,24 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObserv
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
 import fr.ign.cogit.geoxygene.distance.Frechet;
 
+/**
+ * Frechet emission probability follows an exponential distribution
+ * @author bcostes
+ *
+ */
 public class FrechetEmissionProbability implements IEmissionProbablityStrategy{
+  
+  /**
+   * Parameter of the exponential distribution
+   */
+  private double lambda;
+  
+  
+  public FrechetEmissionProbability(double lambda) {
+    super();
+    this.lambda = lambda;
+  }
+
 
   @Override
   public double compute(IObservation obs, IHiddenState state) {
@@ -22,7 +39,8 @@ public class FrechetEmissionProbability implements IEmissionProbablityStrategy{
     ILineString l2 = (ILineString)((FeatHiddenState)state).getGeom().clone();
     double distance2 = Math.min(Frechet.discreteFrechet(l1,l2),
         Frechet.discreteFrechet(l1.reverse(), l2));
-    return -distance2;
+    
+    return -this.lambda*distance2 + Math.log(this.lambda);
   }
 
 }
