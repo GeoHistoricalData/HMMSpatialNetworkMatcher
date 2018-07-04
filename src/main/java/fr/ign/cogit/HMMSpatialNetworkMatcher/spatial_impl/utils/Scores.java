@@ -117,10 +117,10 @@ public class Scores {
     // TODO Auto-generated method stub
 
     // IPopulation<IFeature> zoneRef = ShapefileReader.read("/home/bcostes/Bureau/score_matching/jacoubet_poubelle/zone1/zone_jacoubet.shp");
-    IPopulation<IFeature> popRef = ShapefileReader.read("manual_matching/snapshot_1784.0_1791.0_edges.shp");
-    IPopulation<IFeature> popComp = ShapefileReader.read("manual_matching/snapshot_1825.0_1836.0_edges.shp");
-    IPopulation<IFeature> matchingManuel= ShapefileReader.read("manual_matching/matching.shp");
-    IPopulation<IFeature> matchingAuto = ShapefileReader.read("test_simplified.shp");
+    IPopulation<IFeature> popRef = ShapefileReader.read("/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching/snapshot_1784.0_1791.0_edges.shp");
+    IPopulation<IFeature> popComp = ShapefileReader.read("/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching/snapshot_1825.0_1836.0_edges.shp");
+    IPopulation<IFeature> matchingManuel= ShapefileReader.read("/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching/matching.shp");
+    IPopulation<IFeature> matchingAuto = ShapefileReader.read("/home/bcostes/Bureau/test2_simplified.shp");
 
 
     System.out.println("go with " + matchingManuel.size());
