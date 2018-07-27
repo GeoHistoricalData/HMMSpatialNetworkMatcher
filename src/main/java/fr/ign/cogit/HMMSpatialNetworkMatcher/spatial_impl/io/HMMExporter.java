@@ -435,5 +435,4 @@ public class HMMExporter {
     }
     ShapefileWriter.write(out, output + "_simplified.shp");
   }
-
 }

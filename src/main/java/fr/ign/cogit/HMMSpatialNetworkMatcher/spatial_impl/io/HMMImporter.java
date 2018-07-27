@@ -18,6 +18,7 @@ public class HMMImporter{
 
   private ObservationPopulation observations;
   private HiddenStatePopulation states;
+
   public ObservationPopulation getObservations() {
     return observations;
   }
@@ -35,21 +36,21 @@ public class HMMImporter{
     // lecture des SHP
     IPopulation<IFeature> inRef = ShapefileReader.read(fileNetwork1);
     IPopulation<IFeature> inComp = ShapefileReader.read(fileNetwork2);
-
     /*
      * Création des réseaux
      */
     CarteTopo netRef = new CarteTopo("ref");
     CarteTopo netComp = new CarteTopo("comp");
+    double threshold = ParametersSet.get().SELECTION_THRESHOLD;
     IPopulation<Arc> popArcRef = netRef.getPopArcs();
     for (IFeature f : inRef) {
       Arc a = popArcRef.nouvelElement();
-      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), ParametersSet.get().SELECTION_THRESHOLD ));
+      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), threshold));
     }
     IPopulation<Arc> popArcComp = netComp.getPopArcs();
     for (IFeature f : inComp) {
       Arc a = popArcComp.nouvelElement();
-      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), ParametersSet.get().SELECTION_THRESHOLD));
+      a.setGeom(Resampler.resample(new GM_LineString(f.getGeom().coord()), threshold));
     }
     netRef.creeTopologieArcsNoeuds(1);
     netRef.creeNoeudsManquants(1);
@@ -71,11 +72,9 @@ public class HMMImporter{
       // Si demandé, on rééchantillonne en projetant les réseaux les uns sur les autres.
       // A éviter ...
       if (netRef.getPopArcs().size() > netComp.getPopArcs().size()) {
-        netComp.projete(netRef, ParametersSet.get().SELECTION_THRESHOLD, ParametersSet.get().SELECTION_THRESHOLD,
-            false);
+        netComp.projete(netRef, threshold, threshold, false);
       } else {
-        netRef.projete(netComp, ParametersSet.get().SELECTION_THRESHOLD,ParametersSet.get().SELECTION_THRESHOLD,
-            false);
+        netRef.projete(netComp, threshold, threshold, false);
       }
     }
 
@@ -93,8 +92,5 @@ public class HMMImporter{
     }
     this.observations.initSpatialIndex(Tiling.class, true);
     this.states.initSpatialIndex(Tiling.class, true);
-
   }
-
-
 }

@@ -52,7 +52,7 @@ public class RandomPathBuilder implements PathBuilder{
   }
 
   @Override
-  public List<Path<IObservation>> buildPaths(IObservationCollection observations) {
+  public List<Path<IObservation>> buildPaths(IObservationCollection observations, Random generator) {
     if(!(observations instanceof ObservationPopulation)) {
       throw new RuntimeException("observations type must extends ObservationPopulation to"
           + "compute random paths");
@@ -69,8 +69,6 @@ public class RandomPathBuilder implements PathBuilder{
 
     List<Path<IObservation>> result = new ArrayList<>();
 
-    Random r = new Random();
-
     Stack<FeatObservation> remainingEdges = new Stack<>();
     remainingEdges.addAll(graph.getEdges());
     List<FeatObservation> edges = new ArrayList<>(graph.getEdges());
@@ -82,7 +80,7 @@ public class RandomPathBuilder implements PathBuilder{
 
       // random choice of second node
       while(true) {
-        FeatObservation e2 = edges.get(r.nextInt(edges.size()));
+        FeatObservation e2 = edges.get(generator.nextInt(edges.size()));
         if(e1.equals(e2)) {
           continue;
         }

@@ -1,5 +1,8 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl;
 
+import java.util.List;
+import java.util.Random;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -8,6 +11,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.FrechetEmissionProbability;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMExporter;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder.StrokePathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy.OptimizationPostStratregy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HMMMatchingLauncher;
@@ -22,12 +26,10 @@ public class LaunchExemple {
 
     // First network
 
-    String fileNetwork1 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching"
-        + "/snapshot_1784.0_1791.0_edges.shp";
+    String fileNetwork1 ="./manual_matching/snapshot_1784.0_1791.0_edges.shp";
 
     // Second network
-    String fileNetwork2 ="/home/bcostes/Documents/IGN/articles/article_appariement2/matchings/manual_matching"
-        + "/snapshot_1825.0_1836.0_edges.shp";
+    String fileNetwork2 ="./manual_matching/snapshot_1825.0_1836.0_edges.shp";
 
     // Emission probability stratregy
     // If you want to use more than one criteria, use CompositeEmissionProbability to wrap them
@@ -56,17 +58,18 @@ public class LaunchExemple {
     ParametersSet.get().PATH_MIN_LENGTH = 5;
     
     // Start the parallelized matching
-    boolean parallelProcess = true;
+    boolean parallelProcess = false;
 
+    Random generator = new Random(42L);
     // Launcher
     HMMMatchingLauncher matchingLauncher = new HMMMatchingLauncher(fileNetwork1, fileNetwork2, epStrategy,
-        tpStrategy, pathBuilder, postProcressStrategy, parallelProcess);
+        tpStrategy, pathBuilder, postProcressStrategy, parallelProcess, generator);
 
     // Execute the HMM matching algorithm
     matchingLauncher.lauchMatchingProcess();
 
     // Export result
-    matchingLauncher.exportMatchingResults("/home/bcostes/Bureau/test2");
+    matchingLauncher.exportMatchingResults("test");
   }
 
 }

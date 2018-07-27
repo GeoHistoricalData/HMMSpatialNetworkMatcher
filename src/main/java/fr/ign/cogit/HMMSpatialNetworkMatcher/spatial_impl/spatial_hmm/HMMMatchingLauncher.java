@@ -2,6 +2,7 @@ package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IEmissionProbablityStrategy;
@@ -51,9 +52,14 @@ public class HMMMatchingLauncher {
    */
   private boolean parralelProcess;
   
+  private Random generator;
+  
+  public Map<IObservation, String> id1Map;
+  public Map<IHiddenState, String> id2Map;
+
   public HMMMatchingLauncher(String fileNetwork1, String fileNetwork2,
       IEmissionProbablityStrategy epS, ITransitionProbabilityStrategy tpS, PathBuilder pathBuilder,
-      PostProcessStrategy postProcessStrategy, boolean parralelProcess) {
+      PostProcessStrategy postProcessStrategy, boolean parralelProcess, Random generator) {
     super();
     this.fileNetwork1 = fileNetwork1;
     this.fileNetwork2 = fileNetwork2;
@@ -63,7 +69,8 @@ public class HMMMatchingLauncher {
     this.pathBuilder = pathBuilder;
     this.matching = new HashMap<>();
     this.simplifiedMatching = new HashMap<>();
-    this.parralelProcess=parralelProcess;
+    this.parralelProcess = parralelProcess;
+    this.generator = generator;
   }
 
 
@@ -71,12 +78,10 @@ public class HMMMatchingLauncher {
     return simplifiedMatching;
   }
 
-
   public void lauchMatchingProcess() {
     // load and prepare networks for matching
     HMMImporter preProcess = new HMMImporter();
     preProcess.loadAndPrepareNetworks(this.fileNetwork1, this.fileNetwork2);
-    
     // get observations and hidden states
     ObservationPopulation observations = preProcess.getObservations();
     HiddenStatePopulation states = preProcess.getStates();
@@ -93,11 +98,11 @@ public class HMMMatchingLauncher {
     IHMMMatching hmm;
     if(this.parralelProcess) {
     hmm = new HMMMatchingProcessParallel(this.pathBuilder, observations,
-        states, postProcessStrategy, true);
+        states, postProcessStrategy, true, generator);
     }
     else {
       hmm = new HMMMatchingProcess(this.pathBuilder, observations,
-          states, postProcessStrategy);
+          states, postProcessStrategy, generator);
     }
     hmm.match();
     
@@ -110,7 +115,4 @@ public class HMMMatchingLauncher {
     HMMExporter exporter = new HMMExporter();
     exporter.export(this.matching, this.simplifiedMatching, output);
   }
-  
-   
-
 }

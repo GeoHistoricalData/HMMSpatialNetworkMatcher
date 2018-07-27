@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IEmissionProbablityStrategy;
@@ -29,8 +30,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.Observatio
 public class ReverseHMMPostStrategy implements PostProcessStrategy{
   @Override
   public Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess) {
-    // TODO Auto-generated method stub
-
+	Random generator = hmmProcess.getGenerator();
     ObservationPopulation observations = new ObservationPopulation();
     HiddenStatePopulation states = new HiddenStatePopulation();
 
@@ -50,7 +50,7 @@ public class ReverseHMMPostStrategy implements PostProcessStrategy{
     }
 
     HMMMatchingProcess newProcess = new HMMMatchingProcess(hmmProcess.getPathBuilder(),
-        observations, states, null);
+        observations, states, null, generator);
     newProcess.match();
 
     Map<FeatObservation, List<FeatHiddenState>> matching = new HashMap<>();

@@ -1,6 +1,7 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenState;
@@ -51,4 +52,7 @@ public interface IHMMMatching {
    * @return simplified matching
    */
   Map<IObservation, Set<IHiddenState>> getSimplifiedMatching();
+  
+  Random getGenerator();
+
 }

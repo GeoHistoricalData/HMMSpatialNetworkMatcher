@@ -20,7 +20,7 @@ public class StrokePathBuilder implements PathBuilder{
 
   private static final double LINEAR_THRESOLD = Math.PI/6.;
 
-  public List<Path<IObservation>> buildPaths(IObservationCollection observations) {
+  public List<Path<IObservation>> buildPaths(IObservationCollection observations, Random generator) {
     if(!(observations instanceof ObservationPopulation)) {
       throw new RuntimeException("observations type must extends ObservationPopulation to"
           + "compute strokes");
@@ -38,8 +38,9 @@ public class StrokePathBuilder implements PathBuilder{
     t.creeTopologieArcsNoeuds(0);
     t.rendPlanaire(0);
 
+//    Random generator = new Random(seed);
 
-    List<List<Arc>> roads_arcs = this.buildLinesClusters(t);
+    List<List<Arc>> roads_arcs = this.buildLinesClusters(t, generator);
     List<Path<IObservation>> result = new ArrayList<>();
     for(List<Arc> road: roads_arcs){
       List<IObservation> newR = new ArrayList<>();
@@ -51,11 +52,11 @@ public class StrokePathBuilder implements PathBuilder{
     return result;
   }
 
-  private List<List<Arc>> buildLinesClusters(CarteTopo t) {
+  private List<List<Arc>> buildLinesClusters(CarteTopo t, Random generator) {
     List<List<Arc>> result = new ArrayList<>();
     List<Arc> arcs = t.getListeArcs();
     Stack<Arc> processed = new Stack<>();
-    Arc random = arcs.get(new Random().nextInt(arcs.size()));
+    Arc random = arcs.get(generator.nextInt(arcs.size()));
     while (random != null) {
       if (!processed.contains(random)) {
         processed.add(random);
@@ -74,7 +75,7 @@ public class StrokePathBuilder implements PathBuilder{
       List<Arc> untagged = new ArrayList<>(arcs);
       untagged.removeAll(processed);
       if (!untagged.isEmpty()) {
-        random = untagged.get(new Random().nextInt(untagged.size()));
+        random = untagged.get(generator.nextInt(untagged.size()));
       } else {
         random = null;
       }

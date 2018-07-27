@@ -1,6 +1,7 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.api;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Strategy Pattern to build several types of Path
@@ -14,5 +15,5 @@ public interface PathBuilder {
    * @param observations collection of observations
    * @return paths
    */
-  List<Path<IObservation>> buildPaths(IObservationCollection observations);
+  List<Path<IObservation>> buildPaths(IObservationCollection observations, Random generator);
 }

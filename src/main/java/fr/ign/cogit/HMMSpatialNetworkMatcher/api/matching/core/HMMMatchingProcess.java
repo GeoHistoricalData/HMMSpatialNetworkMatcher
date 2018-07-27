@@ -39,10 +39,11 @@ public class HMMMatchingProcess implements IHMMMatching{
    */
   private PostProcessStrategy postProcessStrategy;
 
+  private Random generator;
 
   public HMMMatchingProcess(PathBuilder pathBuilder,
       IObservationCollection observations, IHiddenStateCollection states,
-      PostProcessStrategy postProcessStrategy) {
+      PostProcessStrategy postProcessStrategy, Random generator) {
     super();
     this.pathBuilder = pathBuilder;
     this.observations = observations;
@@ -50,6 +51,7 @@ public class HMMMatchingProcess implements IHMMMatching{
     this.matching = new HashMap<>();
     this.simplifiedMatching = new HashMap<>();
     this.postProcessStrategy = postProcessStrategy;
+    this.generator = generator;
   }
 
 
@@ -60,7 +62,7 @@ public class HMMMatchingProcess implements IHMMMatching{
   public void match() {
 
     // Generate Paths
-    List<Path<IObservation>> paths = this.pathBuilder.buildPaths(this.observations);
+    List<Path<IObservation>> paths = this.pathBuilder.buildPaths(this.observations, this.generator);
 
 
     // Structure to store temporary matching results
@@ -126,6 +128,8 @@ public class HMMMatchingProcess implements IHMMMatching{
     return pathBuilder;
   }
  
-  
+  public Random getGenerator() {
+	return generator;
+  }
 
 }

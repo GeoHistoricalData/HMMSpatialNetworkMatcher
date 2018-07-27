@@ -59,10 +59,11 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
    */
   private static int processAchieved = 0;
 
-
+  private Random generator;
+  
   public HMMMatchingProcessParallel(PathBuilder pathBuilder,
       IObservationCollection observations, IHiddenStateCollection states,
-      PostProcessStrategy postProcessStrategy, boolean firsIteration) {
+      PostProcessStrategy postProcessStrategy, boolean firsIteration, Random randomGenerator) {
     super();
     this.pathBuilder = pathBuilder;
     this.observations = observations;
@@ -71,6 +72,7 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
     this.simplifiedMatching = new HashMap<>();
     this.postProcessStrategy = postProcessStrategy;
     this.firstIteration = firsIteration;
+    this.generator = randomGenerator;
   }
 
 
@@ -118,7 +120,10 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
     return pathBuilder;
   }
 
-
+  @Override
+  public Random getGenerator() {
+	return generator; 
+  }
 
   private void setCurrentPath(Path<IObservation> currentPath) {
     this.currentPath = currentPath;
@@ -136,12 +141,12 @@ public class HMMMatchingProcessParallel extends RecursiveTask<Map<IObservation, 
     if(this.firstIteration) {
       // first iteraiton of the recrusive / parallel matching process
       // Generate Paths
-      List<Path<IObservation>> paths = this.pathBuilder.buildPaths(this.observations);
+      List<Path<IObservation>> paths = this.pathBuilder.buildPaths(this.observations, this.generator);
       List<HMMMatchingProcessParallel>hmmIterations = new ArrayList<>();
       for(Path<IObservation> path : paths) {
         // matching iteration for each path
         HMMMatchingProcessParallel hmmProcessParallel = new HMMMatchingProcessParallel
-            (pathBuilder, observations, states, postProcessStrategy, false);
+            (pathBuilder, observations, states, postProcessStrategy, false, generator);
         hmmProcessParallel.setCurrentPath(path);
         hmmIterations.add(hmmProcessParallel);
       }
