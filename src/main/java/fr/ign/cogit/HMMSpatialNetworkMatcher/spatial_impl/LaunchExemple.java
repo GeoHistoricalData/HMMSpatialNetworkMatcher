@@ -1,6 +1,5 @@
 package fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl;
 
-import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Level;
@@ -11,7 +10,6 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.ITransitionProbabilityStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.PostProcessStrategy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.ep.FrechetEmissionProbability;
-import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMExporter;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.pathbuilder.StrokePathBuilder;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.postProcessStrategy.OptimizationPostStratregy;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.HMMMatchingLauncher;

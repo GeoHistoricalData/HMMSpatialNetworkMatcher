@@ -38,8 +38,6 @@ public class StrokePathBuilder implements PathBuilder{
     t.creeTopologieArcsNoeuds(0);
     t.rendPlanaire(0);
 
-//    Random generator = new Random(seed);
-
     List<List<Arc>> roads_arcs = this.buildLinesClusters(t, generator);
     List<Path<IObservation>> result = new ArrayList<>();
     for(List<Arc> road: roads_arcs){
