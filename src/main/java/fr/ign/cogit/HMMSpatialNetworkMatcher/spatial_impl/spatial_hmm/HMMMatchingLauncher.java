@@ -18,7 +18,7 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMExporter;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.io.HMMImporter;
 
 public class HMMMatchingLauncher {
-  
+
   /**
    * ESRI Shapefiles
    */
@@ -51,14 +51,10 @@ public class HMMMatchingLauncher {
    * Lauch the matching process with recursive / parallel strategy
    */
   private boolean parralelProcess;
-  
-  private Random generator;
-  
-  public Map<IObservation, String> id1Map;
-  public Map<IHiddenState, String> id2Map;
 
-  public HMMMatchingLauncher(String fileNetwork1, String fileNetwork2,
-      IEmissionProbablityStrategy epS, ITransitionProbabilityStrategy tpS, PathBuilder pathBuilder,
+  private Random generator;
+
+  public HMMMatchingLauncher(String fileNetwork1, String fileNetwork2, IEmissionProbablityStrategy epS, ITransitionProbabilityStrategy tpS, PathBuilder pathBuilder,
       PostProcessStrategy postProcessStrategy, boolean parralelProcess, Random generator) {
     super();
     this.fileNetwork1 = fileNetwork1;
@@ -73,7 +69,6 @@ public class HMMMatchingLauncher {
     this.generator = generator;
   }
 
-
   public Map<IObservation, Set<IHiddenState>> getMatching() {
     return simplifiedMatching;
   }
@@ -85,32 +80,29 @@ public class HMMMatchingLauncher {
     // get observations and hidden states
     ObservationPopulation observations = preProcess.getObservations();
     HiddenStatePopulation states = preProcess.getStates();
-    
+
     // set emmision and transition probabilities stategies
-    for(FeatObservation obs : observations) {
+    for (FeatObservation obs : observations) {
       obs.setEmissionProbabilityStrategy(this.epS);
     }
-    for(FeatHiddenState hd: states) {
+    for (FeatHiddenState hd : states) {
       hd.setTransitionProbabilityStrategy(this.tpS);
     }
-    
+
     // initialize and launch main matching process
     IHMMMatching hmm;
-    if(this.parralelProcess) {
-    hmm = new HMMMatchingProcessParallel(this.pathBuilder, observations,
-        states, postProcessStrategy, true, generator);
-    }
-    else {
-      hmm = new HMMMatchingProcess(this.pathBuilder, observations,
-          states, postProcessStrategy, generator);
+    if (this.parralelProcess) {
+      hmm = new HMMMatchingProcessParallel(this.pathBuilder, observations, states, postProcessStrategy, true, generator);
+    } else {
+      hmm = new HMMMatchingProcess(this.pathBuilder, observations, states, postProcessStrategy, generator);
     }
     hmm.match();
-    
-    //get matching results
-    this.matching= hmm.getMatching();  
+
+    // get matching results
+    this.matching = hmm.getMatching();
     this.simplifiedMatching = hmm.getSimplifiedMatching();
   }
-  
+
   public void exportMatchingResults(String output) {
     HMMExporter exporter = new HMMExporter();
     exporter.export(this.matching, this.simplifiedMatching, output);

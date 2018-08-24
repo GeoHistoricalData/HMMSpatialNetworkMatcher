@@ -36,7 +36,7 @@ public class LaunchExemple {
     // epStrategy.add(new DirectionDifferenceEmissionProbability(), 1.);
     // parameter of the exponential distribution of Frechet proba
     double lamdaFrechet = 1.;
-    epStrategy.add(new FrechetEmissionProbability(1), lamdaFrechet);
+    epStrategy.add(new FrechetEmissionProbability(lamdaFrechet), 1.);
 
 
     // Transition probability Strategy
