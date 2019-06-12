@@ -1,5 +1,8 @@
 # HMMSpatialNetworkMatcher
 
+### Status
+[![Build Status](https://travis-ci.org/GeoHistoricalData/HMMSpatialNetworkMatcher.png)](https://travis-ci.org/GeoHistoricalData/HMMSpatialNetworkMatcher)
+
 Contributors : Benoit Costes, Julien Perret.
 
 This project provides :
