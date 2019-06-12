@@ -15,15 +15,19 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.CompositeH
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatHiddenState;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObservation;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
+import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.api.feature.IPopulation;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
+import fr.ign.cogit.geoxygene.api.spatial.geomaggr.IMultiCurve;
+import fr.ign.cogit.geoxygene.api.spatial.geomprim.IOrientableCurve;
 import fr.ign.cogit.geoxygene.api.spatial.geomprim.IPoint;
 import fr.ign.cogit.geoxygene.contrib.geometrie.Operateurs;
 import fr.ign.cogit.geoxygene.feature.DefaultFeature;
 import fr.ign.cogit.geoxygene.feature.Population;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 import fr.ign.cogit.geoxygene.spatial.geomprim.GM_Point;
+import fr.ign.cogit.geoxygene.util.attribute.AttributeManager;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileWriter;
 import fr.ign.cogit.geoxygene.util.index.Tiling;
 
@@ -437,5 +441,54 @@ public class HMMExporter {
       }
     }
     return result;
+  }
+  public IFeatureCollection<IFeature> exportFeaturesWithID(Map<IObservation, Set<IHiddenState>> matching, IPopulation<IFeature> popRef, IPopulation<IFeature> popComp, String idRef, String idComp) {
+    IPopulation<IFeature> matches = exportMatching(matching);
+    popRef.initSpatialIndex(Tiling.class, false);
+    popComp.initSpatialIndex(Tiling.class, false);
+    matches.initSpatialIndex(Tiling.class, false);
+    IPopulation<IFeature> out = new Population<>();
+//    List<List<String>> result = new ArrayList<>();
+    for (IFeature fref : popRef) {
+      for (IFeature m : matches) {
+        IPoint p1 = new GM_Point(m.getGeom().coord().get(0));
+        IPoint p2 = new GM_Point(m.getGeom().coord().get(1));
+        if (p1.distance(fref.getGeom()) < 0.01 || p2.distance(fref.getGeom()) < 0.01) {
+          for (IFeature fcomp : popComp) {
+            if (p1.distance(fcomp.getGeom()) < 0.01 || p2.distance(fcomp.getGeom()) < 0.01) {
+//              result.add(Arrays.asList(fref.getAttribute(idRef).toString(), fcomp.getAttribute(idComp).toString()));
+              System.out.println("REF ID = " + fref.getAttribute(idRef).toString());
+              IDirectPosition dp1 = null;
+              if (fref.getGeom() instanceof ILineString) {
+                dp1 = ((ILineString)fref.getGeom()).constrParam(0.5);
+              } else {
+                IMultiCurve<IOrientableCurve> mc = ((IMultiCurve<IOrientableCurve>)fref.getGeom());
+                if (mc.size() != 1) {
+                  System.out.println(mc);
+                }
+                dp1 = ((ILineString)mc.get(0)).constrParam(0.5);
+              }
+              System.out.println("COMP ID = " + fcomp.getAttribute(idComp).toString());
+              IDirectPosition dp2 = null;
+              if (fcomp.getGeom() instanceof ILineString) {
+                dp2 = ((ILineString)fcomp.getGeom()).constrParam(0.5);
+              } else {
+                IMultiCurve<IOrientableCurve> mc = ((IMultiCurve<IOrientableCurve>)fcomp.getGeom());
+                if (mc.size() != 1) {
+                  System.out.println(mc);
+                }
+                dp2 = ((ILineString)mc.get(0)).constrParam(0.5);
+              }
+              DefaultFeature feature = new DefaultFeature(new GM_LineString(dp1,dp2));
+              AttributeManager.addAttribute(feature, "ID1", fref.getAttribute(idRef).toString(), "String");
+              AttributeManager.addAttribute(feature, "ID2", fcomp.getAttribute(idComp).toString(), "String");
+              out.add(feature);
+              break;
+            }
+          }
+        }
+      }
+    }
+    return out;
   }
 }

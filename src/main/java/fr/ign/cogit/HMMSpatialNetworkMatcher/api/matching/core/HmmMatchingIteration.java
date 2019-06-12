@@ -19,6 +19,8 @@ import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IHiddenStateCollection;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.IObservation;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.Path;
 import fr.ign.cogit.HMMSpatialNetworkMatcher.api.matching.root.MatchingTransitionDescriptor;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatHiddenState;
+import fr.ign.cogit.HMMSpatialNetworkMatcher.spatial_impl.spatial_hmm.FeatObservation;
 
 /**
  * One iteration of the algorithm (matching of one path).
@@ -55,12 +57,13 @@ public class HmmMatchingIteration {
     if(this.path.isEmpty()) {
       return;
     }
+    System.out.println("path of size " + this.path.size());
     @SuppressWarnings("unchecked")
     Iterator<IObservation> itObservations = ((LinkedList<IObservation>)this.path.clone()).iterator();
 
     // first observation of the path
     IObservation currentO = itObservations.next();
-    
+//    System.out.println(((FeatObservation)currentO).getGeom());
     // possible matching states
     Collection<IHiddenState> currentCandidates = currentO.candidates(this.hiddenStates);
 
@@ -70,10 +73,15 @@ public class HmmMatchingIteration {
    
     // is there at least one potential candidate ?
     boolean notAllCandidatesInfinity = false;
+//    int count = 0;
+//    System.out.println("\t candidates");
     for(IHiddenState state : currentCandidates) {
       double eP = currentO.computeEmissionProbability(state);
       if(Double.isFinite(eP)) {
         notAllCandidatesInfinity = true;
+//        if (++count < 100) {
+//          System.out.println(((FeatHiddenState)state).getGeom());
+//        }
       }
       startP.put(state, eP);
     }
@@ -91,13 +99,14 @@ public class HmmMatchingIteration {
     viterbi.startWithInitialObservation(currentO, currentCandidates, startP);
     boolean viterbiIsBroken = false;
     
-    
+    System.out.println("Viterbi start with " + currentCandidates.size() + " candidates");
 
     while(itObservations.hasNext()){
       // next observation if it exists
       IObservation nextO = itObservations.next();
 
       Collection<IHiddenState> nextCandidates = nextO.candidates(this.hiddenStates);
+      System.out.println("\t next with " + nextCandidates.size() + " candidates");
 
       if(nextCandidates.isEmpty()){
         // viterbi is broken because there is no hidden state candidate for matching with nextO
@@ -107,13 +116,14 @@ public class HmmMatchingIteration {
 
       // emission probabilities
       Map<IHiddenState, Double> eP = new HashMap<>();
+      System.out.println("\t\t emission probabilities");
       for(IHiddenState state  :nextCandidates){
         eP.put(state, nextO.computeEmissionProbability(state));
       }
       // transition probabilities
       final Map<Transition<IHiddenState>, Double> transitionLogProbabilities = new LinkedHashMap<>();
       //   final Map<Transition<MatchingState>, MatchingTransitionDescriptor> transitionDescriptors = new LinkedHashMap<>();
-
+      System.out.println("\t\t transition probabilities with " + currentCandidates.size() + " x " + nextCandidates.size());
       for(IHiddenState state1 :currentCandidates){
         for(IHiddenState state2: nextCandidates){
           transitionLogProbabilities.put(new Transition<>(state1, state2),
@@ -122,9 +132,8 @@ public class HmmMatchingIteration {
 
         }
       }
-
-      viterbi.nextStep(nextO, nextCandidates, eP,
-          transitionLogProbabilities);
+      System.out.println("\t\t viterbi");
+      viterbi.nextStep(nextO, nextCandidates, eP, transitionLogProbabilities);
 
       if(viterbi.isBroken()){
         // viterbi is broken because there is not possible transition

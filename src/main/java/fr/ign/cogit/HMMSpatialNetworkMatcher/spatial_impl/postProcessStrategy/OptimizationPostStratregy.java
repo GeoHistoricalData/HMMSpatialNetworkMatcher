@@ -23,7 +23,7 @@ public class OptimizationPostStratregy implements PostProcessStrategy{
 
   @Override
   public Map<IObservation, Set<IHiddenState>> simplify(IHMMMatching hmmProcess) { 
-
+System.out.println("simplify");
         Map<FeatObservation, List<FeatHiddenState>> matching = new HashMap<>();
 
         for(IObservation a : hmmProcess.getMatching().keySet()){

@@ -4,7 +4,7 @@
   
   <groupId>fr.ign.cogit</groupId>
   <artifactId>HMMSpatialNetworkMatcher</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   
   <name>HMMSpatialNetworkMatcher</name>
@@ -12,7 +12,7 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <geoxygene.noyau.version>1.9-SNAPSHOT</geoxygene.noyau.version>
+    <geoxygene.noyau.version>1.10-SNAPSHOT</geoxygene.noyau.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
@@ -151,4 +151,16 @@
       </snapshots>
     </repository>
   </repositories>
+  <distributionManagement>
+    <repository>
+      <id>ign-releases</id>
+      <name>Nexus Releases Repository</name>
+      <url>https://forge-cogit.ign.fr/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>ign-snapshots</id>
+      <name>Nexus Snapshots Repository</name>
+      <url>https://forge-cogit.ign.fr/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
